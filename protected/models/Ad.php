@@ -13,6 +13,23 @@
  */
 class Ad extends CActiveRecord
 {
+	
+	/**
+	 * @return array representing the object
+	 */
+	public function toArray()
+	{
+		return array(
+			"id" => $this->id,
+			"image_url" => $this->image_url,
+			"link" => $this->link,
+			"is_mobile" => $this->is_mobile,
+			"date_published" => $this->date_published,
+			"date_end" => $this->date_end,
+		);
+	}
+
+	
 	/**
 	 * @return string the associated database table name
 	 */

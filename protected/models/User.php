@@ -12,6 +12,7 @@
  * @property string $date_register
  * @property string $token
  * @property string $devide_id
+ * @property string $push_id
  *
  * The followings are the available model relations:
  * @property Item[] $items
@@ -35,12 +36,12 @@ class User extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('phone, email, password, date_register', 'required'),
+			array('email, password, date_register', 'required'),
 			array('phone, credits', 'numerical', 'integerOnly'=>true),
-			array('email, password, token, devide_id', 'length', 'max'=>255),
+			array('email, password, token, devide_id, push_id', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, phone, email, password, credits, date_register, token, devide_id', 'safe', 'on'=>'search'),
+			array('id, phone, email, password, credits, date_register, token, devide_id, push_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -71,6 +72,7 @@ class User extends CActiveRecord
 			'date_register' => 'Date Register',
 			'token' => 'Token',
 			'devide_id' => 'Devide',
+			'push_id' => 'Push',
 		);
 	}
 
@@ -100,6 +102,7 @@ class User extends CActiveRecord
 		$criteria->compare('date_register',$this->date_register,true);
 		$criteria->compare('token',$this->token,true);
 		$criteria->compare('devide_id',$this->devide_id,true);
+		$criteria->compare('push_id',$this->push_id,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

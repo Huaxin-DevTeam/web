@@ -30,6 +30,15 @@ class Helper extends CComponent{
 	    }
 	    return $token;
 	}
+	
+	public static function log($message,$type = "error"){
+		
+		$log = new Log;
+		$log->message = $message;
+		$log->type = $type;
+		$log->datetime = new CDbExpression('NOW()');
+		$log->save();
+	}
 	 
 
 	

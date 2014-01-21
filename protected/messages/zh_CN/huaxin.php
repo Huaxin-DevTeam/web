@@ -18,6 +18,29 @@ return array(
 	"This email/phone is already registered!" => "",
 	"User {email} creation successful!" => "用户{email}创建成功！",
 	
+	// Creation
+	"Missing 'token' parameter" => "",
+	"Invalid token" => "",
+	"Missing 'category_id' parameter" => "",
+	"Missing 'title' parameter" => "",
+	"Missing 'description' parameter" => "",
+	"Missing 'price' parameter" => "",
+	"Missing 'phone' parameter" => "",
+	"Missing 'image' parameter" => "",
+	"Missing 'location' parameter" => "",
+	"Category not valid" => "",
+	"Duration not valid" => "",
+
+	"" => "",
+	"" => "",
+	"" => "",
+	"" => "",
+	"" => "",	
+	"" => "",
+	"" => "",
+	"" => "",
+	"" => "",
+
 	// Web
 	"HUAXIN" => "华信",
 		

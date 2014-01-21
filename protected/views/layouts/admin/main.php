@@ -34,6 +34,7 @@
 				array('label'=>'Purchases', 'url'=>array('/admin/purchase')),
 				array('label'=>'Users', 'url'=>array('/admin/user')),				
 				array('label'=>'Ads', 'url'=>array('/admin/ad')),
+				array('label'=>'Logs', 'url'=>array('/admin/log')),
 				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
 			)),

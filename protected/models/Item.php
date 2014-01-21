@@ -16,6 +16,7 @@
  * @property string $date_published
  * @property string $date_end
  * @property integer $num_views
+ * @property integer $premium
  *
  * The followings are the available model relations:
  * @property User $user
@@ -23,6 +24,28 @@
  */
 class Item extends CActiveRecord
 {
+
+
+	/**
+	 * @return array representing the object
+	 */	 
+	public function toArray()
+	{
+		return array(
+			"id" => $this->id,
+			"category_id" => $this->category_id,
+			"title" => $this->title,
+			"description" => $this->description,
+			"price" => $this->price,
+			"phone" => $this->phone,
+			"location" => $this->location,
+			"image_url" => $this->image_url,
+			"date_published" => $this->date_published,			
+			"date_end" => $this->date_end,
+		);
+	}
+
+
 	/**
 	 * @return string the associated database table name
 	 */
@@ -40,7 +63,7 @@ class Item extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('user_id, category_id, title, description, price, phone, image_url, location, date_published', 'required'),
-			array('user_id, category_id, phone, num_views', 'numerical', 'integerOnly'=>true),
+			array('user_id, category_id, phone, num_views, premium', 'numerical', 'integerOnly'=>true),
 			array('price', 'numerical'),
 			array('title, image_url, location', 'length', 'max'=>255),
 			array('date_end', 'safe'),
@@ -81,6 +104,7 @@ class Item extends CActiveRecord
 			'date_published' => 'Date Published',
 			'date_end' => 'Date End',
 			'num_views' => 'Num Views',
+			'premium' => 'Premium',
 		);
 	}
 
@@ -114,6 +138,7 @@ class Item extends CActiveRecord
 		$criteria->compare('date_published',$this->date_published,true);
 		$criteria->compare('date_end',$this->date_end,true);
 		$criteria->compare('num_views',$this->num_views);
+		$criteria->compare('premium',$this->premium);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

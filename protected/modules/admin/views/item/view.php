@@ -31,5 +31,6 @@ $this->menu=array(
 		'date_published',
 		'date_end',
 		'num_views',
+		'premium',
 	),
 )); ?>

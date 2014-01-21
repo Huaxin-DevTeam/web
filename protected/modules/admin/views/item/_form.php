@@ -84,6 +84,12 @@
 		<?php echo $form->textField($model,'num_views'); ?>
 		<?php echo $form->error($model,'num_views'); ?>
 	</div>
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'premium'); ?>
+		<?php echo $form->textField($model,'premium'); ?>
+		<?php echo $form->error($model,'premium'); ?>
+	</div>
 
 	<div class="row buttons">
 		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>

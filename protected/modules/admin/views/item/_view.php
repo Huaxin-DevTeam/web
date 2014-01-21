@@ -32,6 +32,9 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('phone')); ?>:</b>
 	<?php echo CHtml::encode($data->phone); ?>
 	<br />
+	<b><?php echo CHtml::encode($data->getAttributeLabel('premium')); ?>:</b>
+	<?php echo CHtml::encode($data->premium); ?>
+	<br />
 
 	<?php /*
 	<b><?php echo CHtml::encode($data->getAttributeLabel('image_url')); ?>:</b>

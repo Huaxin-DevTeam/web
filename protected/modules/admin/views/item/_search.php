@@ -71,6 +71,11 @@
 		<?php echo $form->textField($model,'num_views'); ?>
 	</div>
 
+	<div class="row">
+		<?php echo $form->label($model,'premium'); ?>
+		<?php echo $form->textField($model,'premium'); ?>
+	</div>
+
 	<div class="row buttons">
 		<?php echo CHtml::submitButton('Search'); ?>
 	</div>

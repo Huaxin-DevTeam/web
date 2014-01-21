@@ -11,7 +11,7 @@ return array(
 	
 	// i18n
 	'sourceLanguage' => 'en',
-	'language' => 'zh_CN',
+	//'language' => 'zh_CN',
 
 	// preloading 'log' component
 	'preload'=>array('log'),

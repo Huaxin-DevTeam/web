@@ -3,6 +3,6 @@
 class DefaultController extends Controller
 {
 	public function actionIndex(){
-		$this->redirect("admin/item");
+		$this->redirect("/admin/item");
 	}
 }

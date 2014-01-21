@@ -1,35 +1,22 @@
 <?php
 
 /**
- * This is the model class for table "category".
+ * This is the model class for table "log".
  *
- * The followings are the available columns in table 'category':
+ * The followings are the available columns in table 'log':
  * @property integer $id
- * @property string $name
- *
- * The followings are the available model relations:
- * @property Item[] $items
+ * @property string $type
+ * @property string $message
+ * @property string $datetime
  */
-class Category extends CActiveRecord
+class Log extends CActiveRecord
 {
-
-	/**
-	 * @return array representing the object
-	 */	 
-	public function toArray()
-	{
-		return array(
-			"id" => $this->id,
-			"name" => $this->name,
-		);
-	}
-	
 	/**
 	 * @return string the associated database table name
 	 */
 	public function tableName()
 	{
-		return 'category';
+		return 'log';
 	}
 
 	/**
@@ -40,11 +27,12 @@ class Category extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('name', 'required'),
-			array('name', 'length', 'max'=>255),
+			array('type, message, datetime', 'required'),
+			array('type', 'length', 'max'=>60),
+			array('message', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, name', 'safe', 'on'=>'search'),
+			array('id, type, message, datetime', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -56,7 +44,6 @@ class Category extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'items' => array(self::HAS_MANY, 'Item', 'category_id'),
 		);
 	}
 
@@ -67,7 +54,9 @@ class Category extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'name' => 'Name',
+			'type' => 'Type',
+			'message' => 'Message',
+			'datetime' => 'DateTime',
 		);
 	}
 
@@ -90,13 +79,12 @@ class Category extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
-		$criteria->compare('name',$this->name,true);
+		$criteria->compare('type',$this->type,true);
+		$criteria->compare('message',$this->message,true);
+		$criteria->compare('datetime',$this->datetime,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
-			'sort'=>array(
-			    'defaultOrder'=>'id ASC',
-			),
 		));
 	}
 
@@ -104,7 +92,7 @@ class Category extends CActiveRecord
 	 * Returns the static model of the specified AR class.
 	 * Please note that you should have this exact method in all your CActiveRecord descendants!
 	 * @param string $className active record class name.
-	 * @return Category the static model class
+	 * @return Log the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{

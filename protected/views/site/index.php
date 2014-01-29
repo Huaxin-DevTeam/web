@@ -1,4 +1,4 @@
-		<div class="row">
+		<div class="row busqueda">
 			<div class="col-md-2"><p>QUE BUSCAS?</p></div>
 			<div class="col-md-2">DONDE BUSCAS?</div>
 			<div class="col-md-4">
@@ -16,7 +16,7 @@
 		</div>
 		
 		
-		<div class="row">
+		<div class="row contenido">
 			<div class="col-md-2" >
 				<nav class="navbar  navbar-default" role="navigation">
 				  
@@ -43,10 +43,9 @@
 				</nav>
 			</div>
 			<div class="col-md-8" >
-				<div class="row">
+				<div class="row carousel">
 					<div class="col-md-12" >ANUNCIOS DESTACADOS</div>
-				</div>
-				<div class="row">
+				
 					<div class="col-md-2" >
 						 <a data-slide="prev" href="#myCarousel" class="left carousel-control">
 							<img src="<?php echo Yii::app()->request->baseUrl; ?>/img/left-arrow.png">
@@ -59,7 +58,7 @@
 							<div class="carousel slide" id="myCarousel">
 									<div class="carousel-inner">
 									  <div class="item active">
-											<ul class="list-unstyled">
+											<!--<ul class="list-unstyled">
 												<li class="col-md-3">
 												   
 													<div class="thumbnail">
@@ -137,12 +136,12 @@
 														<img src="http://placehold.it/260x180" alt="">
 													</div>
 												</li>
-											</ul>
+											</ul>-->
 									  </div>
 									</div>
 								</div>
 						</div>
-					</diV>
+					</div>
 					
 					</div>
 					<div class="col-md-2" >
@@ -152,10 +151,9 @@
 					</div>
 				</div>	
 				
-				<div class="row">
+				<div class="row porque-huaxin">
 					<div class="col-md-12" >POR QUÉ HUAXIN?</div>
-				</div>
-				<div class="row">
+				
 					<div class="col-md-4" >
 						<img src="<?php echo Yii::app()->request->baseUrl; ?>/img/locker-big.png" class="img-responsive center-block">
 						<h6 class="text-center">CONFIANZA Y SEGURIDAD</h6>
@@ -185,3 +183,4 @@
 			<div class="col-md-2 adds">
 				<?php print $ad->toHtml(); ?>
 			</div>
+		</div>

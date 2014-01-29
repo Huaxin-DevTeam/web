@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 27-12-2013 a las 18:03:08
+-- Tiempo de generación: 29-01-2014 a las 15:18:17
 -- Versión del servidor: 5.5.29
 -- Versión de PHP: 5.4.10
 
@@ -20,12 +20,13 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `ad`
 --
 
+DROP TABLE IF EXISTS `ad`;
 CREATE TABLE `ad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `image_url` varchar(255) NOT NULL,
   `link` varchar(255) NOT NULL,
   `is_mobile` tinyint(1) NOT NULL DEFAULT '0',
-  `num_clicks` int(11) NOT NULL DEFAULT '0',
+  `num_views` int(11) NOT NULL DEFAULT '0',
   `date_published` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_end` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
@@ -35,11 +36,11 @@ CREATE TABLE `ad` (
 -- Volcado de datos para la tabla `ad`
 --
 
-INSERT INTO `ad` (`id`, `image_url`, `link`, `is_mobile`, `num_clicks`, `date_published`, `date_end`) VALUES
-(1, 'url1', 'link1', 0, 0, '2013-12-20 14:43:41', '2014-01-06 23:00:00'),
-(2, 'img2', 'link2', 1, 0, '2013-12-20 14:44:25', '2013-12-29 23:00:00'),
-(3, 'img3', 'link3', 0, 0, '2013-12-17 23:00:00', '2013-12-18 23:00:00'),
-(4, 'img4', 'link4', 1, 0, '2013-12-19 23:00:00', '2014-01-09 23:00:00');
+INSERT INTO `ad` (`id`, `image_url`, `link`, `is_mobile`, `num_views`, `date_published`, `date_end`) VALUES
+(1, 'url1', 'link1', 0, 19, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
+(2, 'img2', 'link2', 1, 0, '2013-12-20 14:44:25', '2015-12-29 23:00:00'),
+(3, 'img3', 'link3', 0, 24, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
+(4, 'img4', 'link4', 1, 0, '2013-12-19 23:00:00', '2015-01-09 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -47,12 +48,28 @@ INSERT INTO `ad` (`id`, `image_url`, `link`, `is_mobile`, `num_clicks`, `date_pu
 -- Estructura de tabla para la tabla `category`
 --
 
+DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET gbk NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+
+--
+-- Volcado de datos para la tabla `category`
+--
+
+INSERT INTO `category` (`id`, `name`) VALUES
+(3, 'Alquiler y Venta'),
+(6, 'Amistad y Relaciones'),
+(7, 'Ofertas (Rebajas)'),
+(1, 'Ofertas de Trabajo'),
+(4, 'Ofertas de Viajes'),
+(8, 'Otros anuncios'),
+(9, 'Páginas Amarillas'),
+(5, 'Segunda Mano'),
+(2, 'Traspaso de Negocios');
 
 -- --------------------------------------------------------
 
@@ -60,6 +77,7 @@ CREATE TABLE `category` (
 -- Estructura de tabla para la tabla `item`
 --
 
+DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -73,10 +91,47 @@ CREATE TABLE `item` (
   `date_published` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_end` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   `num_views` int(11) NOT NULL DEFAULT '0',
+  `premium` tinyint(4) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
-  UNIQUE KEY `user` (`user_id`),
-  UNIQUE KEY `category` (`category_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+  KEY `user` (`user_id`),
+  KEY `category` (`category_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `item`
+--
+
+INSERT INTO `item` (`id`, `user_id`, `category_id`, `title`, `description`, `price`, `phone`, `image_url`, `location`, `date_published`, `date_end`, `num_views`, `premium`) VALUES
+(1, 2, 1, 'title1', 'Este es un anuncio de prueba', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 16:05:05', '2015-01-08 16:05:05', 7, 0),
+(2, 2, 2, 'title1', 'Este es un anuncio de prueba', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 16:39:28', '2015-01-08 16:39:28', 0, 0),
+(3, 2, 1, 'title1', 'Este es un anuncio de prueba', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 16:39:31', '2015-01-08 16:39:31', 0, 0),
+(4, 2, 1, 'title1', 'Este es un anuncio de prueba', 22, 666123456, 'DISEÑO-FINAL.png', 'Barcelona', '2014-01-13 14:06:14', '2015-01-14 14:06:14', 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `log`
+--
+
+DROP TABLE IF EXISTS `log`;
+CREATE TABLE `log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `type` varchar(60) NOT NULL,
+  `message` varchar(255) NOT NULL,
+  `datetime` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+
+--
+-- Volcado de datos para la tabla `log`
+--
+
+INSERT INTO `log` (`id`, `type`, `message`, `datetime`) VALUES
+(1, 'error', 'Not Found - Id not found.', '2014-01-22 17:33:26'),
+(2, 'error', 'Not Found - ', '2014-01-22 17:33:41'),
+(3, 'error', 'Not Found - This id was not found.', '2014-01-22 17:34:02'),
+(4, 'error', 'Not Found - This item was not found.', '2014-01-23 11:46:37'),
+(5, 'error', 'Not Found - This item was not found.', '2014-01-23 11:47:14');
 
 -- --------------------------------------------------------
 
@@ -84,6 +139,7 @@ CREATE TABLE `item` (
 -- Estructura de tabla para la tabla `purchase`
 --
 
+DROP TABLE IF EXISTS `purchase`;
 CREATE TABLE `purchase` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -108,6 +164,7 @@ INSERT INTO `purchase` (`id`, `user_id`, `method`, `num_credits`, `date`, `token
 -- Estructura de tabla para la tabla `user`
 --
 
+DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `phone` int(15) DEFAULT NULL,
@@ -129,7 +186,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `phone`, `email`, `password`, `credits`, `date_register`, `token`, `devide_id`, `push_id`) VALUES
 (1, NULL, 'admin', 'e5b13ebaa3229236c5456575a7d24e1dc1f73ef4', 0, '2013-12-19 17:38:07', NULL, NULL, NULL),
-(2, 645155625, 'friko67@gmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 0, '2013-12-27 10:06:57', NULL, NULL, NULL);
+(2, 645155625, 'friko67@gmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 92, '2013-12-27 10:06:57', 'xirOfSj8jHeHji0GHNY58pr9K', NULL, NULL);
 
 --
 -- Restricciones para tablas volcadas

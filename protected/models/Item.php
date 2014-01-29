@@ -42,6 +42,8 @@ class Item extends CActiveRecord
 			"image_url" => $this->image_url,
 			"date_published" => $this->date_published,			
 			"date_end" => $this->date_end,
+			"num_views" => $this->num_views,
+			"premium" => $this->premium,
 		);
 	}
 

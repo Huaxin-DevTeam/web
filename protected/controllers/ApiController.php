@@ -38,11 +38,11 @@ class ApiController extends Controller
 	}
 	
 	private function checkToken(){
-		if(!isset($_POST['token'])) die($this->_error(400, Yii::t("huaxin","Missing 'token' parameter")));
+		if(!isset($_POST['token'])) die($this->_error(400, "huaxin","Missing 'token' parameter"));
 		$token = $_POST['token'];
 		
 		$user = User::model()->findByAttributes(array("token" => $token));
-		if(!$user) die($this->_error(401, Yii::t("huaxin", "Invalid token")));
+		if(!$user) die($this->_error(401, "Invalid token"));
 		return $user;
 	}
 	
@@ -50,13 +50,22 @@ class ApiController extends Controller
 		$error = array();
 		$error['code'] = $code;
 		$error['description'] = Errors::getError($code);
-		if($msg) $error['message'] = $msg;
+		if($msg) $error['message'] = Yii::t("huaxin",$msg);
 		
 		$data = array("error" => $error);
 		
 		Helper::log($error['description']." - ".$msg);
 		
 		$this->_render($data);
+	}
+	
+	private function _errors($errors){
+		$msg = "";
+
+		foreach($errors as $k=>$e)
+			$msg .= " $k: $e |";
+			
+		$this->_error(406,$msg);
 	}	
 
 	private function _render($data){
@@ -68,23 +77,19 @@ class ApiController extends Controller
 	public function actionIndex()
 	{			
 		$data = array(
-			"name" => Yii::t("huaxin","HUAXIN API"),
+			"name" => "HUAXIN API",
 			"version" => "0.1",
 			"message" => Yii::t("huaxin","Welcome!"),
 		);
 		return $this->_render($data);
 	}
 	
-	
 	/**
-	* Load Splash Screen
+	* Load Splash Screen: ads and categories
 	*/
-	/* Returns a random ad, active and for mobile */
+	/* Returns all ads, active and for mobile */
 	public function actionAd()
 	{
-	
-	// TODO!
-	
 		// Only active ads and shown in mobile
 		$res = Ad::model()->findAll("NOW() BETWEEN date_published AND date_end AND is_mobile");		
 		$ads = array();
@@ -92,7 +97,6 @@ class ApiController extends Controller
 			$ads[] = $ad->toArray();
 		}
 		
-//		$data = array("ads" => $ads);
 		return $this->_render($ads);
 	}
 	
@@ -105,12 +109,7 @@ class ApiController extends Controller
 		foreach($categories as $c)
 			$cats[] = $c->toArray();
 		
-//		$data = array("categories" => $cats);
-		$data = $cats;
-		
-		//Helper::log("Categories demanded!","confirmation");
-		
-		return $this->_render($data);
+		return $this->_render($cats);
 	}
 	
 	/**
@@ -121,27 +120,25 @@ class ApiController extends Controller
 		$this->checkPost();
 		
 		// Verify data
-		if(!isset($_POST['email'])) 	return $this->_error(400, Yii::t("huaxin","Missing 'email' parameter"));
-		if(!isset($_POST['phone'])) 	return $this->_error(400, Yii::t("huaxin","Missing 'phone' parameter"));
-		if(!isset($_POST['password'])) 	return $this->_error(400, Yii::t("huaxin","Missing 'password' parameter"));
+		if(!isset($_POST['email'])) 	return $this->_error(400, "Missing 'email' parameter");
+		if(!isset($_POST['phone'])) 	return $this->_error(400, "Missing 'phone' parameter");
+		if(!isset($_POST['password'])) 	return $this->_error(400, "Missing 'password' parameter");
 		
 		$email = trim($_POST['email']);
 		$phone = str_replace( array(" ","-","+",".") , "" , trim($_POST['phone']) );
 		$passw = $_POST['password'];
 		
 		// Validation filters (email,phone,pwd)
-		if(filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE) return $this->_error(406, Yii::t("huaxin","Please, enter a valid email address."));
-		if(strlen($phone) !== 9) return $this->_error(406, Yii::t("huaxin","Please, enter a valid phone number."));
-		if(strlen($passw) < 7) return $this->_error(406, Yii::t("huaxin","Please, make sure that password is at least 7 characters long."));
+		if(filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE) return $this->_error(406, "Please, enter a valid email address.");
+		if(strlen($phone) !== 9) return $this->_error(406, "Please, enter a valid phone number.");
+		if(strlen($passw) < 7) return $this->_error(406, "Please, make sure that password is at least 7 characters long.");
 		
 		$auser = User::model()->find(
 			"email = :email OR phone = :phone",
 			array(":email" => $email, ":phone" => $phone)
 		);
 		
-		if($auser){
-			return $this->_error(409, Yii::t("huaxin","This email/phone is already registered!"));
-		}
+		if($auser) return $this->_error(409, "This email/phone is already registered!");
 		
 		$user = new User;
 		$user->phone = $phone;
@@ -149,27 +146,25 @@ class ApiController extends Controller
 		$user->password = sha1($passw);
 		$user->date_register = new CDbExpression('NOW()');
 		$user->token = Helper::getToken();
-		$user->save();
 		
-		if(!$user->validate()){
-			print_r($user->getErrors());
-		}
+		if(!$user->validate()) $this->_errors($user->getErrors());
+		
+		$user->save();
 		
 		$data = array(
 			"success" => true,
-			"message" => Yii::t("huaxin", "User {email} creation successful!", array("{email}" => $email)),
+			"message" =>  "User {email} creation successful!", array("{email}" => $email),
 			"token" => $user->token,
 		);
 		return $this->_render($data);
 	}
 	
-	
 	public function actionLogin()
 	{
 		$this->checkPost();
 		
-		if(!isset($_POST['username'])) return $this->_error(400, Yii::t("huaxin","Missing 'username' parameter"));
-		if(!isset($_POST['password'])) return $this->_error(400, Yii::t("huaxin","Missing 'password' parameter"));
+		if(!isset($_POST['username'])) return $this->_error(400, "Missing 'username' parameter");
+		if(!isset($_POST['password'])) return $this->_error(400, "Missing 'password' parameter");
 		
 		// Gather data sent by user
 		$username = $_POST['username'];
@@ -181,9 +176,7 @@ class ApiController extends Controller
 			array(":username" => $username, ":password" => $password)
 		);
 		
-		if(!$user){
-			return $this->_error(401, Yii::t("huaxin","Wrong username/password"));
-		}
+		if(!$user) return $this->_error(401, "Wrong username/password");
 		
 		$user->token = $user->token ? : Helper::getToken();
 		$user->save();
@@ -212,6 +205,9 @@ class ApiController extends Controller
 		return $this->_render($data);
 	}
 
+	/**
+	* Credits actions
+	*/
 	public function actionBuy()
 	{
 		$data = array("message" => "buy");
@@ -221,7 +217,7 @@ class ApiController extends Controller
 	public function actionCreate()
 	{
 	
-		//TODO!
+		//TODO! edit
 		
 		// 1. Post request
 		$this->checkPost();
@@ -232,28 +228,28 @@ class ApiController extends Controller
 		// 3. Valid data
 		
 		// category_id
-		if(!isset($_POST['category_id'])) return $this->_error(400, Yii::t("huaxin","Missing 'category_id' parameter"));
+		if(!isset($_POST['category_id'])) return $this->_error(400, "Missing 'category_id' parameter");
 		
 		// title
-		if(!isset($_POST['title'])) return $this->_error(400, Yii::t("huaxin","Missing 'title' parameter"));
+		if(!isset($_POST['title'])) return $this->_error(400, "Missing 'title' parameter");
 		
 		// description
-		if(!isset($_POST['description'])) return $this->_error(400, Yii::t("huaxin","Missing 'description' parameter"));
+		if(!isset($_POST['description'])) return $this->_error(400, "Missing 'description' parameter");
 		
 		// price
-		if(!isset($_POST['price'])) return $this->_error(400, Yii::t("huaxin","Missing 'price' parameter"));
+		if(!isset($_POST['price'])) return $this->_error(400, "Missing 'price' parameter");
 		
 		// phone
-		if(!isset($_POST['phone'])) return $this->_error(400, Yii::t("huaxin","Missing 'phone' parameter"));
+		if(!isset($_POST['phone'])) return $this->_error(400, "Missing 'phone' parameter");
 			
 		// location
-		if(!isset($_POST['location'])) return $this->_error(400, Yii::t("huaxin","Missing 'location' parameter"));
+		if(!isset($_POST['location'])) return $this->_error(400, "Missing 'location' parameter");
 		
 		// duration
-		if(!isset($_POST['duration'])) return $this->_error(400, Yii::t("huaxin","Missing 'duration' parameter"));
+		if(!isset($_POST['duration'])) return $this->_error(400, "Missing 'duration' parameter");
 		
 		// image
-		if(!isset($_FILES['image'])) return $this->_error(400, Yii::t("huaxin","Missing 'image' parameter"));
+		if(!isset($_FILES['image'])) return $this->_error(400, "Missing 'image' parameter");
 
 		$category_id = $_POST['category_id'];
 		$title = $_POST['title'];
@@ -270,13 +266,13 @@ class ApiController extends Controller
 		
 		//Category validation
 		$category = Category::model()->find($category_id);
-		if(!$category) return $this->_error(400, Yii::t("huaxin","Category not valid"));			
+		if(!$category || $category_id == 9) return $this->_error(400, "Category not valid");			
 		
 		
 		// Credits validation!
-		if($duration < 1) return $this->_error(400, Yii::t("huaxin","Duration not valid"));
+		if($duration < 1) return $this->_error(400, "Duration not valid");
 		$num_credits = 1 + $duration;
-		if($user->credits < $num_credits) return $this->_error(402, Yii::t("huaxin", "Not enough credits"));
+		if($user->credits < $num_credits) return $this->_error(402,  "Not enough credits");
 		
 		
 		$item = new Item;
@@ -292,34 +288,54 @@ class ApiController extends Controller
 		$item->date_published = new CDbExpression('NOW()');
 		$item->date_end = new CDbExpression("NOW() + INTERVAL $duration DAY");		
 		
-		if(!$item->validate()){
-			print_r($item->getErrors());
-		}else{
-			$item->save();
-			$user->credits -= $num_credits;
-			$user->save();
-		}
+		if(!$item->validate()) $this->_errors($item->getErrors());
+		
+		$item->save();
+		$user->credits -= $num_credits;
+		$user->save();	
 		
 		$data = array("message" => Yii::t("huaxin","Ad creation successful."), "id" => $item->id);
 		return $this->_render($data);
 	}
 
-	public function actionDetail()
+	public function actionDetail($id)
 	{
-		$data = array("message" => "detail");
-		return $this->_render($data);
+		$this->checkPost();
+		
+		$item = Item::model()->findByPk($id);
+		
+		if(!$item) return $this->_error(404, "This item was not found.");
+		
+		$item->num_views++;
+		$item->save();
+		
+		return $this->_render($item->toArray());
 	}
 
-	public function actionList()
+	public function actionList($id)
 	{
-		$data = array("message" => "list");
-		return $this->_render($data);
+		// TODO filters?
+		$this->checkPost();
+		
+		$category_id = $id;		
+		$filters = isset($_POST['filters']) ? json_decode($_POST['filters'],true) : null;
+		
+		$query = array(
+			"condition" => "category_id = :category AND date_end >= :date",
+			"params" => array(":category" => $category_id, ":date" => date("Y-m-d h:i:s")),
+		);
+				
+		$items = Item::model()->findAll($query);
+		
+		$list = array();
+		foreach($items as $i)
+			$list[] = $i->toArray();
+		
+		return $this->_render($list);
 	}
 
 	public function actionMyads()
-	{
-		//TODO
-		
+	{		
 		// 1. Post request
 		$this->checkPost();
 		

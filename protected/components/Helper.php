@@ -39,6 +39,17 @@ class Helper extends CComponent{
 		$log->datetime = new CDbExpression('NOW()');
 		$log->save();
 	}
+	
+	public static function getRandomAd($mobile=false){
+		$ad = Ad::model()->find(array(
+			"condition" => "NOW() BETWEEN date_published AND date_end AND NOT is_mobile",
+			"order" => new CDbExpression("RAND()"),
+		));
+		$ad->num_views++;
+		$ad->save();
+		
+		return $ad;
+	}
 	 
 
 	

@@ -32,8 +32,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'num_clicks'); ?>
-		<?php echo $form->textField($model,'num_clicks'); ?>
+		<?php echo $form->label($model,'num_views'); ?>
+		<?php echo $form->textField($model,'num_views'); ?>
 	</div>
 
 	<div class="row">

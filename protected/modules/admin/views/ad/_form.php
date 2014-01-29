@@ -38,9 +38,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'num_clicks'); ?>
-		<?php echo $form->textField($model,'num_clicks'); ?>
-		<?php echo $form->error($model,'num_clicks'); ?>
+		<?php echo $form->labelEx($model,'num_views'); ?>
+		<?php echo $form->textField($model,'num_views'); ?>
+		<?php echo $form->error($model,'num_views'); ?>
 	</div>
 
 	<div class="row">

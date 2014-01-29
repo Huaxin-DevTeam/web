@@ -47,8 +47,16 @@ return array(
 			'urlFormat'=>'path',
 			'showScriptName' => false, //Hide index.php
 			'rules'=>array(
+				//admin
+				'<controller:(admin)>'=>'admin',
+				
 				// a standard rule mapping '/login' to 'site/login', and so on
-				'<action:(login|logout|about)>' => 'site/<action>',
+				'<action:\w+>' => 'site/<action>',
+				'<action:(category)>/<id:\d+>' => 'site/<action>',
+				
+				// a standard rule mapping '/login' to 'site/login', and so on
+				'<action:\w+>' => 'site/<action>',
+				'<action:\w+>/<id:\d+>' => 'site/<action>',
 				
 				// a standard rule to handle 'post/update' and so on
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',

@@ -4,17 +4,36 @@
 $this->pageTitle=Yii::app()->name;
 ?>
 
-<h1>Welcome to <i><?php echo CHtml::encode(Yii::app()->name); ?></i></h1>
-
-<p>Congratulations! You have successfully created your Yii application.</p>
-
-<p>You may change the content of this page by modifying the following two files:</p>
 <ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
+<?php foreach($categories as $c): ?>
+	<li><?php print CHtml::link($c->name,$this->createUrl("category/".$c->id)); ?></li>
+<?php endforeach; ?>
 </ul>
 
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p>
+<div>
+<?php print $ad->toHtml(); ?>
+</div>
+
+<?php if(Yii::app()->user->getId() === null): ?>
+<div class="form">
+<?php echo CHtml::beginForm(); ?>
+ 
+    <?php echo CHtml::errorSummary($model); ?>
+ 
+    <div class="row">
+        <?php echo CHtml::activeLabel($model,'username'); ?>
+        <?php echo CHtml::activeTextField($model,'username') ?>
+    </div>
+ 
+    <div class="row">
+        <?php echo CHtml::activeLabel($model,'password'); ?>
+        <?php echo CHtml::activePasswordField($model,'password') ?>
+    </div>
+ 
+    <div class="row submit">
+        <?php echo CHtml::submitButton('Login'); ?>
+    </div>
+ 
+<?php echo CHtml::endForm(); ?>
+</div><!-- form -->	
+<?php endif; ?>

@@ -8,6 +8,7 @@
  * @property string $image_url
  * @property string $link
  * @property integer $is_mobile
+ * @property integer $num_views
  * @property string $date_published
  * @property string $date_end
  */
@@ -28,6 +29,10 @@ class Ad extends CActiveRecord
 			"date_end" => $this->date_end,
 		);
 	}
+	
+	public function toHtml(){
+		return "<a href='".$this->link."'><img src='".$this->image_url."' alt='".$this->link."' /></a>";
+	}
 
 	
 	/**
@@ -47,12 +52,12 @@ class Ad extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('image_url, link, date_published', 'required'),
-			array('is_mobile', 'numerical', 'integerOnly'=>true),
+			array('is_mobile, num_views', 'numerical', 'integerOnly'=>true),
 			array('image_url, link', 'length', 'max'=>255),
 			array('date_end', 'safe'),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, image_url, link, is_mobile, date_published, date_end', 'safe', 'on'=>'search'),
+			array('id, image_url, link, is_mobile, num_views, date_published, date_end', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -77,6 +82,7 @@ class Ad extends CActiveRecord
 			'image_url' => 'Image Url',
 			'link' => 'Link',
 			'is_mobile' => 'Is Mobile',
+			'num_views' => 'Num Views',
 			'date_published' => 'Date Published',
 			'date_end' => 'Date End',
 		);
@@ -104,6 +110,7 @@ class Ad extends CActiveRecord
 		$criteria->compare('image_url',$this->image_url,true);
 		$criteria->compare('link',$this->link,true);
 		$criteria->compare('is_mobile',$this->is_mobile);
+		$criteria->compare('num_views',$this->num_views);
 		$criteria->compare('date_published',$this->date_published,true);
 		$criteria->compare('date_end',$this->date_end,true);
 

@@ -21,8 +21,8 @@
 	<?php echo CHtml::encode($data->is_mobile); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('num_clicks')); ?>:</b>
-	<?php echo CHtml::encode($data->num_clicks); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('num_views')); ?>:</b>
+	<?php echo CHtml::encode($data->num_views); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('date_published')); ?>:</b>

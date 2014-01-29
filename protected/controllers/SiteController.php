@@ -29,7 +29,34 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		
+		//Login form
+		$model=new LoginForm;
+		
+		// collect user input data
+		if(isset($_POST['LoginForm']))
+		{
+			$model->attributes=$_POST['LoginForm'];
+			// validate user input and redirect to the previous page if valid
+			if($model->validate() && $model->login())
+				$this->redirect(Yii::app()->user->returnUrl);
+		}
+		
+		//1. Load all categories
+		$categories = Category::model()->findAll(array('order' => "id"));
+		
+		//2. Load premium items
+		
+		//3. Load just one random ad
+		$ad = Helper::getRandomAd();
+		
+		$data = array(
+			"categories" => $categories,
+			"ad" => $ad,
+			"model" => $model,
+		);
+		
+		$this->render('index', $data);
 	}
 
 	/**
@@ -106,4 +133,9 @@ class SiteController extends Controller
 		Yii::app()->user->logout();
 		$this->redirect(Yii::app()->homeUrl);
 	}
+
+	public function actionCategory($id){
+		die("category id: $id");
+	}
+	
 }

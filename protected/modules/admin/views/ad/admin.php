@@ -48,7 +48,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'image_url',
 		'link',
 		'is_mobile',
-		'num_clicks',
+		'num_views',
 		'date_published',
 		/*
 		'date_end',

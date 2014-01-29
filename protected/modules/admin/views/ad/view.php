@@ -24,7 +24,7 @@ $this->menu=array(
 		'image_url',
 		'link',
 		'is_mobile',
-		'num_clicks',
+		'num_views',
 		'date_published',
 		'date_end',
 	),

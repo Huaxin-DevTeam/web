@@ -47,12 +47,12 @@
 						   <?php echo CHtml::errorSummary($this->model); ?>
 						
 						   <div class="form-group form-user col-md-5 pull-left">
-						       <?php echo CHtml::activeLabel($this->model,'username'); ?>
+						       <?php echo CHtml::activeLabel($this->model,'username', array("class" => "sr-only")); ?>
 						       <?php echo CHtml::activeTextField($this->model,'username',array("class" => "form-control", "id" => "idUser", "placeholder" => "Username")) ?>
 						   </div>
 						
 						   <div class="form-group form-pass col-md-5 pull-left">
-						       <?php echo CHtml::activeLabel($this->model,'password'); ?>
+						       <?php echo CHtml::activeLabel($this->model,'password', array("class" => "sr-only")); ?>
 						       <?php echo CHtml::activePasswordField($this->model,'password',array("class" => "form-control", "id" => "idPass", "placeholder" => "Password")) ?>
 						   </div>
 						

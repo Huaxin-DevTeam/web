@@ -16,6 +16,7 @@ class Controller extends CController
 	public $menu=array();
 	public $main_menu=array();
 	
+	public $model=null;
 
 	/**
 	 * @var array the breadcrumbs of the current page. The value of this property will

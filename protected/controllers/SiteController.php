@@ -31,14 +31,14 @@ class SiteController extends Controller
 		// using the default layout 'protected/views/layouts/main.php'
 		
 		//Login form
-		$model=new LoginForm;
+		$this->model=new LoginForm;
 		
 		// collect user input data
 		if(isset($_POST['LoginForm']))
 		{
-			$model->attributes=$_POST['LoginForm'];
+			$this->model->attributes=$_POST['LoginForm'];
 			// validate user input and redirect to the previous page if valid
-			if($model->validate() && $model->login())
+			if($this->model->validate() && $this->model->login())
 				$this->redirect(Yii::app()->user->returnUrl);
 		}
 		
@@ -53,7 +53,7 @@ class SiteController extends Controller
 		$data = array(
 			"categories" => $categories,
 			"ad" => $ad,
-			"model" => $model,
+			"model" => $this->model,
 		);
 		
 		$this->render('index', $data);

@@ -29,22 +29,40 @@
 			</div>
 			<div class="col-md-offset-5 col-md-4 col-sm-6 red">
 					<div class="row">
-						<div class="col-md-12 ">
-							<span class="pull-right">REGISTRATE / INICIA SESIÓN</span>
+						<div class="col-md-12 pull-right">
+							<?php $this->widget('zii.widgets.CMenu',array(
+								'items'=> array_merge($this->main_menu,array(
+									array('label'=>'Register', 'url'=>array('/site/register'), 'visible'=>Yii::app()->user->isGuest),
+									array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+									array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
+								)),
+							)); ?>
 						</div>
 					</div>
 					<div class="row">
-					<form class="form-inline" role="form">
-						<div class="form-group form-user col-md-6  pull-right">
-							<label class="sr-only" for="idUser">Usuario</label>
-							<input type="text" class="form-control" id="idUser" placeholder="Usuario">
-						</div>
-						<div class="form-group form-pass col-md-6  pull-right">
-							<label class="sr-only" for="idPass">Contraseña</label>
-							<input type="password" class="form-control" id="idPass" placeholder="Contraseña">
-						</div>
-					</form>
-
+					<?php if(Yii::app()->user->getId() === null): ?>
+						<div class="form">
+						<?php echo CHtml::beginForm(); ?>
+						
+						   <?php echo CHtml::errorSummary($this->model); ?>
+						
+						   <div class="form-group form-user col-md-5 pull-left">
+						       <?php echo CHtml::activeLabel($this->model,'username'); ?>
+						       <?php echo CHtml::activeTextField($this->model,'username') ?>
+						   </div>
+						
+						   <div class="form-group form-pass col-md-5 pull-left">
+						       <?php echo CHtml::activeLabel($this->model,'password'); ?>
+						       <?php echo CHtml::activePasswordField($this->model,'password') ?>
+						   </div>
+						
+						   <div class="form-group form-pass col-md-2 pull-left submit">
+						       <?php echo CHtml::submitButton('Login'); ?>
+						   </div>
+						
+						<?php echo CHtml::endForm(); ?>
+						</div><!-- form -->	
+						<?php endif; ?>
 					</div>
 			</div>
 		</div>

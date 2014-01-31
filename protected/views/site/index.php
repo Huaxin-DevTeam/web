@@ -40,7 +40,6 @@
             <div class="navbar-collapse collapse" id="menu">
                 <ul class="nav nav-list">
                     <?php foreach($categories as $c): ?>
-
                     <li><?php print CHtml::link($c->name,$this->createUrl("category/".$c->id)); ?></li><?php endforeach; ?>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -54,7 +53,9 @@
             </div>
 
             <div class="col-xs-2">
-                <a data-slide="prev" href="#myCarousel" class="left carousel-control"><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/left-arrow.png"></a>
+                <a data-slide="prev" href="#myCarousel" class="carousel-control">
+                	<img src="<?php echo Yii::app()->request->baseUrl; ?>/img/left-arrow.png" class="">
+                </a>
             </div>
 
             <div class="col-xs-8">

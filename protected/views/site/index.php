@@ -3,7 +3,7 @@
         <p>QUE BUSCAS?</p>
     </div>
 
-    <div class="col-md-2 col-xs-2">
+    <div class="col-md-2 col-xs-3">
         DONDE BUSCAS?
     </div>
 
@@ -15,11 +15,11 @@
         </form>
     </div>
 
-    <div class="col-md-2 col-xs-2">
+    <div class="col-md-2 col-xs-3">
         1.234.567.890 anuncios
     </div>
 
-    <div class="col-md-2 col-xs-2 blue publica text-center">
+    <div class="col-md-2 col-xs-6 col-xs-offset-1 blue publica text-center">
         <a href="#">Pon tu anuncio gratis</a>
     </div>
 </div>

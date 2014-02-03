@@ -2,6 +2,29 @@
 
 class SiteController extends Controller
 {
+
+	public $layout = "//layouts/huaxin";
+	
+	private function _login(){
+		//Login form
+		$this->model=new LoginForm;	
+		
+		// collect user input data
+		if(isset($_POST['LoginForm']))
+		{
+			$this->model->attributes=$_POST['LoginForm'];
+			// validate user input and redirect to the previous page if valid
+			if($this->model->validate() && $this->model->login())
+				$this->redirect(Yii::app()->user->returnUrl);
+		}
+	}
+	private function _render($template,$data){
+		
+		$data["model"] = $this->model;
+		
+		$this->render($template,$data);
+	}
+	
 	/**
 	 * Declares class-based actions.
 	 */
@@ -27,20 +50,7 @@ class SiteController extends Controller
 	 */
 	public function actionIndex()
 	{
-		// renders the view file 'protected/views/site/index.php'
-		// using the default layout 'protected/views/layouts/main.php'
-		
-		//Login form
-		$this->model=new LoginForm;
-		
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$this->model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($this->model->validate() && $this->model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
+		$this->_login();		
 		
 		//1. Load all categories
 		$categories = Category::model()->findAll(array('order' => "id"));
@@ -53,10 +63,9 @@ class SiteController extends Controller
 		$data = array(
 			"categories" => $categories,
 			"ad" => $ad,
-			"model" => $this->model,
 		);
 		
-		$this->render('index', $data);
+		$this->_render('index', $data);
 	}
 
 	/**
@@ -104,6 +113,8 @@ class SiteController extends Controller
 	 */
 	public function actionLogin()
 	{
+		$this->layout = "//layouts/column1";
+		
 		$model=new LoginForm;
 
 		// if it is ajax validation request
@@ -135,7 +146,8 @@ class SiteController extends Controller
 	}
 
 	public function actionCategory($id){
-		die("category id: $id");
+		
+		$this->render("list");
 	}
 	
 }

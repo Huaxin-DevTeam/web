@@ -1,110 +1,55 @@
-﻿<!DOCTYPE html>
-
-<html>
+﻿<?php /* @var $this Controller */ ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>Bootstrap 101 Template</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Bootstrap -->
-    <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css" rel="stylesheet" type="text/css"><!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]--><!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="language" content="en" />
 
-    <script src="https://code.jquery.com/jquery.js" type="text/javascript">
-</script><!-- Include all compiled plugins (below), or include individual files as needed -->
+	<!-- blueprint CSS framework -->
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/screen.css" media="screen, projection" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/print.css" media="print" />
+	<!--[if lt IE 8]>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/ie.css" media="screen, projection" />
+	<![endif]-->
 
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js" type="text/javascript">
-</script>
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/main.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/form.css" />
+
+	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
 </head>
 
 <body>
-    <div class="container">
-        <header class="row">
-            <div class="col-md-3 col-sm-6">
-                <a title="Inicio" href="/"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/logo.png" class="img-responsive"></a>
-            </div>
 
-            <div class="col-md-offset-5 col-md-4 col-sm-6 login">
-                <div class="row">
-                    <div class="col-md-12 pull-right form-group">
-                        <?php $this->widget('zii.widgets.CMenu',array(
-						    'items'=> array_merge($this->main_menu,array(
-						        array('label'=>'Register', 'url'=>array('/site/register'), 'visible'=>Yii::app()->user->isGuest),
-						        array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
-						        array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
-						    )),
-							'htmlOptions' => array("class" => "list-unstyled list-inline initialism"),
-						)); ?>
-                    </div>
-                </div>
+<div class="container" id="page">
 
-                <div class="row">
-                    <?php if(Yii::app()->user->getId() === null): ?>
+	<div id="header">
+		<div id="logo"><?php echo CHtml::encode(Yii::app()->name); ?></div>
+	</div><!-- header -->
 
-                    <div class="form">
-                        <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->model); ?>
+	<div id="mainmenu">
+		<?php $this->widget('zii.widgets.CMenu',array(
+			'items'=> array_merge($this->main_menu,array(
+				array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
+				array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest)
+			)),
+		)); ?>
+	</div><!-- mainmenu -->
+	<?php if(isset($this->breadcrumbs)):?>
+		<?php $this->widget('zii.widgets.CBreadcrumbs', array(
+			'links'=>$this->breadcrumbs,
+		)); ?><!-- breadcrumbs -->
+	<?php endif?>
 
-                        <div class="form-group form-user col-md-5 pull-left">
-                            <?php echo CHtml::activeLabel($this->model,'username', array("class" => "sr-only")); ?><?php echo CHtml::activeTextField($this->model,'username',array("class" => "form-control", "id" => "idUser", "placeholder" => "Username")) ?>
-                        </div>
+	<?php echo $content; ?>
 
-                        <div class="form-group form-pass col-md-5 pull-left">
-                            <?php echo CHtml::activeLabel($this->model,'password', array("class" => "sr-only")); ?><?php echo CHtml::activePasswordField($this->model,'password',array("class" => "form-control", "id" => "idPass", "placeholder" => "Password")) ?>
-                        </div>
+	<div class="clear"></div>
 
-                        <div class="form-group submit col-md-2 pull-left">
-                            <?php echo CHtml::submitButton('Login'); ?>
-                        </div><?php echo CHtml::endForm(); ?>
-                    </div><!-- form --><?php endif; ?>
-                </div>
-            </div>
-        </header>
-        
-        <div class="row wrapper">
-        	<?php echo $content; ?>
-        </div>
+	<div id="footer">
+		Copyright &copy; <?php echo date('Y'); ?> by <?php echo CHtml::encode(Yii::app()->name); ?>.<br/>
+		All Rights Reserved.<br/>
+	</div><!-- footer -->
 
-        <footer class="row">
-            <div class="col-md-2">
-                <div class="row">
-                    <div class="col-md-12 movil">
-                        <span>EN TU MÓVIL O EN TABLET</span>
-                    </div>
-                </div>
+</div><!-- page -->
 
-                <div class="row">
-                    <div class="col-md-6"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/apple.png" class="pull-right"></div>
-
-                    <div class="col-md-6"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/android.png" class="pull-left"></div>
-                </div>
-            </div>
-
-            <div class="col-md-8">
-                <ul class="list-inline footer breadcrumb text-center">
-                    <li><a href="#">AYUDA</a></li>
-
-                    <li><a href="#">CONTACTA CON NOSOTROS</a></li>
-
-                    <li><a href="#">SOBRE NOSOTROS</a></li>
-
-                    <li><a href="#">CONDICIONES DE USO</a></li>
-
-                    <li><a href="#">POLITICA DE PRIVACIDAD</a></li>
-                </ul>
-            </div>
-
-            <div class="col-md-2">
-                <div class="row">
-                    <div class="col-md-3"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/twitter.png" class="pull-left"></div>
-
-                    <div class="col-md-3"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/facebook.png" class="pull-left"></div>
-
-                    <div class="col-md-6"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/youtube.png" class=""></div>
-                </div>
-            </div>
-        </footer>
-    </div>
 </body>
 </html>

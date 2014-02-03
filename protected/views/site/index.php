@@ -141,4 +141,7 @@
     <div class="col-md-2 adds">
         <?php print $ad->toHtml(); ?>
     </div>
+	 <div class="col-md-2 adds">
+        <?php print $ad->toHtml(); ?>
+    </div>
 </div>

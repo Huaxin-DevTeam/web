@@ -1,4 +1,4 @@
-.adds{height:400px; background: red;}
+.adds{background: red url(http://placehold.it/200x200) no-repeat;height: 200px; margin-bottom: 10px;}
 /*1930*/
 .form-control {
   display: block;

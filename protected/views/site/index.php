@@ -25,7 +25,7 @@
 </div>
 
 <div class="row contenido">
-    <div class="col-md-2 col-xs-2">
+    <div class="col-md-2 col-xs-3">
         <nav class="navbar navbar-default" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -46,7 +46,7 @@
         </nav>
     </div>
 
-    <div class="col-md-8 col-xs-8">
+    <div class="col-md-8 col-xs-9">
         <div class="row carousel">
             <div class="col-md-12">
                 ANUNCIOS DESTACADOS
@@ -138,10 +138,10 @@
         </div>
     </div>
 
-    <div class="col-md-2 col-xs-2 adds">
+    <div class="col-md-2 col-xs-offset-2 col-xs-4 adds">
         <?php print $ad->toHtml(); ?>
     </div>
-	 <div class="col-md-2 col-xs-2 adds">
+	 <div class="col-md-2 col-xs-4 adds">
         <?php print $ad->toHtml(); ?>
     </div>
 </div>

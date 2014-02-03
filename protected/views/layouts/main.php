@@ -28,13 +28,14 @@
 
             <div class="col-md-offset-5 col-md-4 col-sm-6 red">
                 <div class="row">
-                    <div class="col-md-12 pull-right">
+                    <div class="col-md-12 pull-right form-group">
                         <?php $this->widget('zii.widgets.CMenu',array(
 						    'items'=> array_merge($this->main_menu,array(
 						        array('label'=>'Register', 'url'=>array('/site/register'), 'visible'=>Yii::app()->user->isGuest),
 						        array('label'=>'Login', 'url'=>array('/site/login'), 'visible'=>Yii::app()->user->isGuest),
 						        array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/site/logout'), 'visible'=>!Yii::app()->user->isGuest),
 						    )),
+							'htmlOptions' => array("class" => "list-unstyled list-inline initialism"),
 						)); ?>
                     </div>
                 </div>
@@ -81,7 +82,7 @@
             </div>
 
             <div class="col-md-8">
-                <ul class="list-inline footer breadcrumb">
+                <ul class="list-inline footer breadcrumb text-center">
                     <li><a href="#">AYUDA</a></li>
 
                     <li><a href="#">CONTACTA CON NOSOTROS</a></li>

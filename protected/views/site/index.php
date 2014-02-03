@@ -28,15 +28,18 @@
     <div class="col-md-2">
         <nav class="navbar navbar-default" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
-
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#menu"><span class="sr-only">Toggle navigation</span> </button>
-            </div><!-- Collect the nav links, forms, and other content for toggling -->
-
+			<div class="navbar-header">
+			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+			    <span class="sr-only">Toggle navigation</span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			    <span class="icon-bar"></span>
+			  </button>
+			</div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="navbar-collapse collapse" id="menu">
                 <ul class="nav nav-list">
                     <?php foreach($categories as $c): ?>
-
                     <li><?php print CHtml::link($c->name,$this->createUrl("category/".$c->id)); ?></li><?php endforeach; ?>
                 </ul>
             </div><!-- /.navbar-collapse -->
@@ -49,103 +52,57 @@
                 ANUNCIOS DESTACADOS
             </div>
 
-            <div class="col-md-2">
-                <a data-slide="prev" href="#myCarousel" class="left carousel-control"><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/left-arrow.png"></a>
+            <div class="col-xs-2">
+                <a data-slide="prev" href="#myCarousel" class="carousel-control">
+                	<img src="<?php echo Yii::app()->request->baseUrl; ?>/img/left-arrow.png" class="">
+                </a>
             </div>
 
-            <div class="col-md-8">
+            <div class="col-xs-8">
                 <div class="container-fluid">
                     <div class="row-fluid">
                         <div class="carousel slide" id="myCarousel">
                             <div class="carousel-inner">
                                 <div class="item active">
-                                    <!--<ul class="list-unstyled">
-                                    <li class="col-md-3">
-                                       
-                                        <div class="thumbnail">
-                                            <img src="http://placehold.it/260x180" alt="">
-                                        </div>
-                                    </li>
-                                    <li class="col-md-3">
-                                        <div class="thumbnail">
-                                            <img src="http://placehold.it/260x180" alt="">
-                                        </div>
-                                    </li>
-                                    <li class="col-md-3">
-                                       
-                                        <div class="thumbnail">
-                                            <img src="http://placehold.it/260x180" alt="">
-                                        </div>
-                                    </li>
-                                    <li class="col-md-3">
-                                        <div class="thumbnail">
-                                            <img src="http://placehold.it/260x180" alt="">
-                                        </div>
-                                    </li>
-                                </ul>
-                          </div>
-                          <div class="item">
-                                <ul class="list-unstyled">
-                                    <li class="col-md-3">
-                                        <div class="thumbnail">
-                                            <img src="http://placehold.it/260x180" alt="">
-                                        </div>
-                                    </li>
-                                    <li class="col-md-3">
-                                       
-                                        <div class="thumbnail">
-                                            <img src="http://placehold.it/260x180" alt="">
-                                        </div>
-                                    </li>
-                                    <li class="col-md-3">
-                                       
-                                        <div class="thumbnail">
-                                            <img src="http://placehold.it/260x180" alt="">
-                                        </div>
-                                    </li>
-                                    <li class="col-md-3">
-                                       
-                                        <div class="thumbnail">
-                                            <img src="http://placehold.it/260x180" alt="">
-                                        </div>
-                                    </li>
-                                </ul>
-                          </div>
-                          <div class="item">
-                                <ul class="list-unstyled">
-                                    <li class="col-md-3">
-                                       
-                                        <div class="thumbnail">
-                                            <img src="http://placehold.it/260x180" alt="">
-                                        </div>
-                                    </li>
-                                    <li class="col-md-3">
-                                       
-                                        <div class="thumbnail">
-                                            <img src="http://placehold.it/260x180" alt="">
-                                        </div>
-                                    </li>
-                                    <li class="col-md-3">
-                                       
-                                        <div class="thumbnail">
-                                            <img src="http://placehold.it/260x180" alt="">
-                                        </div>
-                                    </li>
-                                    <li class="col-md-3">
-                                       
-                                        <div class="thumbnail">
-                                            <img src="http://placehold.it/260x180" alt="">
-                                        </div>
-                                    </li>
-                                </ul>-->
-                                </div>
+                                    <div class="col-xs-4 thumbnail">
+                                        <img src="http://placehold.it/260x180" alt="">
+                                    </div>
+                                    <div class="col-xs-4 thumbnail">
+                                        <img src="http://placehold.it/260x180" alt="">
+                                    </div>
+                                    <div class="col-xs-4 thumbnail">
+                                        <img src="http://placehold.it/260x180" alt="">
+                                    </div>
+								</div>
+		                        <div class="item">
+		                        	<div class="col-xs-4 thumbnail">
+		                            	<img src="http://placehold.it/260x180" alt="">
+		                            </div>
+		                            <div class="col-xs-4 thumbnail">
+                                        <img src="http://placehold.it/260x180" alt="">
+                                    </div>
+                                    <div class="col-xs-4 thumbnail">
+                                        <img src="http://placehold.it/260x180" alt="">
+                                    </div>
+		                        </div>
+								<div class="item">
+                                	<div class="col-xs-4 thumbnail">
+                                    	<img src="http://placehold.it/260x180" alt="">
+	                                </div>
+	                                <div class="col-xs-4 thumbnail">
+                                        <img src="http://placehold.it/260x180" alt="">
+                                    </div>
+                                    <div class="col-xs-4 thumbnail">
+                                        <img src="http://placehold.it/260x180" alt="">
+                                    </div>                                
+								</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-xs-2">
                 <a data-slide="next" href="#myCarousel" class="carousel-control"><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/right-arrow.png"></a>
             </div>
         </div>

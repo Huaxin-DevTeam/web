@@ -1,4 +1,4 @@
-.adds{background: red url(http://placehold.it/200x200) no-repeat;height: 200px; margin-bottom: 10px;}
+.adds{background: url(http://placehold.it/200x200) no-repeat;height: 200px; margin-bottom: 10px;}
 /*1930*/
 .form-control {
   display: block;
@@ -17,10 +17,48 @@
 #idPass.form-control { background: #54a4ca url("../img/locker.png") no-repeat 5px 5px;}
 #idUser.form-control { background: #54a4ca url("../img/user.png") no-repeat 5px 5px;}
 #idSearch { background: #54a4ca url("../img/lupa.png") no-repeat 95% center;}
-
 #idSearch {height: 18px;}
+#menu.navbar-collapse{padding:0;}
 
 
+
+
+.login{margin-bottom: 0;}
+
+
+.blue{background: #54a4ca;}
+.buscador{background: #54a4ca url("../img/lupa.png") no-repeat 5px 5px;}
+.contenido{margin-top: 15px;}
+.movil{font-size: 8.5pt;}
+.publica a{color: white;}
+.publica a:hover{text-decoration: none;}
+
+
+.footer > li > a  {
+  color: #333333;
+  font-size: 8pt;
+}
+/*1956*/
+.form-control:-moz-placeholder {
+  color: white;
+}
+
+.form-control::-moz-placeholder {
+  color: white;
+  opacity: 1;
+}
+
+.form-control:-ms-input-placeholder {
+  color: white;
+}
+
+.form-control::-webkit-input-placeholder {
+  color: white;
+}
+
+.login{position:absolute;bottom: 0;right: 0;}
+.login .form-group{margin-bottom: 0;}
+header{position:relative;}
 
 /*4097*/
 .nav > li {
@@ -43,34 +81,8 @@
   text-decoration: none;
   background-color: #eeeeee;
 }
-.footer > li > a  {
-  color: #333333;
-  font-size: 8pt;
-}
-.login{margin-bottom: 0;}
+.wrapper{margin-top: 20px;}
 
-
-.blue{background: #54a4ca;}
-.buscador{background: #54a4ca url("../img/lupa.png") no-repeat 5px 5px;}
-.movil{font-size: 8.5pt;}
-.publica a{color: white;}
-.publica a:hover{text-decoration: none;}
-
-/*1956*/
-
-.form-control:-moz-placeholder {
-  color: white;
-}
-
-.form-control::-moz-placeholder {
-  color: white;
-  opacity: 1;
-}
-
-.form-control:-ms-input-placeholder {
-  color: white;
-}
-
-.form-control::-webkit-input-placeholder {
-  color: white;
+@media (min-width: 768px) {
+  .login .form-group{padding-top: 10px; }
 }

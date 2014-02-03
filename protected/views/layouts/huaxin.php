@@ -22,11 +22,11 @@
 <body>
     <div class="container">
         <header class="row">
-            <div class="col-md-3 col-sm-6">
+            <div class="logo col-md-3 col-sm-4 col-xs-8">
                 <a title="Inicio" href="/"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/logo.png" class="img-responsive"></a>
             </div>
 
-            <div class="col-md-offset-5 col-md-4 col-sm-6 login">
+            <div class="col-md-offset-6 col-md-4 col-sm-5 login">
                 <div class="row">
                     <div class="col-md-12 pull-right form-group">
                         <?php $this->widget('zii.widgets.CMenu',array(
@@ -46,15 +46,15 @@
                     <div class="form">
                         <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->model); ?>
 
-                        <div class="form-group form-user col-md-5 pull-left">
+                        <div class="form-group form-user col-sm-5 pull-left">
                             <?php echo CHtml::activeLabel($this->model,'username', array("class" => "sr-only")); ?><?php echo CHtml::activeTextField($this->model,'username',array("class" => "form-control", "id" => "idUser", "placeholder" => "Username")) ?>
                         </div>
 
-                        <div class="form-group form-pass col-md-5 pull-left">
+                        <div class="form-group form-pass col-sm-5 pull-left">
                             <?php echo CHtml::activeLabel($this->model,'password', array("class" => "sr-only")); ?><?php echo CHtml::activePasswordField($this->model,'password',array("class" => "form-control", "id" => "idPass", "placeholder" => "Password")) ?>
                         </div>
 
-                        <div class="form-group submit col-md-2 pull-left">
+                        <div class="form-group submit col-sm-2 pull-left">
                             <?php echo CHtml::submitButton('Login'); ?>
                         </div><?php echo CHtml::endForm(); ?>
                     </div><!-- form --><?php endif; ?>
@@ -67,21 +67,17 @@
         </div>
 
         <footer class="row">
-            <div class="col-md-2">
+            <div class="col-sm-2 col-xs-12">
                 <div class="row">
-                    <div class="col-md-12 movil">
-                        <span>EN TU MÓVIL O EN TABLET</span>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-md-6"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/apple.png" class="pull-right"></div>
-
-                    <div class="col-md-6"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/android.png" class="pull-left"></div>
-                </div>
+                    <div class="movil">
+                        <span class="col-sm-12 col-xs-3 col-xs-offset-3 col-sm-offset-0">EN TU MÓVIL O EN TABLET</span>                    
+						<div class="col-lg-5 col-md-6 col-sm-8 col-xs-2"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/apple.png" class="pull-right"></div>
+						<div class="col-lg-5 col-sm-6 col-xs-2"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/android.png" class="pull-left"></div>
+					</div>
+				</div>
             </div>
 
-            <div class="col-md-8">
+            <div class="col-sm-8 col-xs-12">
                 <ul class="list-inline footer breadcrumb text-center">
                     <li><a href="#">AYUDA</a></li>
 
@@ -95,13 +91,13 @@
                 </ul>
             </div>
 
-            <div class="col-md-2">
+            <div class="col-sm-2 col-sm-offset-0 col-xs-2 col-xs-offset-5">
                 <div class="row">
-                    <div class="col-md-3"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/twitter.png" class="pull-left"></div>
+                    <div class="col-sm-3 col-xs-3"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/twitter.png" class="pull-left"></div>
 
-                    <div class="col-md-3"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/facebook.png" class="pull-left"></div>
+                    <div class="col-sm-3 col-xs-3"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/facebook.png" class="pull-left"></div>
 
-                    <div class="col-md-6"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/youtube.png" class=""></div>
+                    <div class="col-sm-3 col-xs-3"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/youtube.png" class=""></div>
                 </div>
             </div>
         </footer>

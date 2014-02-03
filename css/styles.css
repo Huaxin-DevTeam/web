@@ -84,11 +84,21 @@ header{position:relative;}
 }
 .wrapper{margin-top: 20px;}
 
-@media (max-width: 980px) {
+@media (max-width: 990px) {
   .login .form-group{padding-top: 10px; }
   .publica {
       height: 40px;
       margin-top: 20px;
       padding: 10px;
   }
+}
+
+@media (max-width: 768px) {
+  .login .form-group{padding-top: 10px; }
+  .publica {
+      height: 40px;
+      margin-top: 20px;
+      padding: 10px;
+  }
+  .logo{height: 200px;}
 }

@@ -108,11 +108,11 @@
         </div>
 
         <div class="row porque-huaxin">
-            <div class="col-md-12">
+            <div class="col-md-12 col-xs-12">
                 POR QUÉ HUAXIN?
             </div>
 
-            <div class="col-md-4 col-xs-4">
+            <div class="col-sm-4 col-xs-12">
                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/locker-big.png" class="img-responsive center-block">
 
                 <h6 class="text-center">CONFIANZA Y SEGURIDAD</h6>
@@ -120,7 +120,7 @@
                 <p align="justify" class="small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed aliquet leo. Morbi volutpat at massa id lobortis. Integer sed tortor vel mi vestibulum molestie non eget nisi. Quisque non ipsum at urna rhoncus commodo eu nec purus. Vivamus enim dui, varius et luctus quis, sollicitudin ut ligula.</p>
             </div>
 
-            <div class="col-md-4 col-xs-4">
+            <div class="col-sm-4 col-xs-12">
                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/shield.png" class="img-responsive center-block">
 
                 <h6 class="text-center">GARANTÍA 100%</h6>
@@ -128,7 +128,7 @@
                 <p align="justify" class="small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed aliquet leo. Morbi volutpat at massa id lobortis. Integer sed tortor vel mi vestibulum molestie non eget nisi. Quisque non ipsum at urna rhoncus commodo eu nec purus. Vivamus enim dui, varius et luctus quis, sollicitudin ut ligula.</p>
             </div>
 
-            <div class="col-md-4 col-xs-4">
+            <div class="col-sm-4 col-xs-12">
                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/dollar.png" class="img-responsive center-block">
 
                 <h6 class="text-center">PAGO SEGURO</h6>

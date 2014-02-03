@@ -30,6 +30,7 @@
 .buscador{background: #54a4ca url("../img/lupa.png") no-repeat 5px 5px;}
 .contenido{margin-top: 15px;}
 .movil{font-size: 8.5pt;}
+.publica{height: inherit;}
 .publica a{color: white;}
 .publica a:hover{text-decoration: none;}
 
@@ -83,6 +84,11 @@ header{position:relative;}
 }
 .wrapper{margin-top: 20px;}
 
-@media (min-width: 768px) {
+@media (max-width: 980px) {
   .login .form-group{padding-top: 10px; }
+  .publica {
+      height: 40px;
+      margin-top: 20px;
+      padding: 10px;
+  }
 }

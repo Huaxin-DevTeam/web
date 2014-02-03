@@ -19,7 +19,7 @@
         1.234.567.890 anuncios
     </div>
 
-    <div class="col-md-2 col-xs-6 col-xs-offset-1 blue publica text-center">
+    <div class="col-md-2 col-md-offset-0 col-xs-6 col-xs-offset-1 blue publica text-center">
         <a href="#">Pon tu anuncio gratis</a>
     </div>
 </div>
@@ -138,7 +138,7 @@
         </div>
     </div>
 
-    <div class="col-md-2 col-xs-offset-2 col-xs-4 adds">
+    <div class="col-md-2 col-md-offset-0 col-xs-offset-3 col-xs-4 adds">
         <?php print $ad->toHtml(); ?>
     </div>
 	 <div class="col-md-2 col-xs-4 adds">

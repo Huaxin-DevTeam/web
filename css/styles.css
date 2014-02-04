@@ -25,15 +25,24 @@
     padding: 0 10px;
 }
 #menu.navbar-collapse{padding:0;}
-
-
-
+#yw0{clear:both;}
+#yw0_button{display:block;}
+#RegisterForm_captcha{position: absolute; top: 5px;}
 
 .login{margin-bottom: 0;}
 
 
 .blue{background: #54a4ca;}
 .buscador{background: #54a4ca url("../img/lupa.png") no-repeat 5px 5px;}
+.captcha {
+    background: white; 
+    border:2px solid #54a4ca;
+    float: right;
+    left: 125px;
+    position: absolute;
+    top: 20%;
+}
+.captcha_wrapper{position: relative;}
 .contenido{margin-top: 15px;}
 .initialism li a{color: black;}
 .movil{font-size: 8.5pt;}

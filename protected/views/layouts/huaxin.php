@@ -55,7 +55,7 @@
                         </div>
 
                         <div class="form-group submit col-sm-2 pull-left">
-                            <?php echo CHtml::submitButton('Login'); ?>
+                            <?php echo CHtml::submitButton('',array("class"=>"btn-login")); ?>
                         </div><?php echo CHtml::endForm(); ?>
                     </div><!-- form --><?php endif; ?>
                 </div>

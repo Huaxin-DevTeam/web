@@ -124,17 +124,17 @@ class ApiController extends Controller
 		if(!isset($_POST['phone'])) 	return $this->_error(400, "Missing 'phone' parameter");
 		if(!isset($_POST['password'])) 	return $this->_error(400, "Missing 'password' parameter");
 		
-		$email = trim($_POST['email']);
-		$phone = str_replace( array(" ","-","+",".") , "" , trim($_POST['phone']) );
-		$passw = $_POST['password'];
+		$email = strtolower(trim($_POST['email']));
+		$phone = strtolower(str_replace( array(" ","-","+",".") , "" , trim($_POST['phone']) ));
+		$passw = trim($_POST['password']);
 		
 		// Validation filters (email,phone,pwd)
 		if(filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE) return $this->_error(406, "Please, enter a valid email address.");
-		if(strlen($phone) !== 9) return $this->_error(406, "Please, enter a valid phone number.");
+		if(strlen($phone) !== 9 || !ctype_digit($phone)) return $this->_error(406, "Please, enter a valid phone number.");
 		if(strlen($passw) < 7) return $this->_error(406, "Please, make sure that password is at least 7 characters long.");
 		
 		$auser = User::model()->find(
-			"email = :email OR phone = :phone",
+			"LOWER(email) = :email OR LOWER(phone) = :phone",
 			array(":email" => $email, ":phone" => $phone)
 		);
 		
@@ -143,7 +143,7 @@ class ApiController extends Controller
 		$user = new User;
 		$user->phone = $phone;
 		$user->email = $email;
-		$user->password = sha1($passw);
+		$user->password = $user->hashPassword($passw);
 		$user->date_register = new CDbExpression('NOW()');
 		$user->token = Helper::getToken();
 		
@@ -172,11 +172,12 @@ class ApiController extends Controller
 		
 		// Check credentials
 		$user = User::model()->find(
-			"(email = :username OR phone = :username) AND password = :password", 
-			array(":username" => $username, ":password" => $password)
+			"LOWER(email) = :username OR LOWER(phone) = :username", 
+			array(":username" => $username)
 		);
 		
-		if(!$user) return $this->_error(401, "Wrong username/password");
+		if($user===null) return $this->_error(401, "Wrong username");
+		if(!$user->validatePassword($password)) return $this->_error(401, "Wrong password");
 		
 		$user->token = $user->token ? : Helper::getToken();
 		$user->save();

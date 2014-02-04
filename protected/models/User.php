@@ -5,13 +5,14 @@
  *
  * The followings are the available columns in table 'user':
  * @property integer $id
+ * @property integer $active
  * @property integer $phone
  * @property string $email
  * @property string $password
  * @property integer $credits
  * @property string $date_register
  * @property string $token
- * @property string $devide_id
+ * @property string $device_id
  * @property string $push_id
  *
  * The followings are the available model relations:
@@ -20,6 +21,17 @@
  */
 class User extends CActiveRecord
 {
+	
+	public function validatePassword($password)
+    {
+        return CPasswordHelper::verifyPassword($password,$this->password);
+    }
+ 
+    public function hashPassword($password)
+    {
+        return CPasswordHelper::hashPassword($password);
+    }
+	
 	/**
 	 * @return string the associated database table name
 	 */
@@ -37,11 +49,11 @@ class User extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('email, password, date_register', 'required'),
-			array('phone, credits', 'numerical', 'integerOnly'=>true),
-			array('email, password, token, devide_id, push_id', 'length', 'max'=>255),
+			array('active,phone, credits', 'numerical', 'integerOnly'=>true),
+			array('email, password, token, device_id, push_id', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, phone, email, password, credits, date_register, token, devide_id, push_id', 'safe', 'on'=>'search'),
+			array('id,active,phone, email, password, credits, date_register, token, device_id, push_id', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -65,13 +77,14 @@ class User extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
+			'active' => "Active",
 			'phone' => 'Phone',
 			'email' => 'Email',
 			'password' => 'Password',
 			'credits' => 'Credits',
 			'date_register' => 'Date Register',
 			'token' => 'Token',
-			'devide_id' => 'Devide',
+			'device_id' => 'Devide',
 			'push_id' => 'Push',
 		);
 	}
@@ -95,13 +108,14 @@ class User extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id);
+		$criteria->compare('active',$this->active);
 		$criteria->compare('phone',$this->phone);
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('password',$this->password,true);
 		$criteria->compare('credits',$this->credits);
 		$criteria->compare('date_register',$this->date_register,true);
 		$criteria->compare('token',$this->token,true);
-		$criteria->compare('devide_id',$this->devide_id,true);
+		$criteria->compare('device_id',$this->device_id,true);
 		$criteria->compare('push_id',$this->push_id,true);
 
 		return new CActiveDataProvider($this, array(

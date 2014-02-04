@@ -17,6 +17,11 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'active'); ?>
+		<?php echo $form->textField($model,'active'); ?>
+	</div>
+
+	<div class="row">
 		<?php echo $form->label($model,'phone'); ?>
 		<?php echo $form->textField($model,'phone'); ?>
 	</div>
@@ -42,8 +47,8 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->label($model,'devide_id'); ?>
-		<?php echo $form->textField($model,'devide_id',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->label($model,'device_id'); ?>
+		<?php echo $form->textField($model,'device_id',array('size'=>60,'maxlength'=>255)); ?>
 	</div>
 
 	<div class="row">

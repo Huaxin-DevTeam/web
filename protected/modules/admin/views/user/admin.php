@@ -45,6 +45,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
+		'active',
 		'phone',
 		'email',
 		'password',
@@ -52,7 +53,7 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'date_register',
 		/*
 		'token',
-		'devide_id',
+		'device_id',
 		'push_id',
 		*/
 		array(

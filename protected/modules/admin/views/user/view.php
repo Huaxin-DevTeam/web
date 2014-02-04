@@ -21,13 +21,14 @@ $this->menu=array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
+		'active',
 		'phone',
 		'email',
 		'password',
 		'credits',
 		'date_register',
 		'token',
-		'devide_id',
+		'device_id',
 		'push_id',
 	),
 )); ?>

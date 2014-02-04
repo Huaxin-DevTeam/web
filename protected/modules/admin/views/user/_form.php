@@ -18,7 +18,13 @@
 	<p class="note">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
+	
+	<div class="row">
+		<?php echo $form->labelEx($model,'active'); ?>
+		<?php echo $form->textField($model,'active'); ?>
+		<?php echo $form->error($model,'active'); ?>
+	</div>
+	
 	<div class="row">
 		<?php echo $form->labelEx($model,'phone'); ?>
 		<?php echo $form->textField($model,'phone'); ?>
@@ -56,9 +62,9 @@
 	</div>
 
 	<div class="row">
-		<?php echo $form->labelEx($model,'devide_id'); ?>
-		<?php echo $form->textField($model,'devide_id',array('size'=>60,'maxlength'=>255)); ?>
-		<?php echo $form->error($model,'devide_id'); ?>
+		<?php echo $form->labelEx($model,'device_id'); ?>
+		<?php echo $form->textField($model,'device_id',array('size'=>60,'maxlength'=>255)); ?>
+		<?php echo $form->error($model,'device_id'); ?>
 	</div>
 
 	<div class="row">

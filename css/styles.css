@@ -4,7 +4,6 @@
   display: block;
   width: 100%;
   height: 34px;
-  padding: 0 0 0 40px;
   font-size: 14px;
   line-height: 1.428571429;
   vertical-align: middle;
@@ -13,11 +12,18 @@
   -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
           transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
 }
+.form-pass .form-control,
+.form-user .form-control {
+  padding: 0 0 0 30px;
+}
 
 #idPass.form-control { background: #54a4ca url("../img/locker.png") no-repeat 5px 5px;}
 #idUser.form-control { background: #54a4ca url("../img/user.png") no-repeat 5px 5px;}
 #idSearch { background: #54a4ca url("../img/lupa.png") no-repeat 95% center;}
 #idSearch {height: 18px;}
+#idSearch.form-control {
+    padding: 0 10px;
+}
 #menu.navbar-collapse{padding:0;}
 
 
@@ -29,10 +35,17 @@
 .blue{background: #54a4ca;}
 .buscador{background: #54a4ca url("../img/lupa.png") no-repeat 5px 5px;}
 .contenido{margin-top: 15px;}
+.initialism li a{color: black;}
 .movil{font-size: 8.5pt;}
 .publica{height: inherit;}
 .publica a{color: white;}
 .publica a:hover{text-decoration: none;}
+.btn-login{ 
+  background: url("../img/arrow-login.png") no-repeat;
+  border: none;
+  height: 30px;
+  width: 30px;
+}
 
 
 .footer > li > a  {

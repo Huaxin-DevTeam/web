@@ -58,32 +58,37 @@ class UserController extends Controller{
 			$form->phone    = $phone;
 			$form->password = $passw;
 			$form->password2 = $passw2;			
-			
-	    	echo "<pre>"; print_r($form); echo "</pre>";
-	        
-	        //Set manual fields
-/*	        $user->date_register = new CDbExpression('NOW()');
-	        $user->token = Helper::getToken();
-	        $user->password = ""; */
 	        
 	        // Validation filters (email,phone,pwd)
-/*			if(filter_var($email, FILTER_VALIDATE_EMAIL) === FALSE) return $this->_error(406, "Please, enter a valid email address.");
-			if(strlen($phone) !== 9 || !ctype_digit($phone)) return $this->_error(406, "Please, enter a valid phone number.");
-			if(strlen($passw) < 7) return $this->_error(406, "Please, make sure that password is at least 7 characters long.");
-			
-			$auser = User::model()->find(
-				"LOWER(email) = :email OR LOWER(phone) = :phone",
-				array(":email" => $email, ":phone" => $phone)
-			);
-			
-			if($auser) return $this->_error(409, "This email/phone is already registered!");
-	        
-	         */
 	        if($form->validate())
 	        {
 	            // form inputs are valid, do something here
-	           	            
-	            return;
+	            
+	            //Validation
+	            $auser = User::model()->find("LOWER(email) = :email OR LOWER(phone) = :phone",
+					array(":email" => $email, ":phone" => $phone)
+				);
+				
+				
+	           	if($auser){
+		           	if($auser->email == $form->email) $form->addError("email",Yii::t("huaxin","This email is already registered!"));
+					if($auser->phone == $form->phone) $form->addError("phone",Yii::t("huaxin","This phone is already registered!"));
+	           	}else{
+	           		
+	           		//Set fields
+	           		$user = new User;
+	           		$user->active = 0;
+	           		$user->email = $form->email;
+	           		$user->phone = $form->phone;
+	           		$user->password = $user->hashPassword($passw);
+			   		$user->date_register = new CDbExpression('NOW()');
+			   		$user->token = Helper::getToken();
+			   		
+			   		//Save!
+			   		$user->save();
+			   		
+			   		$this->redirect(Yii::app()->homeUrl);
+	           	}
 	        }
 	    }
 	    $this->render('register',array('model'=>$form));

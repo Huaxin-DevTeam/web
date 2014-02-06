@@ -31,7 +31,7 @@
 
 .login{margin-bottom: 0;}
 
-
+.bigbottom{margin-bottom: 80px;}
 .blue{background: #54a4ca;}
 .buscador{background: #54a4ca url("../img/lupa.png") no-repeat 5px 5px;}
 .button input{
@@ -49,7 +49,7 @@
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
 }
 
-.button-register{position: absolute; right: 0; top: 20px; margin-bottom: 20px;}
+.button-register{position: absolute; right: 15px; top: 20px; margin-bottom: 20px;}
 .captcha {
     background: white; 
     border:2px solid #54a4ca;
@@ -121,6 +121,7 @@ header{position:relative;}
   background-color: #eeeeee;
 }
 .wrapper{margin-top: 20px;}
+
 
 @media (max-width: 990px) {
   .login .form-group{padding-top: 10px; }

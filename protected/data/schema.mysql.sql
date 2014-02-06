@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 29-01-2014 a las 15:18:17
+-- Tiempo de generación: 06-02-2014 a las 13:13:04
 -- Versión del servidor: 5.5.29
 -- Versión de PHP: 5.4.10
 
@@ -20,7 +20,6 @@ SET time_zone = "+00:00";
 -- Estructura de tabla para la tabla `ad`
 --
 
-DROP TABLE IF EXISTS `ad`;
 CREATE TABLE `ad` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `image_url` varchar(255) NOT NULL,
@@ -37,9 +36,9 @@ CREATE TABLE `ad` (
 --
 
 INSERT INTO `ad` (`id`, `image_url`, `link`, `is_mobile`, `num_views`, `date_published`, `date_end`) VALUES
-(1, 'url1', 'link1', 0, 19, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
+(1, 'url1', 'link1', 0, 102, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
 (2, 'img2', 'link2', 1, 0, '2013-12-20 14:44:25', '2015-12-29 23:00:00'),
-(3, 'img3', 'link3', 0, 24, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
+(3, 'img3', 'link3', 0, 103, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
 (4, 'img4', 'link4', 1, 0, '2013-12-19 23:00:00', '2015-01-09 23:00:00');
 
 -- --------------------------------------------------------
@@ -48,7 +47,6 @@ INSERT INTO `ad` (`id`, `image_url`, `link`, `is_mobile`, `num_views`, `date_pub
 -- Estructura de tabla para la tabla `category`
 --
 
-DROP TABLE IF EXISTS `category`;
 CREATE TABLE `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) CHARACTER SET gbk NOT NULL,
@@ -77,7 +75,6 @@ INSERT INTO `category` (`id`, `name`) VALUES
 -- Estructura de tabla para la tabla `item`
 --
 
-DROP TABLE IF EXISTS `item`;
 CREATE TABLE `item` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -113,14 +110,13 @@ INSERT INTO `item` (`id`, `user_id`, `category_id`, `title`, `description`, `pri
 -- Estructura de tabla para la tabla `log`
 --
 
-DROP TABLE IF EXISTS `log`;
 CREATE TABLE `log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `type` varchar(60) NOT NULL,
   `message` varchar(255) NOT NULL,
   `datetime` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Volcado de datos para la tabla `log`
@@ -131,7 +127,9 @@ INSERT INTO `log` (`id`, `type`, `message`, `datetime`) VALUES
 (2, 'error', 'Not Found - ', '2014-01-22 17:33:41'),
 (3, 'error', 'Not Found - This id was not found.', '2014-01-22 17:34:02'),
 (4, 'error', 'Not Found - This item was not found.', '2014-01-23 11:46:37'),
-(5, 'error', 'Not Found - This item was not found.', '2014-01-23 11:47:14');
+(5, 'error', 'Not Found - This item was not found.', '2014-01-23 11:47:14'),
+(6, 'error', 'Unauthorized - Wrong password', '2014-02-03 17:24:07'),
+(7, 'error', 'Unauthorized - Wrong username', '2014-02-03 17:24:11');
 
 -- --------------------------------------------------------
 
@@ -139,7 +137,6 @@ INSERT INTO `log` (`id`, `type`, `message`, `datetime`) VALUES
 -- Estructura de tabla para la tabla `purchase`
 --
 
-DROP TABLE IF EXISTS `purchase`;
 CREATE TABLE `purchase` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
@@ -164,16 +161,16 @@ INSERT INTO `purchase` (`id`, `user_id`, `method`, `num_credits`, `date`, `token
 -- Estructura de tabla para la tabla `user`
 --
 
-DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `active` tinyint(1) NOT NULL DEFAULT '0',
   `phone` int(15) DEFAULT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `credits` int(11) NOT NULL DEFAULT '0',
   `date_register` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `token` varchar(255) DEFAULT NULL,
-  `devide_id` varchar(255) DEFAULT NULL,
+  `device_id` varchar(255) DEFAULT NULL,
   `push_id` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`),
@@ -184,9 +181,9 @@ CREATE TABLE `user` (
 -- Volcado de datos para la tabla `user`
 --
 
-INSERT INTO `user` (`id`, `phone`, `email`, `password`, `credits`, `date_register`, `token`, `devide_id`, `push_id`) VALUES
-(1, NULL, 'admin', 'e5b13ebaa3229236c5456575a7d24e1dc1f73ef4', 0, '2013-12-19 17:38:07', NULL, NULL, NULL),
-(2, 645155625, 'friko67@gmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 92, '2013-12-27 10:06:57', 'xirOfSj8jHeHji0GHNY58pr9K', NULL, NULL);
+INSERT INTO `user` (`id`, `active`, `phone`, `email`, `password`, `credits`, `date_register`, `token`, `device_id`, `push_id`) VALUES
+(1, 1, NULL, 'admin', 'e5b13ebaa3229236c5456575a7d24e1dc1f73ef4', 0, '2013-12-19 17:38:07', NULL, NULL, NULL),
+(2, 1, 645155625, 'friko67@gmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 92, '2013-12-27 10:06:57', 'xirOfSj8jHeHji0GHNY58pr9K', NULL, NULL);
 
 --
 -- Restricciones para tablas volcadas

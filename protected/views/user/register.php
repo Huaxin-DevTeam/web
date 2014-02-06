@@ -54,7 +54,7 @@
 			<br/>No hay distinción entre mayúsculas y minúsculas.</div>
 			<?php echo $form->error($model,'captcha'); ?>
 			
-			<div class="button button-register col-xs-3 col-xs-offset-5">
+			<div class="button button-register col-xs-offset-5">
 				<?php echo CHtml::submitButton('Submit'); ?>
 			</div>
 		</div>

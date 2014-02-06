@@ -1,6 +1,4 @@
 
-<div class="container">
-
 <?php
 /* @var $this SiteController */
 /* @var $model LoginForm */
@@ -46,11 +44,13 @@
 			</div>
 		</div>
 
-		<div class="row button">
-			<div class="form-group col-md-offset-7 col-sm-1 col-sm-offset-3 col-xs-offset-1">			
+		<div class="row">
+			<div class="form-group col-md-offset-7 col-sm-1 col-sm-offset-5 col-xs-offset-1 bigbottom">			
+				<div class="button button-register col-xs-offset-5">
 				<?php echo CHtml::submitButton('Login'); ?>
+			</div>
 			</div>
 		</div>
 
 	<?php $this->endWidget(); ?>
-	</div><!-- form -->
+	

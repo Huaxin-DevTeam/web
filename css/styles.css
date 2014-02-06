@@ -34,6 +34,22 @@
 
 .blue{background: #54a4ca;}
 .buscador{background: #54a4ca url("../img/lupa.png") no-repeat 5px 5px;}
+.button input{
+  background: #54a4ca; 
+  height: 35px;
+  border: none;
+  color: #FFFFFF;
+  font-weight: bold;
+  height: 35px;
+  padding: 0 15px;
+
+}
+.button input:hover{
+ -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
+}
+
+.button-register{position: absolute; right: 0; top: 20px; margin-bottom: 20px;}
 .captcha {
     background: white; 
     border:2px solid #54a4ca;
@@ -123,4 +139,5 @@ header{position:relative;}
       padding: 10px;
   }
   .logo{height: 200px;}
+  .button-register{position: relative;}
 }

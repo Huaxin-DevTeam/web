@@ -44,7 +44,7 @@
 		</div>	
 	</div>
 	<div class="row">
-		<div class="form-group col-sm-6 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+		<div class="form-group col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
 		<?php echo $form->labelEx($model,'captcha'); ?>
 			<div class="captcha_wrapper">
 			  <?php $this->widget('CCaptcha', array('captchaAction'=>'site/captcha')); ?>
@@ -53,14 +53,15 @@
 			<div class="hint">Introduzca las letras que aparecen arriba.
 			<br/>No hay distinción entre mayúsculas y minúsculas.</div>
 			<?php echo $form->error($model,'captcha'); ?>
+			
+			<div class="button button-register col-xs-3 col-xs-offset-5">
+				<?php echo CHtml::submitButton('Submit'); ?>
+			</div>
 		</div>
+		
 	</div>
 
-	<div class="row">
-		<div class="buttons">
-			<?php echo CHtml::submitButton('Submit'); ?>
-		</div>
-	</div>
+
 
 <?php $this->endWidget(); ?>
 

@@ -25,7 +25,7 @@
 </div>
 
 <div class="row contenido">
-    <div class="col-md-2 col-xs-3">
+    <div class="col-md-2 col-md-offset-0 col-xs-11 col-xs-offset-1">
         <nav class="navbar navbar-default" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -38,7 +38,7 @@
 			</div>
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="navbar-collapse collapse" id="menu">
-                <ul class="nav nav-list">
+                <ul class="menu nav nav-list">
                     <?php foreach($categories as $c): ?>
                     <li><?php print CHtml::link($c->name,$this->createUrl("category/".$c->id)); ?></li><?php endforeach; ?>
                 </ul>
@@ -46,7 +46,19 @@
         </nav>
     </div>
 
-    <div class="col-md-8 col-xs-9">
+    <div class="col-md-8 col-md-offset-0 col-sm-offset-2 col-xs-9 col-xs-offset-1">
+	
+	<?php
+					$flashMessages = Yii::app()->user->getFlashes();
+					if ($flashMessages) {
+						echo '<div class="row flashes">';
+						foreach($flashMessages as $key => $message) {
+							echo '<div class="col-xs-11 alert alert-' . $key . '">' . $message . "</div>\n";
+						}
+						echo '</div>';
+					}
+				?>
+	
         <div class="row carousel">
             <div class="col-md-12">
                 ANUNCIOS DESTACADOS
@@ -112,36 +124,30 @@
                 POR QUÉ HUAXIN?
             </div>
 
-            <div class="col-sm-4 col-xs-12">
+            <div class="col-sm-4 col-sm-offset-0 col-xs-11 col-xs-offset-1">
                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/locker-big.png" class="img-responsive center-block">
-
                 <h6 class="text-center">CONFIANZA Y SEGURIDAD</h6>
-
                 <p align="justify" class="small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed aliquet leo. Morbi volutpat at massa id lobortis. Integer sed tortor vel mi vestibulum molestie non eget nisi. Quisque non ipsum at urna rhoncus commodo eu nec purus. Vivamus enim dui, varius et luctus quis, sollicitudin ut ligula.</p>
             </div>
 
-            <div class="col-sm-4 col-xs-12">
+            <div class="col-sm-4 col-sm-offset-0 col-xs-11 col-xs-offset-1">
                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/shield.png" class="img-responsive center-block">
-
                 <h6 class="text-center">GARANTÍA 100%</h6>
-
                 <p align="justify" class="small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed aliquet leo. Morbi volutpat at massa id lobortis. Integer sed tortor vel mi vestibulum molestie non eget nisi. Quisque non ipsum at urna rhoncus commodo eu nec purus. Vivamus enim dui, varius et luctus quis, sollicitudin ut ligula.</p>
             </div>
 
-            <div class="col-sm-4 col-xs-12">
+            <div class="col-sm-4 col-sm-offset-0 col-xs-11 col-xs-offset-1">
                 <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/dollar.png" class="img-responsive center-block">
-
                 <h6 class="text-center">PAGO SEGURO</h6>
-
                 <p align="justify" class="small">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed aliquet leo. Morbi volutpat at massa id lobortis. Integer sed tortor vel mi vestibulum molestie non eget nisi. Quisque non ipsum at urna rhoncus commodo eu nec purus. Vivamus enim dui, varius et luctus quis, sollicitudin ut ligula.</p>
             </div>
         </div>
     </div>
 
-    <div class="col-md-2 col-md-offset-0 col-xs-offset-3 col-xs-4 adds">
+    <div class="col-md-2 col-md-offset-0 col-xs-12 col-sm-4 col-sm-offset-0 adds">
         <?php print $ad->toHtml(); ?>
     </div>
-	 <div class="col-md-2 col-xs-4 adds">
+	 <div class="col-md-2 col-sm-offset-0 col-xs-4 col-xs-offset-5 adds">
         <?php print $ad->toHtml(); ?>
     </div>
 </div>

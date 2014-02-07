@@ -37,6 +37,11 @@ return array(
 
 	// application components
 	'components'=>array(
+		'email'=>array(
+			'class'=>'application.extensions.email.Email',
+			'delivery'=>'php', //Will use the php mailing function.  
+			//May also be set to 'debug' to instead dump the contents of the email into the view
+		),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -61,6 +66,7 @@ return array(
 				// a standard rule to handle 'post/update' and so on
 				'<controller:\w+>/<id:\d+>'=>'<controller>/view',
 				'<controller:\w+>/<action:\w+>/<id:\d+>'=>'<controller>/<action>',
+				'<controller:\w+>/<action:\w+>/<token:\w+>'=>'<controller>/<action>',
 				'<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
 			),
 		),

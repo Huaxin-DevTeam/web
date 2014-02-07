@@ -93,5 +93,26 @@ class UserController extends Controller{
 	    }
 	    $this->render('register',array('model'=>$form));
 	}
+	public function actionConfirm($token)
+	{
+		$user = User::model()->find("token = :token AND active = 0", 
+					array(":token" => $token)
+				);
+		if(!$user){
+			Yii::app()->user->setFlash('danger', "no existe el user");
+			$this->redirect(Yii::app()->homeUrl);
+		}
+		else{
+			$user->active = 1;
+			$user->token = Helper::getToken();
+			$user->save();
+			
+			Yii::app()->user->setFlash('success', "Usuario registrado correctamente");
+			$this->redirect(Yii::app()->homeUrl);
+			
+			echo "<pre>";
+			print_r($user);
+		}
+	}
 	
 }

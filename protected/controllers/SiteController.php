@@ -61,11 +61,13 @@ class SiteController extends Controller
 		//2. Load premium items
 		
 		//3. Load just one random ad
-		$ad = Helper::getRandomAd();
+		$ads = array();
+		$ads[] = Helper::getRandomAd();
+		$ads[] = Helper::getRandomAd();
 		
 		$data = array(
 			"categories" => $categories,
-			"ad" => $ad,
+			"ads" => $ads,
 		);
 		
 		$this->_render('index', $data);

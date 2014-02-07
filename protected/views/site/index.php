@@ -25,7 +25,7 @@
 </div>
 
 <div class="row contenido">
-    <div class="col-md-2 col-md-offset-0 col-xs-11 col-xs-offset-1">
+    <div class="col-md-2 col-xs-12">
         <nav class="navbar navbar-default" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
@@ -144,10 +144,9 @@
         </div>
     </div>
 
-    <div class="col-md-2 col-md-offset-0 col-xs-12 col-sm-4 col-sm-offset-0 adds">
-        <?php print $ad->toHtml(); ?>
-    </div>
-	 <div class="col-md-2 col-sm-offset-0 col-xs-4 col-xs-offset-5 adds">
-        <?php print $ad->toHtml(); ?>
+    <div class="col-md-2 col-xs-12 text-center ads">
+    <?php foreach($ads as $ad){
+			print $ad->toHtml();
+	} ?>
     </div>
 </div>

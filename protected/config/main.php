@@ -37,6 +37,11 @@ return array(
 
 	// application components
 	'components'=>array(
+		'email'=>array(
+	        'class'=>'application.extensions.email.Email',
+	        'delivery'=>'php', //Will use the php mailing function.  
+	        //May also be set to 'debug' to instead dump the contents of the email into the view
+	    ),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
@@ -49,6 +54,9 @@ return array(
 			'rules'=>array(
 				//admin
 				'<controller:(admin)>'=>'admin',
+				
+				//admin
+				'<controller:(gii)>'=>'gii',
 				
 				// a standard rule mapping '/login' to 'site/login', and so on
 				'<action:\w+>' => 'site/<action>',
@@ -74,7 +82,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=huaxin',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => '',
+			'password' => 'root',
 			'charset' => 'utf8',
 		),
 		//*/

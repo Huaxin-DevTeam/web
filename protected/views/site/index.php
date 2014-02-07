@@ -146,7 +146,7 @@
 
     <div class="col-md-2 col-xs-12 text-center ads">
     <?php foreach($ads as $ad){
-			print $ad->toHtml();
+			print $ad;
 	} ?>
     </div>
 </div>

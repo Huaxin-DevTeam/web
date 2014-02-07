@@ -62,8 +62,8 @@ class SiteController extends Controller
 		
 		//3. Load just one random ad
 		$ads = array();
-		$ads[] = Helper::getRandomAd();
-		$ads[] = Helper::getRandomAd();
+		$ads[] = $this->renderPartial("item/ad",array("ad" => Helper::getRandomAd()),true);
+		$ads[] = $this->renderPartial("item/ad",array("ad" => Helper::getRandomAd()),true);
 		
 		$data = array(
 			"categories" => $categories,

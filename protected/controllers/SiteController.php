@@ -115,7 +115,19 @@ class SiteController extends Controller
 
 	public function actionCategory($id){
 		
-		$this->render("list");
+		$dbitems = Item::model()->findAll("NOW() BETWEEN date_published AND date_end AND category_id = :id", array(":id" => $id) );
+		
+		$items = array();
+
+		foreach($dbitems as $item)
+			$items[] = $this->renderPartial('item/list',array('item' => $item),true);
+		
+		
+		$data = array(
+			"items" => $items,
+		);
+		
+		$this->render("list", $data);
 	}
 	
 }

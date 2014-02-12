@@ -2,7 +2,11 @@
 
 class UserController extends Controller{
 	
-	public $layout = "//layouts/huaxin-nologin";
+
+	
+	public function init(){
+		parent::init();
+	}
 	
 	/**
 	 * Displays the login page

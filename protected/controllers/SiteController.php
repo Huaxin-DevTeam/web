@@ -2,32 +2,9 @@
 
 class SiteController extends Controller
 {
-
-	public $layout = "//layouts/huaxin";
-	
-	private function _login(){
-		//Login form
-		$this->model=new LoginForm;	
-		
-		// collect user input data
-		if(isset($_POST['LoginForm']))
-		{
-			$this->model->attributes=$_POST['LoginForm'];
-			// validate user input and redirect to the previous page if valid
-			if($this->model->validate() && $this->model->login())
-				$this->redirect(Yii::app()->user->returnUrl);
-		}
-	}
 	private function _render($template,$data){
-		
-		$data["model"] = $this->model;
-		
+		//Do something?
 		$this->render($template,$data);
-	}
-	
-	protected function beforeAction($action){
-		$this->_login();
-		return true;
 	}
 	
 	/**
@@ -54,20 +31,10 @@ class SiteController extends Controller
 	 * when an action is not explicitly requested by users.
 	 */
 	public function actionIndex()
-	{		
-		//1. Load all categories
-		$categories = Category::model()->findAll(array('order' => "id"));
-		
-		//2. Load premium items
-		
-		//3. Load just one random ad
-		$ads = array();
-		$ads[] = $this->renderPartial("item/ad",array("ad" => Helper::getRandomAd()),true);
-		$ads[] = $this->renderPartial("item/ad",array("ad" => Helper::getRandomAd()),true);
+	{				
+		// Load premium items
 		
 		$data = array(
-			"categories" => $categories,
-			"ads" => $ads,
 		);
 		
 		$this->_render('index', $data);
@@ -120,7 +87,7 @@ class SiteController extends Controller
 		$items = array();
 
 		foreach($dbitems as $item)
-			$items[] = $this->renderPartial('item/list',array('item' => $item),true);
+			$items[] = $this->renderPartial('//item/list',array('item' => $item),true);
 		
 		
 		$data = array(

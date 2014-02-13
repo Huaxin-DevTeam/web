@@ -4,9 +4,6 @@
 /* @var $form CActiveForm */
 ?>
 
-<div class="row">
-
-</div>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -22,38 +19,38 @@
 
 	<?php //echo $form->errorSummary($model); ?>
 	<div class="">
-		<div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 blue">
+		<div class="col-xs-12 blue">
 			<h5>NUEVO REGISTRO</h5>
 		</div>
 	</div>
 		
 	<div class="row">
-		<div class="form-group col-sm-4 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+		<div class="form-group col-xs-6">
 			<?php echo $form->labelEx($model,'email'); ?>
 			<?php echo $form->textField($model,'email', array("class" => "form-control")); ?>
 			<?php echo $form->error($model,'email'); ?>
 		</div>
-		<div class="form-group col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+		<div class="form-group col-xs-6">
 			<?php echo $form->labelEx($model,'phone'); ?>
 			<?php echo $form->textField($model,'phone', array("class" => "form-control")); ?>
 			<?php echo $form->error($model,'phone'); ?>
 		</div>
 	</div>
 	<div class="row">
-		<div class="form-group col-sm-4 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+		<div class="form-group col-xs-6">
 			<?php echo $form->labelEx($model,'password'); ?>
 			<?php echo $form->passwordField($model,'password', array("class" => "form-control")); ?>
 			<?php echo $form->error($model,'password'); ?>
 		</div>
 	
-		<div class="form-group col-sm-4 col-sm-offset-0 col-xs-10 col-xs-offset-1">
+		<div class="form-group col-xs-6">
 			<?php echo $form->labelEx($model,'password2'); ?>
 			<?php echo $form->passwordField($model,'password2', array("class" => "form-control")); ?>
 			<?php echo $form->error($model,'password2'); ?>
 		</div>	
 	</div>
 	<div class="row">
-		<div class="form-group col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1">
+		<div class="form-group col-xs-12">
 		<?php echo $form->labelEx($model,'captcha'); ?>
 			<div class="captcha_wrapper">
 			  <?php $this->widget('CCaptcha', array('captchaAction'=>'site/captcha')); ?>

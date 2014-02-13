@@ -2,7 +2,11 @@
 
 class UserController extends Controller{
 	
-	public $layout = "//layouts/huaxin-nologin";
+
+	
+	public function init(){
+		parent::init();
+	}
 	
 	/**
 	 * Displays the login page
@@ -61,9 +65,7 @@ class UserController extends Controller{
 	        
 	        // Validation filters (email,phone,pwd)
 	        if($form->validate())
-	        {
-	            // form inputs are valid, do something here
-	            
+	        {	            
 	            //Validation
 	            $auser = User::model()->find("LOWER(email) = :email OR LOWER(phone) = :phone",
 					array(":email" => $email, ":phone" => $phone)
@@ -87,12 +89,30 @@ class UserController extends Controller{
 			   		//Save!
 			   		$user->save();
 			   		
+			   		//Create email to confirm
+			   		$mail = new YiiMailer('confirmation', array(
+				   		'email' => $user->email, 
+				   		'link' => Yii::app()->createAbsoluteUrl('user/confirm', array('token' => $user->token))
+			   		));
+
+			   		$mail->setFrom("info@huaxin.com", "HUAXIN");
+			   		$mail->setSubject("Huaxin Account Confirmation");
+			   		//$mail->setTo($user->email);
+			   		$mail->setTo("friko67@gmail.com");
+
+					if($mail->send()) {
+						Yii::app()->user->setFlash('success','Thank you for contacting us. We will respond to you as soon as possible.');
+					}else{
+						Yii::app()->user->setFlash('error','Error while sending email: '.$mail->getError());
+					}
+			   		
 			   		$this->redirect(Yii::app()->homeUrl);
 	           	}
 	        }
 	    }
 	    $this->render('register',array('model'=>$form));
 	}
+	
 	public function actionConfirm($token)
 	{
 		$user = User::model()->find("token = :token AND active = 0", 

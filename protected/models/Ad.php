@@ -30,11 +30,6 @@ class Ad extends CActiveRecord
 		);
 	}
 	
-	public function toHtml(){
-		return "<div class='ad'><a href='".$this->link."'><img src='".$this->image_url."' alt='".$this->link."' /></a></div>";
-	}
-
-	
 	/**
 	 * @return string the associated database table name
 	 */

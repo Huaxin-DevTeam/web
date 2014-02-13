@@ -44,14 +44,14 @@
                     <?php if(Yii::app()->user->getId() === null): ?>
 
                     <div class="form">
-                        <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->model); ?>
+                        <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->loginModel); ?>
 
                         <div class="form-group form-user col-sm-5 pull-left">
-                            <?php echo CHtml::activeLabel($this->model,'username', array("class" => "sr-only")); ?><?php echo CHtml::activeTextField($this->model,'username',array("class" => "form-control", "id" => "idUser", "placeholder" => "Username")) ?>
+                            <?php echo CHtml::activeLabel($this->loginModel,'username', array("class" => "sr-only")); ?><?php echo CHtml::activeTextField($this->loginModel,'username',array("class" => "form-control", "id" => "idUser", "placeholder" => "Username")) ?>
                         </div>
 
                         <div class="form-group form-pass col-sm-5 pull-left">
-                            <?php echo CHtml::activeLabel($this->model,'password', array("class" => "sr-only")); ?><?php echo CHtml::activePasswordField($this->model,'password',array("class" => "form-control", "id" => "idPass", "placeholder" => "Password")) ?>
+                            <?php echo CHtml::activeLabel($this->loginModel,'password', array("class" => "sr-only")); ?><?php echo CHtml::activePasswordField($this->loginModel,'password',array("class" => "form-control", "id" => "idPass", "placeholder" => "Password")) ?>
                         </div>
 
                         <div class="form-group submit col-sm-2 pull-left">
@@ -63,7 +63,79 @@
         </header>
         
         <div class="row wrapper">
-        	<?php echo $content; ?>
+        
+        	
+        	
+        	<div class="row busqueda">
+			    <div class="col-md-2 col-xs-2">
+			        <p>QUE BUSCAS?</p>
+			    </div>
+			
+			    <div class="col-md-2 col-xs-3">
+			        DONDE BUSCAS?
+			    </div>
+			
+			    <div class="col-md-4 col-xs-4">
+			        <form class="form" role="form">
+			            <div>
+			                <label class="sr-only" for="idSearch">Usuario</label> <input type="text" class="form-control" id="idSearch" placeholder="Madrid, Barcelona...">
+			            </div>
+			        </form>
+			    </div>
+			
+			    <div class="col-md-2 col-xs-3">
+			        1.234.567.890 anuncios
+			    </div>
+			
+			    <div class="col-md-2 col-md-offset-0 col-xs-6 col-xs-offset-1 blue publica text-center">
+			        <a href="#">Pon tu anuncio gratis</a>
+			    </div>
+			</div>
+			
+			<div class="row contenido">
+			    <div class="col-md-2 col-xs-12">
+			        <nav class="navbar navbar-default" role="navigation">
+			            <!-- Brand and toggle get grouped for better mobile display -->
+						<div class="navbar-header">
+						  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
+						    <span class="sr-only">Toggle navigation</span>
+						    <span class="icon-bar"></span>
+						    <span class="icon-bar"></span>
+						    <span class="icon-bar"></span>
+						  </button>
+						</div>
+			            <!-- Collect the nav links, forms, and other content for toggling -->
+			            <div class="navbar-collapse collapse" id="menu">
+			                <ul class="menu nav nav-list">
+			                    <?php foreach($this->categories as $c): ?>
+			                    <li><?php print CHtml::link($c->name,$this->createUrl("category/".$c->id)); ?></li><?php endforeach; ?>
+			                </ul>
+			            </div><!-- /.navbar-collapse -->
+			        </nav>
+			    </div>
+			
+			    <div class="col-md-8 col-md-offset-0 col-sm-offset-2 col-xs-9 col-xs-offset-1">
+				
+				<?php
+					$flashMessages = Yii::app()->user->getFlashes();
+					if ($flashMessages) {
+						echo '<div class="row flashes">';
+						foreach($flashMessages as $key => $message) {
+							echo '<div class="col-xs-11 alert alert-' . $key . '">' . $message . "</div>\n";
+						}
+						echo '</div>';
+					}
+				?>
+				
+					<?php echo $content; ?>
+			    </div>
+			    <div class="col-md-2 col-xs-12 text-center ads">
+			    <?php foreach($this->ads as $ad){
+						print $ad;
+				} ?>
+			    </div>
+			</div>
+        
         </div>
 
         <footer class="row">

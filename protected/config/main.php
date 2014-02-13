@@ -83,7 +83,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=huaxin',
 			'emulatePrepare' => true,
 			'username' => 'root',
-			'password' => 'root',
+			'password' => '',
 			'charset' => 'utf8',
 		),
 		//*/

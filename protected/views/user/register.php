@@ -4,6 +4,9 @@
 /* @var $form CActiveForm */
 ?>
 
+<div class="row">
+
+</div>
 <div class="form">
 
 <?php $form=$this->beginWidget('CActiveForm', array(
@@ -15,9 +18,15 @@
 	'enableAjaxValidation'=>false,
 )); ?>
 
-	<p class="note">Fields with <span class="required">*</span> are required.</p>
+<!--	<p class="note">Fields with <span class="required">*</span> are required.</p>-->
 
 	<?php //echo $form->errorSummary($model); ?>
+	<div class="">
+		<div class="col-sm-8 col-sm-offset-2 col-xs-10 col-xs-offset-1 blue">
+			<h5>NUEVO REGISTRO</h5>
+		</div>
+	</div>
+		
 	<div class="row">
 		<div class="form-group col-sm-4 col-sm-offset-2 col-xs-10 col-xs-offset-1">
 			<?php echo $form->labelEx($model,'email'); ?>

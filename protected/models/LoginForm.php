@@ -11,6 +11,7 @@ class LoginForm extends CFormModel
 	public $password;
 
 	private $_identity;
+	private $errorCode;
 
 	/**
 	 * Declares the validation rules.
@@ -47,8 +48,21 @@ class LoginForm extends CFormModel
 		if(!$this->hasErrors())
 		{
 			$this->_identity=new UserIdentity($this->username,$this->password);
-			if(!$this->_identity->authenticate())
-				$this->addError('password','Incorrect username or password.');
+			$this->_identity->authenticate();
+			switch($this->_identity->errorCode){
+				case UserIdentity::ERROR_USERNAME_INVALID:
+					$this->addError('username','Username is invalid');
+					break;
+				case UserIdentity::ERROR_PASSWORD_INVALID:
+					$this->addError('password','Password is invalid');
+					break;
+				case UserIdentity::ERROR_USER_NOT_ACTIVE:
+					$this->addError('username','Username is not activated');
+					break;	
+					
+				default: break; //OK
+					
+			}
 		}
 	}
 

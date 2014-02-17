@@ -44,7 +44,7 @@
                     <?php if(Yii::app()->user->getId() === null): ?>
 
                     <div class="form">
-                        <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->loginModel); ?>
+                        <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->loginModel,''); ?>
 
                         <div class="form-group form-user col-sm-5 pull-left">
                             <?php echo CHtml::activeLabel($this->loginModel,'username', array("class" => "sr-only")); ?><?php echo CHtml::activeTextField($this->loginModel,'username',array("class" => "form-control", "id" => "idUser", "placeholder" => "Username")) ?>

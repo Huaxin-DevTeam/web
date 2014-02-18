@@ -50,7 +50,15 @@ class Helper extends CComponent{
 		
 		return $ad;
 	}
-	 
-
 	
+	public static function purify($str){
+		 $attr = CHtml::decode(strip_tags($str));
+		 $p = new CHtmlPurifier();
+		 return $p->purify($attr);
+	}
+	
+	public static function getUser(){
+		return User::model()->findByPk(Yii::app()->user->id);
+	}
+
 }

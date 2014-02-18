@@ -2,8 +2,6 @@
 
 class UserController extends Controller{
 	
-
-	
 	public function init(){
 		parent::init();
 	}

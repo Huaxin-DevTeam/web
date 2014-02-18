@@ -1,3 +1,10 @@
+<?php
+/* @var $this SiteController */
+/* @var $model LoginForm */
+/* @var $form CActiveForm  */
+	$this->pageTitle=Yii::app()->name;
+	?>
+
 <div class="row carousel">
     <div class="col-md-12">
         ANUNCIOS DESTACADOS

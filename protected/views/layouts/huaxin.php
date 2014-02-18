@@ -2,7 +2,7 @@
 
 <html>
 <head>
-    <title>Bootstrap 101 Template</title>
+    <title><?php echo $this->pageTitle ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Bootstrap -->
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css" rel="stylesheet" type="text/css"><!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -33,6 +33,7 @@
 						    'items'=> array_merge($this->main_menu,array(
 						        array('label'=>'Register', 'url'=>array('/user/register'), 'visible'=>Yii::app()->user->isGuest),
 						        array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
+						        array('label'=>'My ads', 'url'=>array('/myads'), 'visible'=>!Yii::app()->user->isGuest),
 						        array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest),
 						    )),
 							'htmlOptions' => array("class" => "list-unstyled list-inline initialism"),
@@ -56,8 +57,15 @@
 
                         <div class="form-group submit col-sm-2 pull-left">
                             <?php echo CHtml::submitButton('',array("class"=>"btn-login","title"=>"login")); ?>
-                        </div><?php echo CHtml::endForm(); ?>
-                    </div><!-- form --><?php endif; ?>
+                        </div>
+                        
+                        <?php echo CHtml::endForm(); ?>
+                    </div><!-- form -->
+                    <?php else: ?>
+                    	
+                    	<div><?php print $this->credits; ?> credits</div>
+                    	
+                    <?php endif; ?>
                 </div>
             </div>
         </header>
@@ -88,7 +96,7 @@
 			    </div>
 			
 			    <div class="col-md-2 col-md-offset-0 col-xs-6 col-xs-offset-1 blue publica text-center">
-			        <a href="#">Pon tu anuncio gratis</a>
+			        <a href="/new">Pon tu anuncio gratis</a>
 			    </div>
 			</div>
 			

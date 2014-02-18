@@ -33,7 +33,7 @@ class Controller extends CController
 	public $ads = null;
 	public $categories = null;
 	
-
+	public $credits;
 
 	
 	public function init(){
@@ -59,5 +59,8 @@ class Controller extends CController
 			if($this->loginModel->validate() && $this->loginModel->login())
 				$this->redirect(Yii::app()->user->returnUrl);
 		}
+		
+		if(!Yii::app()->user->isGuest)
+			$this->credits = User::model()->findByPk(Yii::app()->user->id)->credits;
 	}
 }

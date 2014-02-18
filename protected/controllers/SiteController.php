@@ -97,4 +97,26 @@ class SiteController extends Controller
 		$this->render("list", $data);
 	}
 	
+	
+	/** New Item! **/
+	public function actionNew(){
+		
+		$model = new ItemForm;
+		
+		if(isset($_POST['ItemForm'])){
+			$model->attributes = $_POST['ItemForm'];
+			
+			if($model->validate()){
+				die("OK!");
+			}
+			
+		}
+				
+		$data = array(
+			'model' => $model,
+		);		
+		
+		$this->render('//item/form',$data);
+	}
+	
 }

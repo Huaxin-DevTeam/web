@@ -4,6 +4,8 @@ h5{
   color: white;   
   line-height: 2; 
   margin: auto -15px;
+  padding: 5px 0px 5px 15px;
+
 }
 
 .ads{
@@ -118,6 +120,7 @@ h5{
 .login .form-group{margin-bottom: 0;}
 header{position:relative;}
 
+.margenh5{margin-bottom: 20px;}
 /*4097*/
 .nav > li {
   border:  1px solid #c5c5c5;

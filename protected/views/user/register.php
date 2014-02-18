@@ -19,7 +19,7 @@
 
 	<?php //echo $form->errorSummary($model); ?>
 	<div class="">
-		<div class="col-xs-12 blue">
+		<div class="col-xs-12 blue margenh5">
 			<h5>NUEVO REGISTRO</h5>
 		</div>
 	</div>

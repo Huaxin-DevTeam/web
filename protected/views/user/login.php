@@ -19,7 +19,7 @@
 				),
 			)); ?>
 			<div class="row">
-				<div class="form-group col-sm-5 col-sm-offset-0 col-xs-10 col-xs-offset-0">
+				<div class="form-group col-sm-6 col-sm-offset-3 col-xs-12">
 					<?php echo $form->labelEx($model,'username'); ?>
 					<?php echo $form->textField($model,'username',array("class" => "form-control")); ?>
 					<?php echo $form->error($model,'username'); ?>
@@ -27,7 +27,7 @@
 			</div>
 
 			<div class="row">
-				<div class="form-group col-sm-5 col-sm-offset-0 col-xs-10 col-xs-offset-0">			
+				<div class="form-group col-sm-6 col-sm-offset-3 col-xs-12">			
 					<?php echo $form->labelEx($model,'password'); ?>
 					<?php echo $form->passwordField($model,'password',array("class" => "form-control")); ?>
 					<?php echo $form->error($model,'password'); ?>
@@ -35,7 +35,7 @@
 			</div>
 
 			<div class="row">
-				<div class="form-group col-md-offset-4 col-sm-1 col-sm-offset-5 col-xs-offset-1 bigbottom">			
+				<div class="form-group col-md-offset-8 col-sm-1 col-sm-offset-8 col-xs-offset-1 bigbottom">			
 					<div class="button button-register col-xs-offset-5">
 					<?php echo CHtml::submitButton('Login'); ?>
 				</div>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 06-02-2014 a las 13:13:04
+-- Tiempo de generación: 18-02-2014 a las 20:28:38
 -- Versión del servidor: 5.5.29
 -- Versión de PHP: 5.4.10
 
@@ -36,10 +36,10 @@ CREATE TABLE `ad` (
 --
 
 INSERT INTO `ad` (`id`, `image_url`, `link`, `is_mobile`, `num_views`, `date_published`, `date_end`) VALUES
-(1, 'url1', 'link1', 0, 102, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
-(2, 'img2', 'link2', 1, 0, '2013-12-20 14:44:25', '2015-12-29 23:00:00'),
-(3, 'img3', 'link3', 0, 103, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
-(4, 'img4', 'link4', 1, 0, '2013-12-19 23:00:00', '2015-01-09 23:00:00');
+(1, 'img1', 'link1', 0, 739, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
+(2, 'img2', 'link2', 0, 726, '2013-12-20 14:44:25', '2015-12-29 23:00:00'),
+(3, 'img3', 'link3', 0, 1001, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
+(4, 'img4', 'link4', 0, 740, '2013-12-19 23:00:00', '2015-01-09 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -99,10 +99,10 @@ CREATE TABLE `item` (
 --
 
 INSERT INTO `item` (`id`, `user_id`, `category_id`, `title`, `description`, `price`, `phone`, `image_url`, `location`, `date_published`, `date_end`, `num_views`, `premium`) VALUES
-(1, 2, 1, 'title1', 'Este es un anuncio de prueba', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 16:05:05', '2015-01-08 16:05:05', 7, 0),
-(2, 2, 2, 'title1', 'Este es un anuncio de prueba', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 16:39:28', '2015-01-08 16:39:28', 0, 0),
-(3, 2, 1, 'title1', 'Este es un anuncio de prueba', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 16:39:31', '2015-01-08 16:39:31', 0, 0),
-(4, 2, 1, 'title1', 'Este es un anuncio de prueba', 22, 666123456, 'DISEÑO-FINAL.png', 'Barcelona', '2014-01-13 14:06:14', '2015-01-14 14:06:14', 0, 0);
+(1, 2, 1, 'title1', 'Anuncio 1, trabajo', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 15:05:05', '2015-01-08 15:05:05', 7, 0),
+(2, 2, 2, 'title1', 'Anuncio 2, negocios', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 15:39:28', '2015-01-08 15:39:28', 0, 0),
+(3, 2, 1, 'title1', 'Anuncio 3, trabajo', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 15:39:31', '2015-01-08 15:39:31', 0, 0),
+(4, 2, 1, 'title1', 'Anuncio 4, trabajo', 22, 666123456, 'DISEÑO-FINAL.png', 'Barcelona', '2014-01-13 13:06:14', '2015-01-14 13:06:14', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -182,8 +182,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `active`, `phone`, `email`, `password`, `credits`, `date_register`, `token`, `device_id`, `push_id`) VALUES
-(1, 1, NULL, 'admin', 'e5b13ebaa3229236c5456575a7d24e1dc1f73ef4', 0, '2013-12-19 17:38:07', NULL, NULL, NULL),
-(2, 1, 645155625, 'friko67@gmail.com', 'a94a8fe5ccb19ba61c4c0873d391e987982fbbd3', 92, '2013-12-27 10:06:57', 'xirOfSj8jHeHji0GHNY58pr9K', NULL, NULL);
+(1, 1, NULL, 'admin', '$2a$13$DAKriMormJCmK.rU3UmeY.4FJu5CjkNYVErs9cIe3KntIZgTctQBC', 101, '2013-12-19 17:38:07', NULL, NULL, NULL),
+(2, 1, 666666666, 'test@test.com', '$2a$13$duhqzJpn1rKcNev6LMQXL.sZqTeYATYtcILZ7gFLLhCoBzczzWpBW', 0, '2014-02-12 17:10:20', 'oLTq1sQCrp3PYlgoqgjJHCi8B', NULL, NULL);
 
 --
 -- Restricciones para tablas volcadas

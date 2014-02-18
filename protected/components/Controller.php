@@ -61,6 +61,6 @@ class Controller extends CController
 		}
 		
 		if(!Yii::app()->user->isGuest)
-			$this->credits = User::model()->findByPk(Yii::app()->user->id)->credits;
+			$this->credits = Helper::getUser()->credits;
 	}
 }

@@ -99,7 +99,14 @@ class SiteController extends Controller
 	
 	
 	/** New Item! **/
-	public function actionNew(){
+	public function actionNew()
+	{
+		//Solo login!
+		if(Yii::app()->user->isGuest){
+			Yii::app()->user->setReturnUrl("/new");
+			Yii::app()->user->setFlash('warning', Yii::t('huaxin',"You need to be logged in to create new ads."));
+			$this->redirect("user/login");
+		}
 		
 		$model = new ItemForm;
 		
@@ -107,7 +114,33 @@ class SiteController extends Controller
 			$model->attributes = $_POST['ItemForm'];
 			
 			if($model->validate()){
-				die("OK!");
+				//Ok, create!
+				
+				$user = Helper::getUser();
+				$duration = $model->duration;
+				$num_credits = 1 + $duration;
+				
+				$item = new Item;
+				$item->user_id = $user->id;
+				$item->category_id = $model->category;
+				$item->title = Helper::purify($model->title);
+				$item->description = Helper::purify($model->description);
+				$item->price = $model->price;
+				$item->phone = $model->phone;
+//				$item->image_url = $model->??;
+				$item->location = Helper::purify($model->location);
+				$item->date_published = new CDbExpression('NOW()');
+				$item->date_end = new CDbExpression("NOW() + INTERVAL $duration DAY");
+				
+				if(!$item->validate()){
+					die(print_r($item->getErrors()));
+				}
+				
+				//$item->save();
+				print_r($item);
+				$user->credits -= $num_credits;
+				print_r($user);
+				//$user->save();
 			}
 			
 		}

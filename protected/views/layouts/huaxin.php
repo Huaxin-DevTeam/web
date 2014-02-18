@@ -5,6 +5,7 @@
     <title><?php echo $this->pageTitle ?></title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"><!-- Bootstrap -->
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/docs.min.css" rel="stylesheet" type="text/css">    
     <link href="<?php echo Yii::app()->request->baseUrl; ?>/css/styles.css" rel="stylesheet" type="text/css"><!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -127,9 +128,9 @@
 				<?php
 					$flashMessages = Yii::app()->user->getFlashes();
 					if ($flashMessages) {
-						echo '<div class="row flashes">';
+						echo '<div class="flashes">';
 						foreach($flashMessages as $key => $message) {
-							echo '<div class="col-xs-11 alert alert-' . $key . '">' . $message . "</div>\n";
+							echo '<div class="col-xs-12 bs-callout bs-callout-' . $key . '">' . $message . "</div>\n";
 						}
 						echo '</div>';
 					}

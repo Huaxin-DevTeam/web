@@ -26,7 +26,16 @@ class ItemForm extends CFormModel
 		return array(
 			//required fields
 			array('category, title, description, price, phone, location, duration', 'required'),
-			array('title,description','length','min'=>7,'allowEmpty'=>false),
+			array('title,description','length','min'=>7),
+			array('price','numerical'),
+			array('phone','numerical',
+				'integerOnly'=>true,
+				'integerPattern'=>"/^[6,7,9](\d){8}$/",
+				'min'=>9,
+				'message'=> Yii::t("huaxin","Invalid number format"),
+			),
+			array('image','file','types'=>'png,jpg,gif,bmp,jpeg','allowEmpty'=>true),
+			array('duration','numerical','integerOnly'=>true,'min'=>1),
 		);
 	}
 

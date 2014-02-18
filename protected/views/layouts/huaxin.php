@@ -24,7 +24,9 @@
     <div class="container">
         <header class="row">
             <div class="logo col-md-3 col-sm-4 col-xs-8">
-                <a title="Inicio" href="/"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/logo.png" class="img-responsive"></a>
+                <a title="Inicio" href="/">
+                	<img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/logo.png" class="img-responsive">
+                </a>
             </div>
 
             <div class="col-md-offset-6 col-md-4 col-sm-5 login">
@@ -75,7 +77,7 @@
         
         	
         	
-        	<div class="busqueda">
+        	<div class="row busqueda col-xs-12">
 			    <div class="col-md-2 col-xs-2">
 			        <p>QUE BUSCAS?</p>
 			    </div>
@@ -101,7 +103,7 @@
 			    </div>
 			</div>
 			
-			<div class="contenido">
+			<div class="row contenido  col-xs-12">
 			    <div class="col-md-2 col-sm-12">
 			        <nav class="navbar navbar-default" role="navigation">
 			            <!-- Brand and toggle get grouped for better mobile display -->
@@ -147,7 +149,7 @@
         
         </div>
 
-        <footer>
+        <footer class="row">
             <div class="col-sm-2 col-xs-12">
                 <div class="row">
                     <div class="movil">

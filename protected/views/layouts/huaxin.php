@@ -74,7 +74,7 @@
         
         	
         	
-        	<div class="row busqueda">
+        	<div class="busqueda">
 			    <div class="col-md-2 col-xs-2">
 			        <p>QUE BUSCAS?</p>
 			    </div>
@@ -100,8 +100,8 @@
 			    </div>
 			</div>
 			
-			<div class="row contenido">
-			    <div class="col-md-2 col-xs-12">
+			<div class="contenido">
+			    <div class="col-md-2 col-sm-12">
 			        <nav class="navbar navbar-default" role="navigation">
 			            <!-- Brand and toggle get grouped for better mobile display -->
 						<div class="navbar-header">
@@ -122,7 +122,7 @@
 			        </nav>
 			    </div>
 			
-			    <div class="col-md-8 col-md-offset-0 col-sm-offset-2 col-xs-9 col-xs-offset-1">
+			    <div class="col-md-8">
 				
 				<?php
 					$flashMessages = Yii::app()->user->getFlashes();
@@ -146,7 +146,7 @@
         
         </div>
 
-        <footer class="row">
+        <footer>
             <div class="col-sm-2 col-xs-12">
                 <div class="row">
                     <div class="movil">

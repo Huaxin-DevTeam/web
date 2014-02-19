@@ -1,0 +1,1 @@
+<li><?php print CHtml::link($item->name,'/order/cart/'.$item->id); ?></li>

@@ -1,4 +1,10 @@
-opciones:
-1
-2
-3
+<ul>
+<?php 
+
+foreach($options as $opt)
+	print $opt;
+	
+?>
+</ul>
+
+tabla de costes

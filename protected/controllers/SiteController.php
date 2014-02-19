@@ -108,6 +108,13 @@ class SiteController extends Controller
 			$this->redirect("user/login");
 		}
 		
+		$user = Helper::getUser();
+		
+		if($user->credits < 1){
+			Yii::app()->user->setFlash('warning', Yii::t('huaxin',"You need to buy some credits to create new ads."));
+			$this->redirect("order/select");
+		}
+		
 		$model = new ItemForm;
 		
 		if(isset($_POST['ItemForm'])){
@@ -116,7 +123,7 @@ class SiteController extends Controller
 			if($model->validate()){
 				//Ok, create!
 				
-				$user = Helper::getUser();
+				
 				$duration = $model->duration;
 				$num_credits = 1 + $duration;
 				
@@ -150,6 +157,5 @@ class SiteController extends Controller
 		);		
 		
 		$this->render('//item/form',$data);
-	}
-	
+	}	
 }

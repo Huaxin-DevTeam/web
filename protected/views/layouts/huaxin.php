@@ -99,7 +99,7 @@
 			    </div>
 			
 			    <div class="col-md-2 col-md-offset-0 col-xs-6 col-xs-offset-1 blue publica text-center">
-			        <a href="/new">Pon tu anuncio gratis</a>
+			        <a href="/new">Pon tu anuncio</a>
 			    </div>
 			</div>
 			

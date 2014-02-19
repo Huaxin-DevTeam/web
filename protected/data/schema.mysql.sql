@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 18-02-2014 a las 20:28:38
+-- Tiempo de generación: 19-02-2014 a las 17:36:45
 -- Versión del servidor: 5.5.29
 -- Versión de PHP: 5.4.10
 
@@ -36,10 +36,10 @@ CREATE TABLE `ad` (
 --
 
 INSERT INTO `ad` (`id`, `image_url`, `link`, `is_mobile`, `num_views`, `date_published`, `date_end`) VALUES
-(1, 'img1', 'link1', 0, 739, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
-(2, 'img2', 'link2', 0, 726, '2013-12-20 14:44:25', '2015-12-29 23:00:00'),
-(3, 'img3', 'link3', 0, 1001, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
-(4, 'img4', 'link4', 0, 740, '2013-12-19 23:00:00', '2015-01-09 23:00:00');
+(1, 'img1', 'link1', 0, 861, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
+(2, 'img2', 'link2', 0, 870, '2013-12-20 14:44:25', '2015-12-29 23:00:00'),
+(3, 'img3', 'link3', 0, 1110, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
+(4, 'img4', 'link4', 0, 873, '2013-12-19 23:00:00', '2015-01-09 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -68,6 +68,32 @@ INSERT INTO `category` (`id`, `name`) VALUES
 (9, 'Páginas Amarillas'),
 (5, 'Segunda Mano'),
 (2, 'Traspaso de Negocios');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `credits`
+--
+
+CREATE TABLE `credits` (
+  `id` tinyint(4) NOT NULL AUTO_INCREMENT,
+  `name` varchar(255) NOT NULL,
+  `num_credits` int(11) NOT NULL,
+  `price` float NOT NULL,
+  `text` varchar(255) NOT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `name` (`name`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Volcado de datos para la tabla `credits`
+--
+
+INSERT INTO `credits` (`id`, `name`, `num_credits`, `price`, `text`) VALUES
+(1, 'Single Ad', 1, 3, 'Simple, but useful'),
+(2, 'Premium Ad Pack', 5, 12, '20% discount'),
+(3, 'Large Credits Pack', 25, 50, '33% discount'),
+(4, 'Full Credits Pack', 100, 150, '50% discount');
 
 -- --------------------------------------------------------
 
@@ -182,7 +208,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id`, `active`, `phone`, `email`, `password`, `credits`, `date_register`, `token`, `device_id`, `push_id`) VALUES
-(1, 1, NULL, 'admin', '$2a$13$DAKriMormJCmK.rU3UmeY.4FJu5CjkNYVErs9cIe3KntIZgTctQBC', 101, '2013-12-19 17:38:07', NULL, NULL, NULL),
+(1, 1, NULL, 'admin', '$2a$13$DAKriMormJCmK.rU3UmeY.4FJu5CjkNYVErs9cIe3KntIZgTctQBC', 10000000, '2013-12-19 17:38:07', '', '', ''),
 (2, 1, 666666666, 'test@test.com', '$2a$13$duhqzJpn1rKcNev6LMQXL.sZqTeYATYtcILZ7gFLLhCoBzczzWpBW', 0, '2014-02-12 17:10:20', 'oLTq1sQCrp3PYlgoqgjJHCi8B', NULL, NULL);
 
 --

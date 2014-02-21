@@ -11,6 +11,8 @@ use PayPal\Api\Transaction;
 
 
 class OrderController extends Controller{
+
+	private $option;
 	
 	public function init(){
 		parent::init();
@@ -33,9 +35,49 @@ class OrderController extends Controller{
 	
 	public function actionCart($id){
 		
-		$opt = CreditsManager::model()->findByPk($id);
+		$this->option = CreditsManager::model()->findByPk($id);
+
+		$cc = new CreditCardForm;
+		
+		$selected = isset($_POST['payment_method']) ? $_POST['payment_method'] : null;
+		
+		if($selected != null){
+			
+			$method = $_POST['payment_method'];
+			
+			switch($method){
 				
-		/*$sdkConfig = array(
+				case "bank_transfer": 
+					die($method); 
+					break;
+				
+				case "credit_card": 
+					$cc->attributes = $_POST['CreditCardForm'];
+					if($cc->validate()){
+						$this->processCreditCard($cc);
+					}
+					break;
+					
+				case "paypal": 
+					$this->startPayPalTransaction(); 
+					break;
+				
+				default: 
+					$this->redirect(Yii::app()->homeUrl);
+			}
+			
+		}
+
+		$data = array('cc' => $cc, 'option' => $this->option, 'selected' => $selected);
+		$this->render('cart',$data);
+	}
+	
+	private function processCreditCard($cc){
+		//die(print_r($cc));
+	}
+	
+	private function startPayPalTransaction(){
+		$sdkConfig = array(
 			"mode" => "sandbox"
 		);
 		
@@ -52,16 +94,16 @@ class OrderController extends Controller{
 		
 		$amount = new Amount();
 		$amount->setCurrency("EUR");
-		$amount->setTotal("12");
+		$amount->setTotal($this->option->price);
 		
 		$transaction = new Transaction();
-		$transaction->setDescription("creating a payment");
+		$transaction->setDescription($this->option->name. " (".$this->option->num_credits." credits)");
 		$transaction->setAmount($amount);
 		
-//		$baseUrl = getBaseUrl();
+		$baseUrl = Yii::app()->baseUrl;
 		$redirectUrls = new RedirectUrls();
-		$redirectUrls->setReturn_url("https://devtools-paypal.com/guide/pay_paypal/php?success=true");
-		$redirectUrls->setCancel_url("https://devtools-paypal.com/guide/pay_paypal/php?cancel=true");
+		$redirectUrls->setReturn_url("http://huaxin/?success=true");
+		$redirectUrls->setCancel_url("http://huaxin/?cancel=true");
 		
 		$payment = new Payment();
 		$payment->setIntent("sale");
@@ -69,15 +111,33 @@ class OrderController extends Controller{
 		$payment->setRedirect_urls($redirectUrls);
 		$payment->setTransactions(array($transaction));
 
-		$payment->create($apiContext);
+		try {
+			$payment->create($apiContext);
+		} catch (\PPConnectionException $ex) {
+			echo "Exception: " . $ex->getMessage() . PHP_EOL;
+			var_dump($ex->getData());	
+			exit(1);
+		}
+				
+		// ### Redirect buyer to paypal
+		// Retrieve buyer approval url from the `payment` object.
+		foreach($payment->getLinks() as $link) {
+			if($link->getRel() == 'approval_url') {
+				$redirectUrl = $link->getHref();
+			}
+		}
 		
-//		echo "<pre>";
-//		print_r($payment);
-		
-//		die($id); */
+		// It is not really a great idea to store the payment id
+		// in the session. In a real world app, please store the
+		// payment id in a database.
+		$_SESSION['paymentId'] = $payment->getId();
+		if(isset($redirectUrl)) {
+			header("Location: $redirectUrl");
+			exit;
+		}
 
-		$data = array('option' => $opt);
-		$this->render('cart',$data);
+		
+		die();
 	}
 	
 	

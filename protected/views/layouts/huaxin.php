@@ -16,8 +16,8 @@
     <script src="https://code.jquery.com/jquery.js" type="text/javascript">
 </script><!-- Include all compiled plugins (below), or include individual files as needed -->
 
-    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js" type="text/javascript">
-</script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/scripts.js" type="text/javascript"></script>
 </head>
 
 <body>

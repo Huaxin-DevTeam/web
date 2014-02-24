@@ -20,6 +20,7 @@ class CreditCardForm extends CFormModel
 		Yii::import('ext.validators.MyCCValidator');
 		return array(
 			array('number','ext.validators.ECCValidator'),
+			array('month','numerical'),
 			array('year','ext.validators.MyCCValidator'),
 		);
 	}
@@ -36,14 +37,14 @@ class CreditCardForm extends CFormModel
 		);
 	}
 	
-	public function getMonths(){
+	public static function getMonths(){
 		$months = array();
 		for($i=1;$i<=12;$i++)
 			$months[$i] = $i;
 		return $months;
 	}
 	
-	public function getYears(){
+	public static function getYears(){
 		$years = array();
 		$currentYear = intval(date('Y'));
 		for($year = $currentYear; $year <= $currentYear+10;$year++)

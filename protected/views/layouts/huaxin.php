@@ -130,7 +130,7 @@
 				<?php
 					$flashMessages = Yii::app()->user->getFlashes();
 					if ($flashMessages) {
-						echo '<div class="flashes">';
+						echo '<div class="row flashes">';
 						foreach($flashMessages as $key => $message) {
 							echo '<div class="col-xs-12 bs-callout bs-callout-' . $key . '">' . $message . "</div>\n";
 						}

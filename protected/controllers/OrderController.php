@@ -4,8 +4,11 @@ use PayPal\Rest\ApiContext;
 use PayPal\Auth\OAuthTokenCredential;
 
 use PayPal\Api\Amount;
+use PayPal\Api\CreditCard;
+use PayPal\Api\FundingInstrument;
 use PayPal\Api\Payer;
 use PayPal\Api\Payment;
+use PayPal\Api\PaymentExecution;
 use PayPal\Api\RedirectUrls;
 use PayPal\Api\Transaction;
 
@@ -13,6 +16,8 @@ use PayPal\Api\Transaction;
 class OrderController extends Controller{
 
 	private $option;
+	private $payerId;
+	private $token;
 	
 	public function init(){
 		parent::init();
@@ -21,6 +26,8 @@ class OrderController extends Controller{
 	}
 	
 	public function actionSelect(){
+	
+		Helper::needLogin($this->createUrl("/order/select"));
 		
 		$options = CreditsManager::model()->findAll();
 		
@@ -34,6 +41,8 @@ class OrderController extends Controller{
 	}
 	
 	public function actionCart($id){
+		
+		Helper::needLogin($this->createUrl("/order/cart/$id"));
 		
 		$this->option = CreditsManager::model()->findByPk($id);
 
@@ -74,6 +83,7 @@ class OrderController extends Controller{
 	
 	private function processCreditCard($cc){
 		//die(print_r($cc));
+		
 	}
 	
 	private function startPayPalTransaction(){
@@ -100,44 +110,144 @@ class OrderController extends Controller{
 		$transaction->setDescription($this->option->name. " (".$this->option->num_credits." credits)");
 		$transaction->setAmount($amount);
 		
-		$baseUrl = Yii::app()->baseUrl;
+		$baseUrl = Yii::app()->getbaseUrl(true);
 		$redirectUrls = new RedirectUrls();
-		$redirectUrls->setReturn_url("http://huaxin/?success=true");
-		$redirectUrls->setCancel_url("http://huaxin/?cancel=true");
+		$redirectUrls->setReturn_url($baseUrl."/order/buy?success=true");
+		$redirectUrls->setCancel_url($baseUrl."/order/buy?cancel=true");
 		
 		$payment = new Payment();
 		$payment->setIntent("sale");
 		$payment->setPayer($payer);
 		$payment->setRedirect_urls($redirectUrls);
 		$payment->setTransactions(array($transaction));
-
+		
+		
+		
 		try {
 			$payment->create($apiContext);
 		} catch (\PPConnectionException $ex) {
 			echo "Exception: " . $ex->getMessage() . PHP_EOL;
 			var_dump($ex->getData());	
 			exit(1);
-		}
-				
-		// ### Redirect buyer to paypal
+		}				
+		
+		$token = null;
+		
 		// Retrieve buyer approval url from the `payment` object.
 		foreach($payment->getLinks() as $link) {
 			if($link->getRel() == 'approval_url') {
 				$redirectUrl = $link->getHref();
+				
+				$parts = parse_url($redirectUrl);
+				parse_str($parts['query'], $query);
+				$token = $query['token'];
 			}
 		}
 		
-		// It is not really a great idea to store the payment id
-		// in the session. In a real world app, please store the
-		// payment id in a database.
-		$_SESSION['paymentId'] = $payment->getId();
+		//Store in our db...
+		$purchase = new Purchase();
+		$purchase->user_id = Yii::app()->user->id;
+		$purchase->method = strtoupper("paypal");
+		$purchase->num_credits = $this->option->num_credits;
+		$purchase->date = new CDbExpression('NOW()');
+		$purchase->status = 0;
+		$purchase->token = $token;
+		$purchase->payment_token = $payment->getId();
+		if($purchase->validate()){
+			$purchase->save();
+		}else{
+			echo "ERROR: " . PHP_EOL;
+			print_r($purchase->getErrors());
+			exit;
+		}
+		
+		// ### Redirect buyer to paypal
 		if(isset($redirectUrl)) {
 			header("Location: $redirectUrl");
 			exit;
 		}
-
+	}
+	
+	public function actionBuy(){
+	
+		Helper::needLogin($this->createUrl("/order/select"));
 		
-		die();
+		if( (!isset($_GET['success']) && !isset($_GET['cancel'])) || !isset($_GET['token'])){
+			$this->redirect(Yii::app()->homeUrl);
+			exit;
+		}
+		
+		$success = isset($_GET['success']) ? $_GET['success'] : false;
+		$token = trim($_GET['token']);
+		
+		if($success && $token != null && $token != ""){
+			$payerId = $_GET['PayerID'];
+			$this->render("buy", array('token' => $token, 'payerId' => $payerId));
+			exit;
+		}
+		
+		$this->redirect("/order/cancel");
+	}
+	
+	public function actionConfirm($token,$payerId){
+	
+		Helper::needLogin($this->createUrl("/order/select"));
+		
+		$purchase = Purchase::model()->find(
+			"user_id = :uid AND status = 0 AND token = :token",
+			array(
+				':uid' => Yii::app()->user->id,
+				':token' => $token,
+			)
+		);
+		
+		if($purchase){
+			
+			$sdkConfig = array(
+				"mode" => "sandbox"
+			);
+			
+			$clientId = "AUxj2xDEyYYSXi8-ylvmYMdHdpzc9nXziw5USXrWVxRFmqnu0GvS-5y9Q1eA";
+			$clientSecret = "EEyfGRCLZ-cadLxwCHnhw-XmYG6G2bpU4_d7ohT0hcmN_Ao2EsWtwWwf29dW";
+			
+			$cred = new OAuthTokenCredential($clientId,$clientSecret,$sdkConfig);
+			
+			$apiContext = new ApiContext($cred,'Request' . time());
+			$apiContext->setConfig($sdkConfig);
+			
+			$payment = Payment::get($purchase->payment_token, $apiContext);
+
+			$execution = new PaymentExecution();
+			$execution->setPayer_id($payerId);
+			
+			$payment->execute($execution, $apiContext);
+			
+			//Hacer las acciones que tocan en nuestra BBDD
+			$purchase->status = 1;
+			$purchase->save();
+			
+			$user = User::model()->findByPk(Yii::app()->user->id);
+			$user->credits += $purchase->num_credits;
+			$user->save();
+			
+			Yii::app()->user->setFlash('info', Yii::t('huaxin',"Thank you for your purchase!"));
+			$this->redirect(Yii::app()->homeUrl);
+			
+		}else{
+			die("no purchase");
+		}
+	}
+	
+	public function actionCancel($token = null){
+		
+		Helper::needLogin($this->createUrl("/order/select"));
+		
+		if($token != null)
+			$this->token = $token;
+		
+		Purchase::model()->deleteAll('token = :token', array(':token' => $this->token));
+		
+		$this->render('cancel');
 	}
 	
 	

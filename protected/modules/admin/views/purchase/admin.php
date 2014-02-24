@@ -8,7 +8,8 @@ $this->breadcrumbs=array(
 );
 
 $this->menu=array(
-
+	array('label'=>'List Purchase', 'url'=>array('index')),
+	array('label'=>'Create Purchase', 'url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -49,9 +50,12 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'method',
 		'num_credits',
 		'date',
-		//'token',
-		/*array(
+		'status',
+		'token',
+		/*'payment_token',
+		*/
+		array(
 			'class'=>'CButtonColumn',
-		),*/
+		),
 	),
 )); ?>

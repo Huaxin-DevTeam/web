@@ -101,12 +101,7 @@ class SiteController extends Controller
 	/** New Item! **/
 	public function actionNew()
 	{
-		//Solo login!
-		if(Yii::app()->user->isGuest){
-			Yii::app()->user->setReturnUrl("/new");
-			Yii::app()->user->setFlash('warning', Yii::t('huaxin',"You need to be logged in to create new ads."));
-			$this->redirect("user/login");
-		}
+		Helper::needLogin($this->createUrl("/new"));
 		
 		$user = Helper::getUser();
 		
@@ -122,7 +117,6 @@ class SiteController extends Controller
 			
 			if($model->validate()){
 				//Ok, create!
-				
 				
 				$duration = $model->duration;
 				$num_credits = 1 + $duration;

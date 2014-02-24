@@ -32,7 +32,6 @@ class Helper extends CComponent{
 	}
 	
 	public static function log($message,$type = "error"){
-		
 		$log = new Log;
 		$log->message = $message;
 		$log->type = $type;
@@ -55,6 +54,14 @@ class Helper extends CComponent{
 		 $attr = CHtml::decode(strip_tags($str));
 		 $p = new CHtmlPurifier();
 		 return $p->purify($attr);
+	}
+	
+	public static function needLogin($url){
+		if(Yii::app()->user->isGuest){
+			Yii::app()->user->setReturnUrl($url);
+			Yii::app()->user->setFlash('warning', Yii::t('huaxin',"You need to be logged in to create new ads."));
+			Yii::app()->request->redirect("/user/login");
+		}
 	}
 	
 	public static function getUser(){

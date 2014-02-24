@@ -10,6 +10,7 @@
  * @property integer $num_credits
  * @property string $date
  * @property string $token
+ * @property string $payment_token
  *
  * The followings are the available model relations:
  * @property User $user
@@ -35,10 +36,10 @@ class Purchase extends CActiveRecord
 			array('user_id, method, num_credits, date, token', 'required'),
 			array('user_id, num_credits', 'numerical', 'integerOnly'=>true),
 			array('method', 'length', 'max'=>13),
-			array('token', 'length', 'max'=>255),
+			array('token,payment_token', 'length', 'max'=>255),
 			// The following rule is used by search().
 			// @todo Please remove those attributes that should not be searched.
-			array('id, user_id, method, num_credits, date, token', 'safe', 'on'=>'search'),
+			array('id, user_id, method, num_credits, date, token,payment_token', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -66,6 +67,7 @@ class Purchase extends CActiveRecord
 			'num_credits' => 'Num Credits',
 			'date' => 'Date',
 			'token' => 'Token',
+			'payment_token' => 'Payment Token',
 		);
 	}
 
@@ -93,6 +95,7 @@ class Purchase extends CActiveRecord
 		$criteria->compare('num_credits',$this->num_credits);
 		$criteria->compare('date',$this->date,true);
 		$criteria->compare('token',$this->token,true);
+		$criteria->compare('payment_token',$this->payment_token,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

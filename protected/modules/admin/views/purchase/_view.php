@@ -25,9 +25,19 @@
 	<?php echo CHtml::encode($data->date); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('status')); ?>:</b>
+	<?php echo CHtml::encode($data->status); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('token')); ?>:</b>
 	<?php echo CHtml::encode($data->token); ?>
 	<br />
 
+	<?php /*
+	<b><?php echo CHtml::encode($data->getAttributeLabel('payment_token')); ?>:</b>
+	<?php echo CHtml::encode($data->payment_token); ?>
+	<br />
+
+	*/ ?>
 
 </div>

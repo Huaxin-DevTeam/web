@@ -2,7 +2,7 @@
 /* @var $this SiteController */
 /* @var $cc LoginForm */
 /* @var $form CActiveForm  */
-    $this->pageTitle=Yii::app()->name . ' - Login';
+    $this->pageTitle=Yii::app()->name . ' - Payment Method';
     $this->breadcrumbs=array(
         'Login',
     );
@@ -67,12 +67,12 @@
 				</div>
 				<div class="form-group col-xs-2">
 					<?php echo $form->labelEx($cc,'month'); ?>
-					<?php echo $form->dropDownList($cc,'month',$cc->getMonths(),array("class" => "form-control")); ?>
+					<?php echo $form->dropDownList($cc,'month',CreditCardForm::getMonths(),array('prompt' => 'Month',"class" => "form-control")); ?>
 					<?php echo $form->error($cc,'month'); ?>
 				</div>
 				<div class="form-group col-xs-2">
 					<?php echo $form->labelEx($cc,'year'); ?>
-					<?php echo $form->dropDownList($cc,'year',$cc->getYears(),array("class" => "form-control")); ?>
+					<?php echo $form->dropDownList($cc,'year',CreditCardForm::getYears(),array('prompt' => 'Year',"class" => "form-control")); ?>
 					<?php echo $form->error($cc,'year'); ?>
 				</div>
 				<div class="form-group col-xs-2">

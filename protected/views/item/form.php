@@ -18,7 +18,7 @@
 					<?php echo $form->label($model,'category'); ?>
 				</div>
 				<div class="col-sm-8 col-xs-12">
-					<?php echo $form->dropDownList($model,'category',array(),array("class" => "form-control")) ?>
+					<?php echo $form->dropDownList($model,'category',Helper::getCategories(),array('prompt' => '--Select--',"class" => "form-control")) ?>
 				</div>
 				
 			</div>
@@ -79,10 +79,10 @@
 		    
 		    <div class="row form-group">
 				<div class="col-sm-4 col-xs-12">
-			        <?php echo $form->label($model,'duration'); ?>
+			        
 				</div>
 				<div class="col-sm-8 col-xs-12">					
-			        <?php echo $form->textField($model,'duration',array("class" => "form-control")) ?>
+			        
 				</div>
 			</div>
 		    
@@ -90,15 +90,63 @@
 		 
 		<?php $this->endWidget(); ?>
 		</div><!-- form -->
-		<div class="form-group col-sm-3 col-xs-12">			
+		<div class="form-group col-sm-3 col-xs-12 sticky">			
+			
+			<div class="col-xs-6 col-sm-12">
+				<p>
+					<?php echo $form->label($model,'duration'); ?>
+					<?php echo $form->textField($model,'duration',array("style" => "border:0; color:#f6931f; font-weight:bold;", "id" => "amount")) ?>
+<!--					<input type="text" id="amount" style=""> -->
+				</p>
+				<div id="slider-range-min"></div>
+			</div>
+			
+			<div class="col-xs-6 col-sm-12">
+				<label for="promote">Show in front page: </label>
+				<input type="checkbox" id="promote" name="promote" data-on="ON" data-off="OFF" />
+			</div>
+			
+			<div class="col-xs-6 col-sm-12">
+				<label for="ch_emails">Total credits: </label>
+				<span id="total_credits">1</span>
+			</div>
+			
 			<div class="button col-xs-offset-5 col-sm-offset-3">
 				<?php echo CHtml::submitButton('Save'); ?>
 			</div>
 		</div>
-				
+						
 </div>
 
+<script>
+$(function() {
+	$(document).ready(function(){
+		$( "#slider-range-min" ).slider({
+			range: "min",
+			value: <?php echo $model->duration ? : 1; ?>,
+			min: 1,
+			max: 7,
+			slide: function( event, ui ) {
+				$( "#amount" ).val( ui.value );
+				var total = ui.value + ($('#promote').attr("checked") == "checked" ? ui.value*2 : 0);
+				$("#total_credits").html( total );
+			}
+		});
+		$( "#amount" ).val( $( "#slider-range-min" ).slider( "value" ) );
+
+		$('input[type=checkbox]').tzCheckbox({
+		    labels: [ 'Enable', 'Disable' ]
+		});
 		
+		$(".tzCheckBox").click( function(){
+			var days = parseInt($( "#amount" ).val());
+			console.log(days + " days");
+			var total = days + ($('#promote').attr("checked") == "checked" ? days*2 : 0);
+			console.log();
+			$("#total_credits").html( total );
+		});
 
-
+	});
 	
+});
+</script>		

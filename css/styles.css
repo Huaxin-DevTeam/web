@@ -207,3 +207,15 @@ header{position:relative;}
 [type=radio]:checked ~ label ~ .content {
   z-index: 1;
 }
+
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+	background: url("./start/images/ui-bg_glass_75_79c9ec_1x400.png") repeat-x scroll 50% 50% #79C9EC;
+    border: 1px solid #448DAE;
+    color: #026890;
+    font-weight: normal;
+}
+
+.bs-callout-success {
+    background-color: #F2F9F2;
+    border-color: #4FEF71;
+}

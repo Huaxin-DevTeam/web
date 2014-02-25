@@ -27,15 +27,15 @@
 <body>
     <div class="container">
         <header class="row">
-            <div class="logo col-md-3 col-sm-4 col-xs-8">
+            <div class="logo col-md-3 col-sm-4 col-xs-12">
                 <a title="Inicio" href="/">
                 	<img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/logo.png" class="img-responsive">
                 </a>
             </div>
 
-            <div class="col-md-offset-5 col-md-5 col-sm-5 login">
+            <div class="col-md-6 col-sm-8 login">
             <?php if(Yii::app()->user->getId() !== null): ?>
-			<div class="row">
+			<div class="row creditos-wrapper">
                     <div class="col-xs-offset-3 col-xs-4 creditos blue-text"><?php print $this->credits; ?> CREDITOS</div>
 					<div class="buycredits col-xs-5"> <?php echo CHtml::link('COMPRAR CREDITOS',array('order/select')); ?> </div>
 			</div>

@@ -8,6 +8,8 @@ h5{
 
 }
 
+header{height: 90px;}
+
 .ads{
 	padding: 0;	
 }
@@ -89,6 +91,7 @@ h5{
           background: url("../img/creditos.png") no-repeat 0 -6px; 
           height: 20px;
 }
+.creditos-wrapper{padding-bottom: 20px;}
 .initialism li{height: 20px;}
 .initialism li a{color: black;}
 .logout{background: url("../img/desconectar.png") no-repeat 0 -1px;}
@@ -128,7 +131,7 @@ h5{
 .form-control::-webkit-input-placeholder {
   color: white;
 }
-.login{position:absolute;bottom: 0;right: 0;}
+.login{position:absolute;bottom: 0;right: 0; height: 80px;}
 .login .form-group{margin-bottom: 0;}
 header{position:relative;}
 
@@ -174,8 +177,9 @@ header{position:relative;}
       margin-top: 20px;
       padding: 10px;
   }
-  .logo{height: 200px;}
+  .logo{height: 150px;}
   .button-register{position: relative;}
+  .login{position: static;}
 }
 
 /** tabs **/
@@ -209,7 +213,6 @@ header{position:relative;}
   bottom: 0;
   padding: 20px;
   border: 1px solid #ccc;
-  overflow: scroll;
 }
 [type=radio]:checked ~ label {
   background: white;

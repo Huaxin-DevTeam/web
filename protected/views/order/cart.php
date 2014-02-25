@@ -19,8 +19,9 @@
         <?php print $option->name; ?> (<?php print $option->num_credits; ?> créditos). Precio: <?php print $option->price ?>€<br>
         <br>
     </div>
-	
-	<h5>Selecciona método de pago: </h5>
+    <div class="col-xs-12 blue margenh5">
+		<h5>Selecciona método de pago: </h5>
+    </div>
 
 <?php $form=$this->beginWidget('CActiveForm', array(
 		'id'=>'login-form',

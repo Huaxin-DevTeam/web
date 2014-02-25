@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 19-02-2014 a las 17:36:45
+-- Tiempo de generación: 25-02-2014 a las 19:24:41
 -- Versión del servidor: 5.5.29
 -- Versión de PHP: 5.4.10
 
@@ -36,10 +36,10 @@ CREATE TABLE `ad` (
 --
 
 INSERT INTO `ad` (`id`, `image_url`, `link`, `is_mobile`, `num_views`, `date_published`, `date_end`) VALUES
-(1, 'img1', 'link1', 0, 861, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
-(2, 'img2', 'link2', 0, 870, '2013-12-20 14:44:25', '2015-12-29 23:00:00'),
-(3, 'img3', 'link3', 0, 1110, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
-(4, 'img4', 'link4', 0, 873, '2013-12-19 23:00:00', '2015-01-09 23:00:00');
+(1, 'img1', 'link1', 0, 2076, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
+(2, 'img2', 'link2', 0, 2055, '2013-12-20 14:44:25', '2015-12-29 23:00:00'),
+(3, 'img3', 'link3', 0, 2342, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
+(4, 'img4', 'link4', 0, 2155, '2013-12-19 23:00:00', '2015-01-09 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -118,7 +118,7 @@ CREATE TABLE `item` (
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
   KEY `category` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
 
 --
 -- Volcado de datos para la tabla `item`
@@ -128,7 +128,9 @@ INSERT INTO `item` (`id`, `user_id`, `category_id`, `title`, `description`, `pri
 (1, 2, 1, 'title1', 'Anuncio 1, trabajo', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 15:05:05', '2015-01-08 15:05:05', 7, 0),
 (2, 2, 2, 'title1', 'Anuncio 2, negocios', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 15:39:28', '2015-01-08 15:39:28', 0, 0),
 (3, 2, 1, 'title1', 'Anuncio 3, trabajo', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 15:39:31', '2015-01-08 15:39:31', 0, 0),
-(4, 2, 1, 'title1', 'Anuncio 4, trabajo', 22, 666123456, 'DISEÑO-FINAL.png', 'Barcelona', '2014-01-13 13:06:14', '2015-01-14 13:06:14', 0, 0);
+(4, 2, 1, 'title1', 'Anuncio 4, trabajo', 22, 666123456, 'DISEÑO-FINAL.png', 'Barcelona', '2014-01-13 13:06:14', '2015-01-14 13:06:14', 0, 0),
+(5, 2, 3, 'Title a bit longer', 'Description', 12, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-25 16:03:18', '2014-03-02 16:03:18', 0, 0),
+(6, 2, 7, 'Titulo uno', 'Texto texto texto', 19, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-25 17:52:15', '2014-02-28 17:52:15', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -166,20 +168,30 @@ INSERT INTO `log` (`id`, `type`, `message`, `datetime`) VALUES
 CREATE TABLE `purchase` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) NOT NULL,
-  `method` enum('BANK_TRANSFER','PAYPAL') NOT NULL,
+  `method` enum('BANK_TRANSFER','PAYPAL','CREDIT_CARD') NOT NULL,
   `num_credits` int(11) NOT NULL,
   `date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `status` tinyint(1) NOT NULL DEFAULT '0',
   `token` varchar(255) NOT NULL,
+  `payment_token` varchar(255) NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE KEY `user_id` (`user_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+  KEY `user_id` (`user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=20 ;
 
 --
 -- Volcado de datos para la tabla `purchase`
 --
 
-INSERT INTO `purchase` (`id`, `user_id`, `method`, `num_credits`, `date`, `token`) VALUES
-(1, 1, 'BANK_TRANSFER', 200, '2013-12-20 09:13:32', '123asd');
+INSERT INTO `purchase` (`id`, `user_id`, `method`, `num_credits`, `date`, `status`, `token`, `payment_token`) VALUES
+(1, 1, 'BANK_TRANSFER', 200, '2013-12-20 09:13:32', 0, '123asd', ''),
+(12, 2, 'PAYPAL', 1, '2014-02-24 11:58:00', 0, 'EC-0K993033JW576483E', 'PAY-24M66432NW790614JKMFTHRY'),
+(13, 2, 'PAYPAL', 1, '2014-02-24 12:03:09', 0, 'EC-3RT74001UP758041J', 'PAY-8SN85955U86716200KMFTJ7A'),
+(14, 2, 'PAYPAL', 1, '2014-02-24 12:40:41', 1, 'EC-3KV52251JE7186832', 'PAY-3TH55781NC4590607KMFT3RY'),
+(15, 2, 'PAYPAL', 1, '2014-02-24 12:44:59', 1, 'EC-9CW43057Y3509364R', 'PAY-0J4566536H3201848KMFT5SQ'),
+(16, 2, 'PAYPAL', 5, '2014-02-24 12:47:17', 1, 'EC-66392315YR279264J', 'PAY-0YS515898Y913874NKMFT6UY'),
+(17, 2, 'PAYPAL', 5, '2014-02-24 12:48:06', 1, 'EC-0SG9245861179942E', 'PAY-4VN088655W176833TKMFT7BI'),
+(18, 2, 'PAYPAL', 1, '2014-02-24 12:49:49', 0, 'EC-4KT09292B4388824G', 'PAY-5C259728WR5183936KMFT73A'),
+(19, 2, 'PAYPAL', 25, '2014-02-25 11:29:44', 1, 'EC-7Y344755SA9887942', 'PAY-9WD76503PW9310425KMGH5JI');
 
 -- --------------------------------------------------------
 
@@ -209,7 +221,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `active`, `phone`, `email`, `password`, `credits`, `date_register`, `token`, `device_id`, `push_id`) VALUES
 (1, 1, NULL, 'admin', '$2a$13$DAKriMormJCmK.rU3UmeY.4FJu5CjkNYVErs9cIe3KntIZgTctQBC', 10000000, '2013-12-19 17:38:07', '', '', ''),
-(2, 1, 666666666, 'test@test.com', '$2a$13$duhqzJpn1rKcNev6LMQXL.sZqTeYATYtcILZ7gFLLhCoBzczzWpBW', 0, '2014-02-12 17:10:20', 'oLTq1sQCrp3PYlgoqgjJHCi8B', NULL, NULL);
+(2, 1, 666666666, 'test@test.com', '$2a$13$duhqzJpn1rKcNev6LMQXL.sZqTeYATYtcILZ7gFLLhCoBzczzWpBW', 23, '2014-02-12 17:10:20', 'oLTq1sQCrp3PYlgoqgjJHCi8B', NULL, NULL);
 
 --
 -- Restricciones para tablas volcadas

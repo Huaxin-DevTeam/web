@@ -67,5 +67,13 @@ class Helper extends CComponent{
 	public static function getUser(){
 		return User::model()->findByPk(Yii::app()->user->id);
 	}
+	
+	public static function getCategories(){
+		$cats = Category::model()->findAll();
+		$categories = array();
+		foreach($cats as $c)
+			$categories[$c->id] = $c->name;
+		return $categories;
+	}
 
 }

@@ -230,7 +230,7 @@ class OrderController extends Controller{
 			$user->credits += $purchase->num_credits;
 			$user->save();
 			
-			Yii::app()->user->setFlash('info', Yii::t('huaxin',"Thank you for your purchase!"));
+			Yii::app()->user->setFlash('success', Yii::t('huaxin',"Thank you for your purchase!"));
 			$this->redirect(Yii::app()->homeUrl);
 			
 		}else{

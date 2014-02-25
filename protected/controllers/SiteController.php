@@ -112,14 +112,18 @@ class SiteController extends Controller
 		
 		$model = new ItemForm;
 		
+		if($user->phone != null && $user->phone != "")
+			$model->phone = $user->phone;
+		
 		if(isset($_POST['ItemForm'])){
 			$model->attributes = $_POST['ItemForm'];
 			
 			if($model->validate()){
 				//Ok, create!
 				
+				$premium = strtolower($_POST['promote']) == "on";
 				$duration = $model->duration;
-				$num_credits = 1 + $duration;
+				$num_credits = $duration + ($premium ? 2*$duration : 0);
 				
 				$item = new Item;
 				$item->user_id = $user->id;
@@ -128,20 +132,24 @@ class SiteController extends Controller
 				$item->description = Helper::purify($model->description);
 				$item->price = $model->price;
 				$item->phone = $model->phone;
-//				$item->image_url = $model->??;
+				$item->image_url = "/img/placeholder.png";//$model->??;
 				$item->location = Helper::purify($model->location);
 				$item->date_published = new CDbExpression('NOW()');
 				$item->date_end = new CDbExpression("NOW() + INTERVAL $duration DAY");
+				$item->premium = $premium ? 1 : 0;
 				
 				if(!$item->validate()){
 					die(print_r($item->getErrors()));
 				}
 				
-				//$item->save();
-				print_r($item);
-				$user->credits -= $num_credits;
-				print_r($user);
-				//$user->save();
+
+
+				$item->save();
+				$user->credits -= $num_credits;;
+				$user->save();
+				
+				Yii::app()->user->setFlash('success',Yii::t("huaxin","Creation successful."));
+				$this->redirect("/view/".$item->id);
 			}
 			
 		}

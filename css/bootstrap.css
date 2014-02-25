@@ -6390,7 +6390,6 @@ button.close {
 }
 
 .carousel-control {
-  position: absolute;
   top: 0;
   bottom: 0;
   left: 0;
@@ -6400,7 +6399,7 @@ button.close {
   text-align: center;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
   opacity: 0.5;
-  filter: alpha(opacity=50);
+  filter: alpha(opacity=80);
 }
 
 .carousel-control.left {

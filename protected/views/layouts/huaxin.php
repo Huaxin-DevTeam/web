@@ -29,24 +29,29 @@
                 </a>
             </div>
 
-            <div class="col-md-offset-6 col-md-4 col-sm-5 login">
+            <div class="col-md-offset-5 col-md-5 col-sm-5 login">
+            <?php if(Yii::app()->user->getId() !== null): ?>
+			<div class="row">
+                    <div class="col-xs-offset-3 col-xs-4 creditos blue-text"><?php print $this->credits; ?> CREDITOS</div>
+					<div class="buycredits col-xs-5"> <?php echo CHtml::link('COMPRAR CREDITOS',array('order/select')); ?> </div>
+			</div>
+            <?php endif; ?>
+			
                 <div class="row">
                     <div class="col-md-12 pull-right form-group">
                         <?php $this->widget('zii.widgets.CMenu',array(
 						    'items'=> array_merge($this->main_menu,array(
-						        array('label'=>'Register', 'url'=>array('/user/register'), 'visible'=>Yii::app()->user->isGuest),
-						        array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest),
-						        array('label'=>'My ads', 'url'=>array('/myads'), 'visible'=>!Yii::app()->user->isGuest),
-						        array('label'=>'Logout ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest),
+						        array('label'=>'Register', 'url'=>array('/user/register'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'registrate')),
+						        array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'loginp')), 
+						        array('label'=>'ADMINISTRAR ANUNCIOS', 'url'=>array('/myads'), 'visible'=>!Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'misanuncios pull-right')),
+						        array('label'=>'DESCONECTAR ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'logout pull-right')),
 						    )),
-							'htmlOptions' => array("class" => "list-unstyled list-inline initialism"),
+							'htmlOptions' => array("class" => "list-unstyled list-inline initialism pull-right"),
 						)); ?>
                     </div>
                 </div>
-
+                   <?php if(Yii::app()->user->getId() === null): ?>
                 <div class="row">
-                    <?php if(Yii::app()->user->getId() === null): ?>
-
                     <div class="form">
                         <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->loginModel,''); ?>
 
@@ -64,12 +69,9 @@
                         
                         <?php echo CHtml::endForm(); ?>
                     </div><!-- form -->
-                    <?php else: ?>
-                    	
-                    	<div><?php print $this->credits; ?> credits</div>
-                    	
-                    <?php endif; ?>
                 </div>
+                <?php endif; ?>
+				
             </div>
         </header>
         

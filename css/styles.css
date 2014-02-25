@@ -54,6 +54,7 @@ h5{
 
 .bigbottom{margin-bottom: 80px;}
 .blue{background: #54a4ca;}
+.blue-text{color: #54a4ca;}
 .buscador{background: #54a4ca url("../img/lupa.png") no-repeat 5px 5px;}
 .button input{
   background: #54a4ca; 
@@ -71,6 +72,9 @@ h5{
 }
 
 .button-register{position: absolute; right: 15px; top: 20px; margin-bottom: 20px;}
+.buycredits{padding-left: 25px;
+          background: url("../img/buycreditos.png") no-repeat 0 0; 
+          height: 21px;}
 .captcha {
     background: white; 
     border:2px solid #54a4ca;
@@ -81,7 +85,16 @@ h5{
 }
 .captcha_wrapper{position: relative;}
 .contenido{margin-top: 15px;}
+.creditos{padding-left: 25px;
+          background: url("../img/creditos.png") no-repeat 0 -6px; 
+          height: 20px;
+}
+.initialism li{height: 20px;}
 .initialism li a{color: black;}
+.logout{background: url("../img/desconectar.png") no-repeat 0 -1px;}
+.logout a, .misanuncios a{padding-left: 25px;}
+.misanuncios{background: url("../img/llave.png") no-repeat 0 -1px;}
+
 .movil{font-size: 8.5pt;}
 .publica{height: inherit;}
 .publica a{color: white;}
@@ -115,7 +128,6 @@ h5{
 .form-control::-webkit-input-placeholder {
   color: white;
 }
-
 .login{position:absolute;bottom: 0;right: 0;}
 .login .form-group{margin-bottom: 0;}
 header{position:relative;}

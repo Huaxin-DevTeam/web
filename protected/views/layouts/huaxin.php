@@ -21,6 +21,7 @@
 	<script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery-ui-1.10.4.custom.min.js" type="text/javascript"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.tzCheckbox.js" type="text/javascript"></script>
+    <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/jquery.confirm.min.js" type="text/javascript"></script>
     <script src="<?php echo Yii::app()->request->baseUrl; ?>/js/scripts.js" type="text/javascript"></script>
 </head>
 
@@ -101,7 +102,7 @@
 			    </div>
 			
 			    <div class="col-md-2 col-xs-3">
-			        1.234.567.890 anuncios
+			        <?php print Helper::getCount() ." ". Yii::t("huaxin", "anuncios"); ?>
 			    </div>
 			
 			    <div class="col-md-2 col-md-offset-0 col-xs-6 col-xs-offset-1 blue publica text-center">

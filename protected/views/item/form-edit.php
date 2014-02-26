@@ -90,63 +90,10 @@
 		 
 		<?php $this->endWidget(); ?>
 		</div><!-- form -->
-		<div class="form-group col-sm-3 col-xs-12 sticky">			
-			
-			<div class="col-xs-6 col-sm-12">
-				<p>
-					<?php echo $form->label($model,'duration'); ?>
-					<?php echo $form->textField($model,'duration',array("style" => "border:0; color:#f6931f; font-weight:bold;", "id" => "amount")) ?>
-<!--					<input type="text" id="amount" style=""> -->
-				</p>
-				<div id="slider-range-min"></div>
-			</div>
-			
-			<div class="col-xs-6 col-sm-12">
-				<?php echo $form->label($model,'premium'); ?>
-				<?php echo $form->checkBox($model,'premium',array("checked" => $model->premium == 1 ? "checked" : "", "id" => "promote")) ?>
-			</div>
-			
-			<div class="col-xs-6 col-sm-12">
-				<label for="ch_emails">Total credits: </label>
-				<span id="total_credits">1</span>
-			</div>
-			
+		<div class="form-group col-sm-3 col-xs-12 sticky">						
 			<div class="button col-xs-offset-5 col-sm-offset-3">
 				<?php echo CHtml::submitButton('Save'); ?>
 			</div>
 		</div>
 						
 </div>
-
-<script>
-$(function() {
-	$(document).ready(function(){
-		$( "#slider-range-min" ).slider({
-			range: "min",
-			value: <?php echo $model->duration ? : 1; ?>,
-			min: 1,
-			max: 7,
-			slide: function( event, ui ) {
-				$( "#amount" ).val( ui.value );
-				var total = ui.value + ($('#promote').attr("checked") == "checked" ? ui.value*2 : 0);
-				$("#total_credits").html( total );
-			}
-		});
-		$( "#amount" ).val( $( "#slider-range-min" ).slider( "value" ) );
-
-		$('input[type=checkbox]').tzCheckbox({
-		    labels: [ 'Yes', 'No' ]
-		});
-		
-		$(".tzCheckBox").click( function(){
-			var days = parseInt($( "#amount" ).val());
-			var total = days + ($('#promote').attr("checked") == "checked" ? days*2 : 0);
-			$("#total_credits").html( total );
-		});
-		var days = parseInt($( "#amount" ).val());
-		var total = days + ($('#promote').attr("checked") == "checked" ? days*2 : 0);
-		$("#total_credits").html( total );
-	});
-	
-});
-</script>		

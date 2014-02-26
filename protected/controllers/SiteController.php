@@ -1,12 +1,7 @@
 <?php
 
 class SiteController extends Controller
-{
-	private function _render($template,$data){
-		//Do something?
-		$this->render($template,$data);
-	}
-	
+{	
 	/**
 	 * Declares class-based actions.
 	 */
@@ -37,7 +32,7 @@ class SiteController extends Controller
 		$data = array(
 		);
 		
-		$this->_render('index', $data);
+		$this->render('index', $data);
 	}
 
 	/**
@@ -57,7 +52,7 @@ class SiteController extends Controller
 	/**
 	 * Displays the contact page
 	 */
-	public function actionContact()
+/*	public function actionContact()
 	{
 		$model=new ContactForm;
 		if(isset($_POST['ContactForm']))
@@ -78,8 +73,25 @@ class SiteController extends Controller
 			}
 		}
 		$this->render('contact',array('model'=>$model));
-	}
+	} */
 
+	public function actionMyads(){
+		
+		$dbitems = Item::model()->findAll("NOW() BETWEEN date_published AND date_end AND user_id = :id", array(":id" => Yii::app()->user->id) );
+		
+		$items = array();
+
+		foreach($dbitems as $item)
+			$items[] = $this->renderPartial('//item/list',array('item' => $item),true);
+		
+		
+		$data = array(
+			"items" => $items,
+		);
+		
+		$this->render("list", $data);
+	}
+	
 	public function actionCategory($id){
 		
 		$dbitems = Item::model()->findAll("NOW() BETWEEN date_published AND date_end AND category_id = :id", array(":id" => $id) );
@@ -121,7 +133,7 @@ class SiteController extends Controller
 			if($model->validate()){
 				//Ok, create!
 				
-				$premium = strtolower($_POST['promote']) == "on";
+				$premium = strtolower($model->premium) == "on";
 				$duration = $model->duration;
 				$num_credits = $duration + ($premium ? 2*$duration : 0);
 				
@@ -142,8 +154,6 @@ class SiteController extends Controller
 					die(print_r($item->getErrors()));
 				}
 				
-
-
 				$item->save();
 				$user->credits -= $num_credits;;
 				$user->save();
@@ -159,5 +169,82 @@ class SiteController extends Controller
 		);		
 		
 		$this->render('//item/form',$data);
+	}
+	
+	public function actionEdit($id)
+	{
+		Helper::needLogin($this->createUrl("/edit/$id"));
+		
+		$user = Helper::getUser();
+		$item = Item::model()->findByPk($id);
+		
+		if($item->user_id != $user->id){
+			Yii::app()->user->setFlash('danger',Yii::t("huaxin","You cannot edit this item!"));
+			$this->redirect(Yii::app()->getHomeUrl());
+		}
+		
+		
+		$model = new ItemForm;
+		
+		if(isset($_POST['ItemForm'])){
+			$model->attributes = $_POST['ItemForm'];
+			//small hack to validate
+			$model->duration = floor(abs(strtotime($item->date_published)-strtotime($item->date_end))/(60*60*24));
+			
+			if($model->validate()){
+				//Ok, create!
+
+				$item->category_id = $model->category;
+				$item->title = Helper::purify($model->title);
+				$item->description = Helper::purify($model->description);
+				$item->price = $model->price;
+				$item->phone = $model->phone;
+				$item->image_url = "/img/placeholder.png";//$model->??;
+				$item->location = Helper::purify($model->location);
+				
+				if(!$item->validate()){
+					die(print_r($item->getErrors()));
+				}
+				
+				$item->save();
+				
+				Yii::app()->user->setFlash('success',Yii::t("huaxin","Update successful."));
+				$this->redirect("/view/".$item->id);
+			}
+			
+		}else{
+			//Fill in previous data
+			$model->category = $item->category_id;
+			$model->title = $item->title;
+			$model->description = $item->description;
+			$model->price = $item->price;
+			$model->phone = $item->phone;
+			$model->image = $item->image_url;
+			$model->location = $item->location;
+		}
+				
+		$data = array(
+			'model' => $model,
+		);		
+		
+		$this->render('//item/form-edit',$data);
+	}
+	
+	public function actionDelete($id)
+	{
+		Helper::needLogin($this->createUrl("/view/$id"));
+		
+		$user = Helper::getUser();
+		$item = Item::model()->findByPk($id);
+		
+		if($item->user_id != $user->id){
+			Yii::app()->user->setFlash('danger',Yii::t("huaxin","You cannot delete this item!"));
+			$this->redirect(Yii::app()->getHomeUrl());
+		}
+		
+		$item->delete();
+		
+		Yii::app()->user->setFlash('success',Yii::t("huaxin","Delete successful."));
+		$this->redirect(Yii::app()->getHomeUrl());
 	}	
 }

@@ -15,6 +15,7 @@ class ItemForm extends CFormModel
 	public $image;
 	public $location;
 	public $duration;
+	public $premium;
 
 	/**
 	 * Declares the validation rules.

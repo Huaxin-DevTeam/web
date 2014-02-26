@@ -59,7 +59,7 @@ class Helper extends CComponent{
 	public static function needLogin($url){
 		if(Yii::app()->user->isGuest){
 			Yii::app()->user->setReturnUrl($url);
-			Yii::app()->user->setFlash('warning', Yii::t('huaxin',"You need to be logged in to create new ads."));
+			Yii::app()->user->setFlash('warning', Yii::t('huaxin',"You need to be logged in to perform this action."));
 			Yii::app()->request->redirect("/user/login");
 		}
 	}
@@ -74,6 +74,10 @@ class Helper extends CComponent{
 		foreach($cats as $c)
 			$categories[$c->id] = $c->name;
 		return $categories;
+	}
+	
+	public static function getCount(){
+		return count(Item::model()->findAll("NOW() BETWEEN date_published AND date_end" ));
 	}
 
 }

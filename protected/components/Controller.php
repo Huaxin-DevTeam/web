@@ -43,9 +43,11 @@ class Controller extends CController
 		$this->categories = Category::model()->findAll(array('order' => "id"));
 		
 		//Load ads
+		$ad1 = Helper::getRandomAd();
+		$ad2 = Helper::getRandomAd($ad1->id); //NO repeat ads
 		$ads = array();
-		$ads[] = $this->renderPartial("//item/ad",array("ad" => Helper::getRandomAd()),true);
-		$ads[] = $this->renderPartial("//item/ad",array("ad" => Helper::getRandomAd()),true);
+		$ads[] = $this->renderPartial("//item/ad",array("ad" => $ad1),true);
+		$ads[] = $this->renderPartial("//item/ad",array("ad" => $ad2),true);
 		$this->ads = $ads;
 		
 		//Login form

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 25-02-2014 a las 19:24:41
+-- Tiempo de generación: 03-03-2014 a las 11:39:52
 -- Versión del servidor: 5.5.29
 -- Versión de PHP: 5.4.10
 
@@ -36,10 +36,10 @@ CREATE TABLE `ad` (
 --
 
 INSERT INTO `ad` (`id`, `image_url`, `link`, `is_mobile`, `num_views`, `date_published`, `date_end`) VALUES
-(1, 'img1', 'link1', 0, 2076, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
-(2, 'img2', 'link2', 0, 2055, '2013-12-20 14:44:25', '2015-12-29 23:00:00'),
-(3, 'img3', 'link3', 0, 2342, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
-(4, 'img4', 'link4', 0, 2155, '2013-12-19 23:00:00', '2015-01-09 23:00:00');
+(1, 'http://www.parajunkee.com/wp-content/uploads/2014/01/ad_160x200.png', 'http://dev.mihx.es', 0, 2440, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
+(2, 'http://th00.deviantart.net/fs6/200H/i/2005/105/f/e/iSquid_______iPod_parody_ad_by_ashbet.jpg', 'http://dev.mihx.es', 0, 2404, '2013-12-20 14:44:25', '2015-12-29 23:00:00'),
+(3, 'http://www.ecoeastend.com/images/ad%20images/half-ad-1.gif', 'http://dev.mihx.es', 0, 2657, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
+(4, 'http://arcsconferences.com/wp-content/uploads/2011/03/ad_here.jpg', 'http://dev.mihx.es', 0, 2473, '2013-12-19 23:00:00', '2015-01-09 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -118,19 +118,18 @@ CREATE TABLE `item` (
   PRIMARY KEY (`id`),
   KEY `user` (`user_id`),
   KEY `category` (`category_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Volcado de datos para la tabla `item`
 --
 
 INSERT INTO `item` (`id`, `user_id`, `category_id`, `title`, `description`, `price`, `phone`, `image_url`, `location`, `date_published`, `date_end`, `num_views`, `premium`) VALUES
-(1, 2, 1, 'title1', 'Anuncio 1, trabajo', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 15:05:05', '2015-01-08 15:05:05', 7, 0),
-(2, 2, 2, 'title1', 'Anuncio 2, negocios', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 15:39:28', '2015-01-08 15:39:28', 0, 0),
-(3, 2, 1, 'title1', 'Anuncio 3, trabajo', 22, 666123456, 'placeholder_contacts.png', 'Barcelona', '2014-01-07 15:39:31', '2015-01-08 15:39:31', 0, 0),
-(4, 2, 1, 'title1', 'Anuncio 4, trabajo', 22, 666123456, 'DISEÑO-FINAL.png', 'Barcelona', '2014-01-13 13:06:14', '2015-01-14 13:06:14', 0, 0),
-(5, 2, 3, 'Title a bit longer', 'Description', 12, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-25 16:03:18', '2014-03-02 16:03:18', 0, 0),
-(6, 2, 7, 'Titulo uno', 'Texto texto texto', 19, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-25 17:52:15', '2014-02-28 17:52:15', 0, 1);
+(2, 1, 2, 'titulo1', 'Anuncio 2, negocios', 22450, 666123456, '/img/placeholder.png', 'Barcelona', '2014-01-07 15:39:28', '2015-01-08 15:39:28', 0, 0),
+(3, 2, 2, 'title1', 'Anuncio 3, trabajo', 13072, 666123456, '/img/placeholder.png', 'Barcelona', '2014-02-25 15:39:31', '2014-03-04 15:39:31', 0, 1),
+(5, 2, 3, 'Title a bit longer', 'Description', 432, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-25 16:03:18', '2014-03-02 16:03:18', 0, 0),
+(6, 2, 7, 'Titulo uno', 'Texto texto texto', 1982, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-25 17:52:15', '2014-02-28 17:52:15', 0, 1),
+(7, 2, 1, '中国 苏州 三香路999号707室', '(西班牙独资) 苏州西利克贸易有限公司', 2000, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-26 15:01:45', '2014-03-04 15:01:45', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -221,7 +220,7 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `active`, `phone`, `email`, `password`, `credits`, `date_register`, `token`, `device_id`, `push_id`) VALUES
 (1, 1, NULL, 'admin', '$2a$13$DAKriMormJCmK.rU3UmeY.4FJu5CjkNYVErs9cIe3KntIZgTctQBC', 10000000, '2013-12-19 17:38:07', '', '', ''),
-(2, 1, 666666666, 'test@test.com', '$2a$13$duhqzJpn1rKcNev6LMQXL.sZqTeYATYtcILZ7gFLLhCoBzczzWpBW', 23, '2014-02-12 17:10:20', 'oLTq1sQCrp3PYlgoqgjJHCi8B', NULL, NULL);
+(2, 1, 666666666, 'test@test.com', '$2a$13$duhqzJpn1rKcNev6LMQXL.sZqTeYATYtcILZ7gFLLhCoBzczzWpBW', 17, '2014-02-12 17:10:20', 'oLTq1sQCrp3PYlgoqgjJHCi8B', NULL, NULL);
 
 --
 -- Restricciones para tablas volcadas

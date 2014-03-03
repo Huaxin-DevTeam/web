@@ -29,6 +29,7 @@ class Controller extends CController
 	//Custom
 	public $model = null;
 	public $loginModel = null;	
+	public $filters = null;
 
 	public $ads = null;
 	public $categories = null;

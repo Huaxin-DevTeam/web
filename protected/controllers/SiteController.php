@@ -1,7 +1,8 @@
 <?php
 
 class SiteController extends Controller
-{	
+{
+		
 	/**
 	 * Declares class-based actions.
 	 */
@@ -93,6 +94,11 @@ class SiteController extends Controller
 	}
 	
 	public function actionCategory($id){
+
+		$this->layout = "//layouts/huaxin-filters";
+		
+		//Get filters
+		$this->filters = new FiltersForm;
 		
 		$dbitems = Item::model()->findAll("NOW() BETWEEN date_published AND date_end AND category_id = :id", array(":id" => $id) );
 		

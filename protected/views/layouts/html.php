@@ -40,22 +40,21 @@
             <?php if(Yii::app()->user->getId() !== null): ?>
 					<div class="col-xs-offset-0 col-md-offset-4 col-xs-2"> <?php print Yii::app()->user->name ?></div>
                     <div class="col-xs-3 creditos blue-text"><?php print $this->credits; ?></div>
-					<div class="buycredits col-xs-1"> <?php echo CHtml::link('',array('order/select')); ?> </div>
-            <?php endif; ?>
-			
+					<div class="menuitem buycredits col-xs-1"> <?php echo CHtml::link('',array('order/select')); ?> </div>
+					<div class="menuitem misanuncios col-xs-1"> <?php echo CHtml::link('',array('/myads')); ?> </div>
+					<div class="menuitem logout col-xs-1"> <?php echo CHtml::link('',array('/user/logout')); ?> </div>
+            <?php else: ?>
+            			
                     <div class="col-md-3 col-xs-5">
                         <?php $this->widget('zii.widgets.CMenu',array(
 						    'items'=> array_merge($this->main_menu,array(
 						        array('label'=>'Register', 'url'=>array('/user/register'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'registrate')),
-						        array('label'=>'', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'loginp')), 
-						        array('label'=>'', 'url'=>array('/myads'), 'visible'=>!Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'misanuncios')),
-						        array('label'=>'', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'logout')),
-						    )),
+						        array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'loginp')),
+						)),
 							'htmlOptions' => array("class" => "list-unstyled list-inline initialism"),
 						)); ?>
                     </div>
                 </div>
-                   <?php if(Yii::app()->user->getId() === null): ?>
                 <div class="row">
                     <div class="form">
                         <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->loginModel,''); ?>
@@ -75,7 +74,7 @@
                         <?php echo CHtml::endForm(); ?>
                     </div><!-- form -->
                 </div>
-                <?php endif; ?>
+            <?php endif; ?>
 				
             </div>
         </header>

@@ -94,12 +94,13 @@ header{height: 90px;}
 }
 .editar{ background: url("../img/lapiz.png") no-repeat;}
 .eliminar{ background: url("../img/papelera.png") no-repeat;}
-.initialism li, .buycredits, .creditos{height: 60px;}
 .initialism li a{color: black;}
 .logout{background: url("../img/desconectar-big.png") no-repeat 0 -1px;}
 .logout a, .misanuncios a, .editar a, .eliminar a, .contactar a{padding-left: 25px;}
 .misanuncios{background: url("../img/llave-big.png") no-repeat 0 -1px;}
-.misanuncios, .logout, .buycredits, .creditos {width: 55px;}
+.misanuncios, .logout, .buycredits, .creditos {width: 55px;height: 60px;padding: 0; margin-left: 10px;}
+.menuitem.col-xs-1 > a { padding: 35px 30px; }
+.col-xs-3.creditos.blue-text { line-height: 120px; text-align: center; }
 .movil{font-size: 8.5pt;}
 .publica{height: inherit;}
 .publica a{color: white;}

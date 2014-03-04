@@ -22,6 +22,7 @@ header{height: 90px;}
 	padding: 0;
 	display: inline-block;
 }
+.anuncio li{margin-right: 20px;}
 /*1930*/
 .form-control {
   display: block;
@@ -74,9 +75,9 @@ header{height: 90px;}
 }
 
 .button-register{position: absolute; right: 15px; top: 20px; margin-bottom: 20px;}
-.buycredits{padding-left: 25px;
-          background: url("../img/buycreditos.png") no-repeat 0 0; 
-          height: 21px;}
+.buycredits{
+          background: url("../img/buycreditos-big.png") no-repeat 0 0; 
+}
 .captcha {
     background: white; 
     border:2px solid #54a4ca;
@@ -87,17 +88,18 @@ header{height: 90px;}
 }
 .captcha_wrapper{position: relative;}
 .contenido{margin-top: 15px;}
-.creditos{padding-left: 25px;
-          background: url("../img/creditos.png") no-repeat 0 -6px; 
-          height: 20px;
+.contactar{ background: url("../img/sobre.png") no-repeat;}
+.creditos{padding-left: 60px;
+          background: url("../img/creditos-big.png") no-repeat 0 -6px; 
 }
-.creditos-wrapper{padding-bottom: 20px;}
-.initialism li{height: 20px;}
+.editar{ background: url("../img/lapiz.png") no-repeat;}
+.eliminar{ background: url("../img/papelera.png") no-repeat;}
+.initialism li, .buycredits, .creditos{height: 60px;}
 .initialism li a{color: black;}
-.logout{background: url("../img/desconectar.png") no-repeat 0 -1px;}
-.logout a, .misanuncios a{padding-left: 25px;}
-.misanuncios{background: url("../img/llave.png") no-repeat 0 -1px;}
-
+.logout{background: url("../img/desconectar-big.png") no-repeat 0 -1px;}
+.logout a, .misanuncios a, .editar a, .eliminar a, .contactar a{padding-left: 25px;}
+.misanuncios{background: url("../img/llave-big.png") no-repeat 0 -1px;}
+.misanuncios, .logout, .buycredits, .creditos {width: 55px;}
 .movil{font-size: 8.5pt;}
 .publica{height: inherit;}
 .publica a{color: white;}
@@ -181,6 +183,7 @@ header{position:relative;}
   .button-register{position: relative;}
   .login{position: static;}
 }
+.newsave{margin-top: 100px;}
 
 /** tabs **/
 .tabs {

@@ -34,24 +34,24 @@
                 </a>
             </div>
 
-            <div class="col-md-6 col-sm-8 login">
+            <div class="col-md-8 col-sm-6 col-xs-12 login">
+			<div class="row">
+			
             <?php if(Yii::app()->user->getId() !== null): ?>
-			<div class="row creditos-wrapper">
-                    <div class="col-xs-offset-3 col-xs-4 creditos blue-text"><?php print $this->credits; ?> CREDITOS</div>
-					<div class="buycredits col-xs-5"> <?php echo CHtml::link('COMPRAR CREDITOS',array('order/select')); ?> </div>
-			</div>
+					<div class="col-xs-offset-0 col-md-offset-4 col-xs-2"> <?php print Yii::app()->user->name ?></div>
+                    <div class="col-xs-3 creditos blue-text"><?php print $this->credits; ?></div>
+					<div class="buycredits col-xs-1"> <?php echo CHtml::link('',array('order/select')); ?> </div>
             <?php endif; ?>
 			
-                <div class="row">
-                    <div class="col-md-12 pull-right form-group">
+                    <div class="col-md-3 col-xs-5">
                         <?php $this->widget('zii.widgets.CMenu',array(
 						    'items'=> array_merge($this->main_menu,array(
 						        array('label'=>'Register', 'url'=>array('/user/register'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'registrate')),
-						        array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'loginp')), 
-						        array('label'=>'ADMINISTRAR ANUNCIOS', 'url'=>array('/myads'), 'visible'=>!Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'misanuncios pull-right')),
-						        array('label'=>'DESCONECTAR ('.Yii::app()->user->name.')', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'logout pull-right')),
+						        array('label'=>'', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'loginp')), 
+						        array('label'=>'', 'url'=>array('/myads'), 'visible'=>!Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'misanuncios')),
+						        array('label'=>'', 'url'=>array('/user/logout'), 'visible'=>!Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'logout')),
 						    )),
-							'htmlOptions' => array("class" => "list-unstyled list-inline initialism pull-right"),
+							'htmlOptions' => array("class" => "list-unstyled list-inline initialism"),
 						)); ?>
                     </div>
                 </div>

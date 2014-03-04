@@ -1,5 +1,5 @@
-<div class="row">
-	<h5>Search results</h5>
+<div class="col-xs-12 blue margenh5">
+	<h5 class="">Search results</h5>
 </div>
 <ul>
 <?php 

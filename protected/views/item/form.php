@@ -111,7 +111,7 @@
 				<span id="total_credits">1</span>
 			</div>
 			
-			<div class="button col-xs-offset-5 col-sm-offset-3">
+			<div class="newsave button col-xs-offset-5 col-sm-offset-3">
 				<?php echo CHtml::submitButton('Save'); ?>
 			</div>
 		</div>

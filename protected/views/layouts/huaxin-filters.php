@@ -16,22 +16,22 @@
                 	<?php //print_r($this); die(); ?>
                     <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->filters,''); ?>
 
-					<div class="row form-group">
+					<div class="form-group">
                         <?php echo CHtml::activeLabel($this->filters,'category'); ?>
                         <?php echo CHtml::activeTextField($this->filters,'category',array("class" => "form-control")) ?>
                     </div>
                     
-                    <div class="row form-group">
+                    <div class="form-group">
                         <?php echo CHtml::activeLabel($this->filters,'text'); ?>
                         <?php echo CHtml::activeTextField($this->filters,'text',array("class" => "form-control")) ?>
                     </div>
 
-                    <div class="row form-group">
+                    <div class="form-group">
                         <?php echo CHtml::activeLabel($this->filters,'location'); ?>
                         <?php echo CHtml::activePasswordField($this->filters,'location',array("class" => "form-control")) ?>
                     </div>
 
-                    <div class="row form-group submit">
+                    <div class="form-group submit">
                         <?php echo CHtml::submitButton('Filter',array("class"=>"form-control","title"=>"login")); ?>
                     </div>
                     

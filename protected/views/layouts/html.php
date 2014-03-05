@@ -45,7 +45,7 @@
 					<div class="menuitem logout col-xs-1"> <?php echo CHtml::link('',array('/user/logout')); ?> </div>
             <?php else: ?>
             			
-                    <div class="col-md-3 col-xs-5 text-center col-md-offset-7 col-xs-offset-0">
+                    <div class="col-md-3 col-xs-5 text-center col-md-offset-7 col-xs-offset-2">
                         <?php $this->widget('zii.widgets.CMenu',array(
 						    'items'=> array_merge($this->main_menu,array(
 						        array('label'=>'Register', 'url'=>array('/user/register'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'registrate')),
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="form">
+                    <div class="form col-xs-offset-2 col-sm-offset-0">
                         <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->loginModel,''); ?>
 
                         <div class="form-group form-user col-sm-5 col-md-offset-4 col-md-3 pull-left">
@@ -84,27 +84,27 @@
         	
         	
         	<div class="row busqueda col-xs-12">
-			    <div class="col-md-2 col-xs-2">
+			    <div class="col-md-2 col-xs-2 quebuscas">
 			        <p>QUE BUSCAS?</p>
 			    </div>
 			
 			    <div class="col-md-2 col-xs-3">
-			        DONDE BUSCAS?
 			    </div>
 			
-			    <div class="col-md-4 col-xs-4">
+			    <div class="col-md-4 col-xs-10 col-xs-offset-1">
 			        <form class="form" role="form">
 			            <div>
-			                <label class="sr-only" for="idSearch">Usuario</label> <input type="text" class="form-control" id="idSearch" placeholder="Madrid, Barcelona...">
+			                <label class="sr-only" for="idSearch">Usuario</label> 
+							<input type="text" class="form-control dondebuscas" id="idSearch" placeholder="Madrid, Barcelona...">
 			            </div>
 			        </form>
 			    </div>
 			
-			    <div class="col-md-2 col-xs-3">
+			    <div class="col-md-2 col-xs-3 numanuncios">
 			        <?php print Helper::getCount() ." ". Yii::t("huaxin", "anuncios"); ?>
 			    </div>
 			
-			    <div class="col-md-2 col-md-offset-0 col-xs-6 col-xs-offset-1 blue publica text-center">
+			    <div class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 blue publica text-center">
 			        <a href="/new">Pon tu anuncio</a>
 			    </div>
 			</div>

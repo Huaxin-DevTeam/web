@@ -165,25 +165,34 @@ header{position:relative;}
 
 @media (max-width: 990px) {
   .login .form-group{padding-top: 10px; }
+   #idSearch,
   .publica {
       height: 40px;
       margin-top: 20px;
       padding: 10px;
   }
+  .numanuncios,
+  .quebuscas{display: none;}
+
   .ad{ margin: 5px; }
 }
 
 @media (max-width: 768px) {
   .login .form-group{padding-top: 10px; }
-  .publica {
-      height: 40px;
-      margin-top: 20px;
-      padding: 10px;
-  }
+  .carousel{display: none;}
+
   .logo{height: 150px;}
   .button-register{position: relative;}
+
   .login{position: static;}
+
 }
+
+@media (max-width: 590px){
+
+  header{height: 285px;}
+
+} 
 .newsave{margin-top: 100px;}
 
 /** tabs **/

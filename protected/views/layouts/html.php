@@ -45,7 +45,7 @@
 					<div class="menuitem logout col-xs-1"> <?php echo CHtml::link('',array('/user/logout')); ?> </div>
             <?php else: ?>
             			
-                    <div class="col-md-3 col-xs-5">
+                    <div class="col-md-3 col-xs-5 text-center col-md-offset-7 col-xs-offset-0">
                         <?php $this->widget('zii.widgets.CMenu',array(
 						    'items'=> array_merge($this->main_menu,array(
 						        array('label'=>'Register', 'url'=>array('/user/register'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'registrate')),
@@ -59,11 +59,11 @@
                     <div class="form">
                         <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->loginModel,''); ?>
 
-                        <div class="form-group form-user col-sm-5 pull-left">
+                        <div class="form-group form-user col-sm-5 col-md-offset-4 col-md-3 pull-left">
                             <?php echo CHtml::activeLabel($this->loginModel,'username', array("class" => "sr-only")); ?><?php echo CHtml::activeTextField($this->loginModel,'username',array("class" => "form-control", "id" => "idUser", "placeholder" => "Username")) ?>
                         </div>
 
-                        <div class="form-group form-pass col-sm-5 pull-left">
+                        <div class="form-group form-pass  col-sm-5 col-md-3 pull-left">
                             <?php echo CHtml::activeLabel($this->loginModel,'password', array("class" => "sr-only")); ?><?php echo CHtml::activePasswordField($this->loginModel,'password',array("class" => "form-control", "id" => "idPass", "placeholder" => "Password")) ?>
                         </div>
 

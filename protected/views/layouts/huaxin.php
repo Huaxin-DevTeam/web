@@ -1,5 +1,5 @@
 ﻿<?php $this->beginContent('//layouts/html'); ?>
-    <div class="col-md-2 col-sm-12">
+    <div class="col-md-2">
         <nav class="navbar navbar-default" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">

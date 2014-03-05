@@ -78,6 +78,16 @@ header{height: 90px;}
 .buycredits{
           background: url("../img/buycreditos-big.png") no-repeat 0 0; 
 }
+a .buy_now{
+  width: 70px; 
+  height: 20px; 
+  background: #555555; 
+  font-size: 9pt; 
+  border-radius: 3px; 
+  padding-top: 2px;
+
+}
+  a:hover .buy_now{ background: #2a80a4; color: white;}
 .captcha {
     background: white; 
     border:2px solid #54a4ca;
@@ -92,6 +102,22 @@ header{height: 90px;}
 .creditos{padding-left: 60px;
           background: url("../img/creditos-big.png") no-repeat 0 -6px; 
 }
+.creditos-lista a .credit_desc{background: #ececec; color: #363636; font-size: 18pt; padding-bottom: 15px;  margin-bottom: 15px;  }
+.creditos-lista a:hover .credit_desc{background: #e0eff5; color: #2a80a4;}
+
+.credit_euros{font-size: 30pt;}
+.creditos-lista a .credit_name{background: #555555; color: white; padding: 5px;}
+.creditos-lista a:hover .credit_name{background: #54a4ca; color: white;}
+
+
+.creditos-lista a .credit_num{font-size: 40pt; font-family: arial; background: #363636; color: white;}
+
+.creditos-lista a:hover .credit_num{background: #2a80a4; color: white;}
+
+.credit_phrase{font-size: 18pt;}
+.credit_wrapper{text-transform: uppercase;}
+
+
 .editar{ background: url("../img/lapiz.png") no-repeat;}
 .eliminar{ background: url("../img/papelera.png") no-repeat;}
 .initialism li a{color: black;}
@@ -178,13 +204,11 @@ header{position:relative;}
 }
 
 @media (max-width: 768px) {
-  .login .form-group{padding-top: 10px; }
   .carousel{display: none;}
-
   .logo{height: 150px;}
   .button-register{position: relative;}
-
   .login{position: static;}
+  .porque-huaxin{display: none;}
 
 }
 

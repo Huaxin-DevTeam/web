@@ -53,8 +53,8 @@
     </div>
 </div>
 
-<div class="row porque-huaxin">
-    <div class="col-md-12 col-xs-12">
+<div class="row porque-huaxin_wrapper">
+    <div class="col-md-12 col-xs-12 porque-huaxin ">
         POR QUÉ HUAXIN?
     </div>
 

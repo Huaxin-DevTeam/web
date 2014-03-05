@@ -91,7 +91,7 @@
 			    <div class="col-md-2 col-xs-3">
 			    </div>
 			
-			    <div class="col-md-4 col-xs-10 col-xs-offset-1">
+			    <div class="col-md-4 col-xs-10 col-md-offset-0 col-xs-offset-1">
 			        <form class="form" role="form">
 			            <div>
 			                <label class="sr-only" for="idSearch">Usuario</label> 

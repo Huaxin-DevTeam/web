@@ -10,6 +10,8 @@ class FiltersForm extends CFormModel
 	public $category;
 	public $text;
 	public $price;
+	public $pricemin;
+	public $pricemax;
 	public $location;
 
 	/**
@@ -22,7 +24,7 @@ class FiltersForm extends CFormModel
 		return array(
 			//required fields
 			array('text,location','length','min'=>3),
-			array('price','numerical'),
+			array('price,pricemin,pricemax','numerical'),
 		);
 	}
 

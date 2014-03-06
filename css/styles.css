@@ -286,3 +286,9 @@ header{position:relative;}
     background-color: #F2F9F2;
     border-color: #4FEF71;
 }
+
+.form-control[readonly]
+{
+    background-color: #54A4CA;
+    cursor: not-allowed;
+}

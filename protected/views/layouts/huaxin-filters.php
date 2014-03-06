@@ -13,29 +13,38 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="navbar-collapse collapse" id="menu">
                 <div class="form">
+                	<h5>Filters</h5>
                 	<?php //print_r($this); die(); ?>
-                    <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->filters,''); ?>
+                	<?php $form=$this->beginWidget('CActiveForm'); ?>
+                	<?php echo $form->errorSummary($this->filters,null,null,array('class'=>"bs-callout bs-callout-danger")); ?>
 
-					<div class="form-group">
-                        <?php echo CHtml::activeLabel($this->filters,'category'); ?>
-                        <?php echo CHtml::activeTextField($this->filters,'category',array("class" => "form-control")) ?>
+					<div class="row form-group">
+                        <?php echo $form->label($this->filters,'category'); ?>
+                        <?php echo $form->dropDownList($this->filters,'category',Helper::getCategories(),array('prompt' => '--Select--',"class" => "form-control")) ?>
                     </div>
                     
-                    <div class="form-group">
-                        <?php echo CHtml::activeLabel($this->filters,'text'); ?>
-                        <?php echo CHtml::activeTextField($this->filters,'text',array("class" => "form-control")) ?>
+                    <div class="row form-group">
+                        <?php echo $form->label($this->filters,'text'); ?>
+                        <?php echo $form->textField($this->filters,'text',array("class" => "form-control")) ?>
                     </div>
 
-                    <div class="form-group">
-                        <?php echo CHtml::activeLabel($this->filters,'location'); ?>
-                        <?php echo CHtml::activePasswordField($this->filters,'location',array("class" => "form-control")) ?>
-                    </div>
-
-                    <div class="form-group submit">
-                        <?php echo CHtml::submitButton('Filter',array("class"=>"form-control","title"=>"login")); ?>
+                    <div class="row form-group">
+                        <?php echo $form->label($this->filters,'location'); ?>
+                        <?php echo $form->textField($this->filters,'location',array("class" => "form-control")) ?>
                     </div>
                     
-                    <?php echo CHtml::endForm(); ?>
+					<div class="row form-group">
+                        <?php echo $form->label($this->filters,'price'); ?>
+                        <?php echo $form->textField($this->filters,'price',array("class" => "form-control", "id" => "price", "readonly" => "true")) ?>
+                        <?php echo $form->hiddenField($this->filters,'pricemin',array("class" => "form-control", "id" => "pricemin")) ?>
+                        <?php echo $form->hiddenField($this->filters,'pricemax',array("class" => "form-control", "id" => "pricemax")) ?>
+                        <div id="slider-range"></div>
+                    </div>
+
+                    <div class="row form-group submit">
+                        <?php echo CHtml::submitButton('Filter',array("class"=>"form-control","title"=>"Filter")); ?>
+                    </div>
+                    <?php $this->endWidget(); ?>
                 </div><!-- form -->
             </div><!-- /.navbar-collapse -->
         </nav>
@@ -57,3 +66,27 @@
 		<?php echo $content; ?>
     </div>
 <?php $this->endContent(); ?>
+
+<script>
+$(function() {
+	$(document).ready(function(){
+		var minprice = <?php echo $this->filters->pricemin ? $this->filters->pricemin : 0 ?>;
+		var maxprice = <?php echo $this->filters->pricemax ? $this->filters->pricemax : 1 ?>;
+		$( "#slider-range" ).slider({
+			range: true,
+			values: [minprice,maxprice],
+			min: 0,
+			max: 500,
+			slide: function( event, ui ) {
+				$( "#price" ).val( ui.values[0] + "€ - " + ui.values[1] + "€" );
+				$( "#pricemin" ).val(ui.values[0]);
+				$( "#pricemax" ).val(ui.values[1]);
+			}
+		});
+		$( "#price" ).val( $( "#slider-range" ).slider( "values",0 ) + "€ - " + $( "#slider-range" ).slider( "values",1 ) + "€"  );
+		$( "#pricemin" ).val($( "#slider-range" ).slider( "values",0 ));
+		$( "#pricemax" ).val($( "#slider-range" ).slider( "values",1 ));
+	});
+	
+});
+</script>

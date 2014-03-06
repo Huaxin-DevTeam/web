@@ -9,6 +9,7 @@ h5{
 }
 
 header{height: 90px;}
+hr{height: 5px; background-color: #54a4ca;}
 th{background: #e0eff5 no-repeat;}
 .table > tbody > tr > th,
 .table > tbody > tr > td{
@@ -27,6 +28,7 @@ th{background: #e0eff5 no-repeat;}
 	padding: 0;
 	display: inline-block;
 }
+.bottom {position: relative; bottom: 0;}
 .anuncio li{margin-right: 20px;}
 /*1930*/
 .form-control {
@@ -125,10 +127,11 @@ a .buy_now{
 .credit_wrapper{text-transform: uppercase;}
 .credit_wrapper:hover{ box-shadow: 0px 0px 5px 5px #c4c4ce;}
 
-
+.description{min-height: 140px;}
 .editar{ background: url("../img/lapiz.png") no-repeat;}
 .eliminar{ background: url("../img/papelera.png") no-repeat;}
 .initialism li a{color: black;}
+.item{margin-bottom: 15px; padding: 15px 0; border-top: 4px solid #54A4CA; }
 .logout{background: url("../img/desconectar-big.png") no-repeat 0 -1px;}
 .logout a, .misanuncios a, .editar a, .eliminar a, .contactar a{padding-left: 25px;}
 .misanuncios{background: url("../img/llave-big.png") no-repeat 0 -1px;}

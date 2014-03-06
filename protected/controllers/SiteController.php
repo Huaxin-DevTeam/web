@@ -100,6 +100,9 @@ class SiteController extends Controller
 		//Get filters
 		$this->filters = new FiltersForm;
 		
+		if(isset($_POST['FiltersForm']))
+			$this->filters->attributes = $_POST['FiltersForm'];
+		
 		$dbitems = Item::model()->findAll("NOW() BETWEEN date_published AND date_end AND category_id = :id", array(":id" => $id) );
 		
 		$items = array();

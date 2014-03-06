@@ -96,7 +96,6 @@
 				<p>
 					<?php echo $form->label($model,'duration'); ?>
 					<?php echo $form->textField($model,'duration',array("style" => "border:0; color:#f6931f; font-weight:bold;", "id" => "amount")) ?>
-<!--					<input type="text" id="amount" style=""> -->
 				</p>
 				<div id="slider-range-min"></div>
 			</div>

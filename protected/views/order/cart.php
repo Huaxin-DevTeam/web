@@ -107,7 +107,7 @@
 </div>
 
 	<div class="row">
-		<div class="form-group col-md-offset-8 col-sm-1 col-sm-offset-8 col-xs-offset-1 bigbottom">			
+		<div class="form-group col-md-offset-10 col-sm-1 col-sm-offset-10 col-xs-offset-1 bigbottom">			
 			<div class="button">
 			<?php echo CHtml::submitButton('Checkout'); ?>
 			</div>

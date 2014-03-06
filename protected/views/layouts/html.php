@@ -103,10 +103,11 @@
 			    <div class="col-md-2 col-xs-3 numanuncios">
 			        <?php print Helper::getCount() ." ". Yii::t("huaxin", "anuncios"); ?>
 			    </div>
-			
-			    <div class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 blue publica text-center">
-			        <a href="/new">Pon tu anuncio</a>
-			    </div>
+				<a href="/new">
+					<div class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 blue publica text-center">
+					  Pon tu anuncio
+					</div>
+				</a>
 			</div>
 			<div class="row contenido  col-xs-12">
 	

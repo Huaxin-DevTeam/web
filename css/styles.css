@@ -142,8 +142,8 @@ a .buy_now{
 .col-xs-3.creditos.blue-text { line-height: 120px; text-align: center; }
 .movil{font-size: 8.5pt;}
 .publica{height: inherit;}
-.publica a{color: white;}
-.publica a:hover{text-decoration: none;}
+.publica {color: white;}
+.publica:hover{text-decoration: none;}
 .resumen-compra{margin-bottom: 15px;}
 
 .btn-login{ 
@@ -182,7 +182,7 @@ header{position:relative;}
 .margenh5{margin-bottom: 20px;}
 /*4097*/
 .nav > li {
-  border:  1px solid #c5c5c5;
+  border:  1px solid #54A4CA;
 }
 /*4704*/
 .navbar-default {
@@ -199,7 +199,7 @@ header{position:relative;}
 .nav > li > a:hover,
 .nav > li > a:focus {
   text-decoration: none;
-  background-color: #eeeeee;
+  background-color: #E0EFF5;
 }
 .wrapper{margin-top: 20px;}
 
@@ -244,6 +244,7 @@ header{position:relative;}
 }
 .tab {
   float: left;
+
 }
 .tab > label {
   background: #e0eff5; 
@@ -252,6 +253,8 @@ header{position:relative;}
   margin-left: -1px; 
   position: relative;
   left: 1px; 
+  cursor: pointer;
+
 }
 .tab [type=radio] {
   display: none;   

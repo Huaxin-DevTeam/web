@@ -131,7 +131,9 @@ a .buy_now{
 .editar{ background: url("../img/lapiz.png") no-repeat;}
 .eliminar{ background: url("../img/papelera.png") no-repeat;}
 .initialism li a{color: black;}
-.item{margin-bottom: 15px; padding: 15px 0; border-top: 4px solid #54A4CA; }
+.item{margin-bottom: 15px; padding: 15px 0; }
+.item-ad{ padding: 15px 0; border-top: 4px solid #54A4CA; }
+
 .logout{background: url("../img/desconectar-big.png") no-repeat 0 -1px;}
 .logout a, .misanuncios a, .editar a, .eliminar a, .contactar a{padding-left: 25px;}
 .misanuncios{background: url("../img/llave-big.png") no-repeat 0 -1px;}

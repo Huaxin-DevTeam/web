@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 03-03-2014 a las 11:39:52
+-- Tiempo de generación: 06-03-2014 a las 17:52:01
 -- Versión del servidor: 5.5.29
 -- Versión de PHP: 5.4.10
 
@@ -36,10 +36,10 @@ CREATE TABLE `ad` (
 --
 
 INSERT INTO `ad` (`id`, `image_url`, `link`, `is_mobile`, `num_views`, `date_published`, `date_end`) VALUES
-(1, 'http://www.parajunkee.com/wp-content/uploads/2014/01/ad_160x200.png', 'http://dev.mihx.es', 0, 2440, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
-(2, 'http://th00.deviantart.net/fs6/200H/i/2005/105/f/e/iSquid_______iPod_parody_ad_by_ashbet.jpg', 'http://dev.mihx.es', 0, 2404, '2013-12-20 14:44:25', '2015-12-29 23:00:00'),
-(3, 'http://www.ecoeastend.com/images/ad%20images/half-ad-1.gif', 'http://dev.mihx.es', 0, 2657, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
-(4, 'http://arcsconferences.com/wp-content/uploads/2011/03/ad_here.jpg', 'http://dev.mihx.es', 0, 2473, '2013-12-19 23:00:00', '2015-01-09 23:00:00');
+(1, 'http://www.parajunkee.com/wp-content/uploads/2014/01/ad_160x200.png', 'http://dev.mihx.es', 0, 2489, '2013-12-20 14:43:41', '2015-01-06 23:00:00'),
+(2, 'http://th00.deviantart.net/fs6/200H/i/2005/105/f/e/iSquid_______iPod_parody_ad_by_ashbet.jpg', 'http://dev.mihx.es', 0, 2448, '2013-12-20 14:44:25', '2015-12-29 23:00:00'),
+(3, 'http://www.ecoeastend.com/images/ad%20images/half-ad-1.gif', 'http://dev.mihx.es', 0, 2700, '2013-12-17 23:00:00', '2015-12-18 23:00:00'),
+(4, 'http://farm5.staticflickr.com/4078/4743777048_e8ac9c0c8a.jpg', 'http://dev.mihx.es', 0, 2509, '2013-12-19 23:00:00', '2015-01-09 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -126,10 +126,10 @@ CREATE TABLE `item` (
 
 INSERT INTO `item` (`id`, `user_id`, `category_id`, `title`, `description`, `price`, `phone`, `image_url`, `location`, `date_published`, `date_end`, `num_views`, `premium`) VALUES
 (2, 1, 2, 'titulo1', 'Anuncio 2, negocios', 22450, 666123456, '/img/placeholder.png', 'Barcelona', '2014-01-07 15:39:28', '2015-01-08 15:39:28', 0, 0),
-(3, 2, 2, 'title1', 'Anuncio 3, trabajo', 13072, 666123456, '/img/placeholder.png', 'Barcelona', '2014-02-25 15:39:31', '2014-03-04 15:39:31', 0, 1),
-(5, 2, 3, 'Title a bit longer', 'Description', 432, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-25 16:03:18', '2014-03-02 16:03:18', 0, 0),
-(6, 2, 7, 'Titulo uno', 'Texto texto texto', 1982, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-25 17:52:15', '2014-02-28 17:52:15', 0, 1),
-(7, 2, 1, '中国 苏州 三香路999号707室', '(西班牙独资) 苏州西利克贸易有限公司', 2000, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-26 15:01:45', '2014-03-04 15:01:45', 0, 0);
+(3, 2, 2, 'title1', 'Anuncio 3, trabajo', 13072, 666123456, '/img/placeholder.png', 'Barcelona', '2014-02-25 15:39:31', '2015-03-04 15:39:31', 0, 1),
+(5, 2, 3, 'Title a bit longer', 'Description', 432, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-25 16:03:18', '2015-03-02 16:03:18', 0, 0),
+(6, 2, 7, 'Titulo uno', 'Texto texto texto', 1982, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-25 17:52:15', '2015-02-28 17:52:15', 0, 1),
+(7, 2, 1, '中国 苏州 三香路999号707室', '(西班牙独资) 苏州西利克贸易有限公司', 2000, 666666666, '/img/placeholder.png', 'Barcelona', '2014-02-26 15:01:45', '2015-03-04 15:01:45', 0, 0);
 
 -- --------------------------------------------------------
 

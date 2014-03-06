@@ -9,7 +9,8 @@ h5{
 }
 
 header{height: 90px;}
-
+th{background: #e0eff5 no-repeat;}
+td{border: 1px 2px 3px 4px solid red;}
 .ads{
 	padding: 0;	
 }
@@ -103,8 +104,9 @@ a .buy_now{
           background: url("../img/creditos-big.png") no-repeat 0 -6px; 
 }
 .creditos-lista a .credit_desc{background: #ececec; color: #363636; font-size: 18pt; padding-bottom: 15px;  margin-bottom: 15px;  }
-.creditos-lista a:hover .credit_desc{background: #e0eff5; color: #2a80a4;}
-.creditos-lista:last-child a .credit_desc{background: url("../img/lazo.png") no-repeat 10px 10px;}
+.creditos-lista:last-child a .credit_desc{background: url("../img/lazo.png") no-repeat 10px 10px #ececec;}
+.creditos-lista a:hover .credit_desc{background-color: #e0eff5; color: #2a80a4;}
+
 
 .credit_euros{font-size: 30pt;}
 .creditos-lista a .credit_name{background: #555555; color: white; padding: 5px;}
@@ -133,6 +135,8 @@ a .buy_now{
 .publica{height: inherit;}
 .publica a{color: white;}
 .publica a:hover{text-decoration: none;}
+.resumen-compra{margin-bottom: 15px;}
+
 .btn-login{ 
   background: url("../img/arrow-login.png") no-repeat;
   border: none;
@@ -233,9 +237,9 @@ header{position:relative;}
   float: left;
 }
 .tab > label {
-  background: #eee; 
+  background: #e0eff5; 
   padding: 10px; 
-  border: 1px solid #ccc; 
+  border: 1px solid #54a4ca; 
   margin-left: -1px; 
   position: relative;
   left: 1px; 
@@ -251,7 +255,7 @@ header{position:relative;}
   right: 0;
   bottom: 0;
   padding: 20px;
-  border: 1px solid #ccc;
+  border: 1px solid #54a4ca;
 }
 [type=radio]:checked ~ label {
   background: white;

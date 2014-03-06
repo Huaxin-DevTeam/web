@@ -1,6 +1,6 @@
 <li class="list-unstyled creditos-lista">
 
-	<a href='order/cart/<?php print $item->id ?>'>
+	<a href='<?php echo Yii::app()->request->baseUrl; ?>/order/cart/<?php print $item->id ?>'>
 		<div class="text-center col-xs-12 col-sm-6">
 			<div class="credit_wrapper">
 				<div class="credit_name"><?php print $item->name ?></div>

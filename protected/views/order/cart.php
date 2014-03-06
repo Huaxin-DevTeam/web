@@ -14,10 +14,18 @@
         <h5>Revisa tu compra</h5>
     </div>
 
-    <div>
-        Vas a comprar esto:<br>
-        <?php print $option->name; ?> (<?php print $option->num_credits; ?> créditos). Precio: <?php print $option->price ?>€<br>
-        <br>
+    <div class="resumen-compra col-xs-12">
+		<table class="table col-xs-12">
+			<tr>
+				<th class="col-xs-6">Resumen de compra:</th>
+				<th class="col-xs-6">Precio</th>
+			</tr>
+			<tr>
+				<td class="col-xs-6"><?php print $option->name; ?>: <?php print $option->num_credits; ?> créditos.</td>
+				<td class="col-xs-6"><?php print $option->price ?>€</td>
+			</tr>	
+			
+		</table>
     </div>
     <div class="col-xs-12 blue margenh5">
 		<h5>Selecciona método de pago: </h5>

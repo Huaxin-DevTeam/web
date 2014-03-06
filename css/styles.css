@@ -104,6 +104,7 @@ a .buy_now{
 }
 .creditos-lista a .credit_desc{background: #ececec; color: #363636; font-size: 18pt; padding-bottom: 15px;  margin-bottom: 15px;  }
 .creditos-lista a:hover .credit_desc{background: #e0eff5; color: #2a80a4;}
+.creditos-lista:last-child a .credit_desc{background: url("../img/lazo.png") no-repeat 10px 10px;}
 
 .credit_euros{font-size: 30pt;}
 .creditos-lista a .credit_name{background: #555555; color: white; padding: 5px;}
@@ -116,6 +117,7 @@ a .buy_now{
 
 .credit_phrase{font-size: 18pt;}
 .credit_wrapper{text-transform: uppercase;}
+.credit_wrapper:hover{ box-shadow: 0px 0px 5px 5px #c4c4ce;}
 
 
 .editar{ background: url("../img/lapiz.png") no-repeat;}

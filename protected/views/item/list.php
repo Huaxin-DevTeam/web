@@ -1,7 +1,7 @@
 <!--<pre>
 <?php print_r($item); ?>
 </pre>-->
-<div class="item-ad col-md-12 clearfix">
+<div class="blueline col-md-12 clearfix">
 	<div class="imagen col-xs-4">
 		<img src="<?php echo Yii::app()->request->baseUrl; ?><?php print $item->image_url; ?>" class="img-responsive" />
 	</div>

@@ -6,7 +6,9 @@
 		<img src="<?php echo Yii::app()->request->baseUrl; ?><?php print $item->image_url; ?>" class="img-responsive" />
 	</div>
 	<div class="texto col-xs-8">
-		<h5><?php print $item->title; ?></h5>
+		<h5><a href="<?php echo Yii::app()->createUrl('view/'.$item->id) ?>">
+			<?php print $item->title; ?>
+		</a></h5>
 		<div class="row description">
 			<?php print $item->description; ?>
 		</div>

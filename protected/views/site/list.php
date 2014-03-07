@@ -11,3 +11,18 @@ foreach($items as $i){
 }
 ?>
 </ul>
+<?php $this->widget('CLinkPager', array(
+'pages'=>$pages,
+)); ?>
+
+<script>
+$(function() {
+	$(document).ready(function(){		
+		$('.yiiPager a').click(function(e){
+			e.preventDefault(); //no click!
+			var url = $(this).attr('href');
+			$('.form form').attr('action',url).submit();
+		});		
+	});
+});
+</script>

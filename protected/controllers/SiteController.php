@@ -2,6 +2,7 @@
 
 class SiteController extends Controller
 {
+	public $maxprice = 1;
 		
 	/**
 	 * Declares class-based actions.
@@ -93,26 +94,75 @@ class SiteController extends Controller
 		$this->render("list", $data);
 	}
 	
-	public function actionCategory($id){
+	public function actionCategory($id=0){
 
 		$this->layout = "//layouts/huaxin-filters";
 		
 		//Get filters
 		$this->filters = new FiltersForm;
 		
-		if(isset($_POST['FiltersForm']))
-			$this->filters->attributes = $_POST['FiltersForm'];
+		$sql = "NOW() BETWEEN date_published AND date_end";
+		$opts = array();
 		
-		$dbitems = Item::model()->findAll("NOW() BETWEEN date_published AND date_end AND category_id = :id", array(":id" => $id) );
+		$maxitem = Item::model()->find($sql." ORDER BY price DESC",$opts);
+		$this->maxprice = $maxitem->price;
+		
+		if($id > 0){
+			$sql .= " AND category_id = :id";
+			$opts[":id"] = $id;
+		}
+		
+		if(isset($_POST['FiltersForm'])){
+			$this->filters->attributes = $_POST['FiltersForm'];
+			
+			$text = trim($this->filters->text);
+			if($text != "" && $text != null){
+				$sql .= " AND (title LIKE :text OR description LIKE :text)";
+				$opts[':text'] = "%$text%";
+			}
+			
+			
+			$min = trim($this->filters->pricemin);
+			if($min != null && $min != ""){
+				$sql .= " AND price >= :min";
+				$opts[':min'] = $min;
+			}
+			
+			$max = trim($this->filters->pricemax);
+			if($max != null && $max != ""){
+				$sql .= " AND price <= :max";
+				$opts[':max'] = $max;
+			}
+
+			$loc = trim($this->filters->location);
+			if($loc != null && $loc != ""){
+				$sql .= " AND location LIKE :loc";
+				$opts[':loc'] = "%$loc%";
+			}
+		}
+		
+		$dbitems = Item::model()->findAll($sql,$opts);
+		
+		$page = 3;
+		$total = count($dbitems);
+		
+		$pages =new CPagination($total);
+		$pages->setPageSize($page);
+		
+		$sql .= " LIMIT :offset, :limit";
+		$opts[':offset'] = $pages->offset;
+		$opts[':limit'] = $page;
+		
+		$dbitems = Item::model()->findAll($sql,$opts);
 		
 		$items = array();
 
 		foreach($dbitems as $item)
 			$items[] = $this->renderPartial('//item/list',array('item' => $item),true);
 		
-		
 		$data = array(
 			"items" => $items,
+			"pages" => $pages,
 		);
 		
 		$this->render("list", $data);

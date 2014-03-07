@@ -20,7 +20,7 @@
 
 					<div class="row form-group">
                         <?php echo $form->label($this->filters,'category'); ?>
-                        <?php echo $form->dropDownList($this->filters,'category',Helper::getCategories(),array('prompt' => '--Select--',"class" => "form-control")) ?>
+                        <?php echo $form->dropDownList($this->filters,'category',Helper::getCategories(),array('prompt' => '--Select--',"class" => "form-control", "options" => array(Yii::app()->getRequest()->getQuery('id') => array("selected" => true)))) ?>
                     </div>
                     
                     <div class="row form-group">
@@ -71,12 +71,13 @@
 $(function() {
 	$(document).ready(function(){
 		var minprice = <?php echo $this->filters->pricemin ? $this->filters->pricemin : 0 ?>;
-		var maxprice = <?php echo $this->filters->pricemax ? $this->filters->pricemax : 1 ?>;
+		var maxprice = <?php echo $this->filters->pricemax ? $this->filters->pricemax : $this->maxprice ?>;
+		var max = <?php echo $this->maxprice ?>;
 		$( "#slider-range" ).slider({
 			range: true,
 			values: [minprice,maxprice],
 			min: 0,
-			max: 500,
+			max: max,
 			slide: function( event, ui ) {
 				$( "#price" ).val( ui.values[0] + "€ - " + ui.values[1] + "€" );
 				$( "#pricemin" ).val(ui.values[0]);
@@ -86,6 +87,13 @@ $(function() {
 		$( "#price" ).val( $( "#slider-range" ).slider( "values",0 ) + "€ - " + $( "#slider-range" ).slider( "values",1 ) + "€"  );
 		$( "#pricemin" ).val($( "#slider-range" ).slider( "values",0 ));
 		$( "#pricemax" ).val($( "#slider-range" ).slider( "values",1 ));
+		
+		$('#FiltersForm_category').change(function(){
+			var url = "<?php print Yii::app()->getBaseUrl() . "/" . Yii::app()->controller->action->id ?>";
+			url += "/"+$(this).val();
+			$('.form form').attr('action',url).submit();
+		});
+		
 	});
 	
 });

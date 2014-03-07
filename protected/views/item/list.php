@@ -12,7 +12,7 @@
 		</div>
 		<div class="row bottom">
 			<div class="col-xs-12">
-				<span class="pull-left"><?php print $item->price; ?>€</span>
+				<span class="pull-left precio"><?php print $item->price; ?>€</span>
 				<div class="actions pull-right">
 					<ul class="anuncio list-inline list-unstyled clearfix">
 						<?php if($item->user_id == Yii::app()->user->id): ?>

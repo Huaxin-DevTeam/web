@@ -127,7 +127,7 @@ a .buy_now{
 .credit_wrapper{text-transform: uppercase;}
 .credit_wrapper:hover{ box-shadow: 0px 0px 5px 5px #c4c4ce;}
 
-.description{min-height: 140px;}
+.description{min-height: 120px;}
 .editar{ background: url("../img/lapiz.png") no-repeat;}
 .eliminar{ background: url("../img/papelera.png") no-repeat;}
 .initialism li a{color: black;}
@@ -141,8 +141,8 @@ a .buy_now{
 .menuitem.col-xs-1 > a { padding: 35px 30px; }
 .col-xs-3.creditos.blue-text { line-height: 120px; text-align: center; }
 .movil{font-size: 8.5pt;}
-.publica{height: inherit;}
-.publica {color: white;}
+.precio{font-weight: bold; font-family: "Arial Black", Gadget, sans-serif; font-size: 20pt; color: #54A4CA;}
+.publica{height: inherit;color: white;}
 .publica:hover{text-decoration: none;}
 .resumen-compra{margin-bottom: 15px;}
 
@@ -177,7 +177,7 @@ a .buy_now{
 }
 .login{position:absolute;bottom: 0;right: 0; height: 80px;}
 .login .form-group{margin-bottom: 0;}
-header{position:relative;}
+header{position:relative; margin-top: 20px;}
 
 .margenh5{margin-bottom: 20px;}
 /*4097*/

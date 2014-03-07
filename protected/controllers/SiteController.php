@@ -76,6 +76,12 @@ class SiteController extends Controller
 		}
 		$this->render('contact',array('model'=>$model));
 	} */
+	
+	public function actionView($id){
+		
+		$data = array();
+		$this->render("item", $data);
+	}
 
 	public function actionMyads(){
 		

@@ -1,0 +1,1 @@
+aqui el detalle del anuncio

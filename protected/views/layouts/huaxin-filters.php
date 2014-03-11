@@ -1,6 +1,6 @@
 ﻿<?php $this->beginContent('//layouts/html'); ?>
     <div class="col-md-2 col-sm-12">
-        <nav class="navbar navbar-default" role="navigation">
+        <nav class="navbar navbar-default row" role="navigation">
             <!-- Brand and toggle get grouped for better mobile display -->
 			<div class="navbar-header">
 			  <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#menu">
@@ -13,27 +13,27 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="navbar-collapse collapse" id="menu">
                 <div class="form">
-                	<h5>Filters</h5>
+                	<h5 class="h5filtros">Filters</h5>
                 	<?php //print_r($this); die(); ?>
                 	<?php $form=$this->beginWidget('CActiveForm'); ?>
                 	<?php echo $form->errorSummary($this->filters,null,null,array('class'=>"bs-callout bs-callout-danger")); ?>
 
-					<div class="row form-group">
+					<div class="form-group">
                         <?php echo $form->label($this->filters,'category'); ?>
                         <?php echo $form->dropDownList($this->filters,'category',Helper::getCategories(),array('prompt' => '--Select--',"class" => "form-control", "options" => array(Yii::app()->getRequest()->getQuery('id') => array("selected" => true)))) ?>
                     </div>
                     
-                    <div class="row form-group">
+                    <div class="form-group">
                         <?php echo $form->label($this->filters,'text'); ?>
                         <?php echo $form->textField($this->filters,'text',array("class" => "form-control")) ?>
                     </div>
 
-                    <div class="row form-group">
+                    <div class="form-group">
                         <?php echo $form->label($this->filters,'location'); ?>
                         <?php echo $form->textField($this->filters,'location',array("class" => "form-control")) ?>
                     </div>
                     
-					<div class="row form-group">
+					<div class="form-group">
                         <?php echo $form->label($this->filters,'price'); ?>
                         <?php echo $form->textField($this->filters,'price',array("class" => "form-control", "id" => "price", "readonly" => "true")) ?>
                         <?php echo $form->hiddenField($this->filters,'pricemin',array("class" => "form-control", "id" => "pricemin")) ?>
@@ -41,7 +41,7 @@
                         <div id="slider-range"></div>
                     </div>
 
-                    <div class="row form-group submit">
+                    <div class="form-group submit">
                         <?php echo CHtml::submitButton('Filter',array("class"=>"form-control","title"=>"Filter")); ?>
                     </div>
                     <?php $this->endWidget(); ?>

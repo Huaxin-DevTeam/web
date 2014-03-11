@@ -109,7 +109,7 @@
 					</div>
 				</a>
 			</div>
-			<div class="row contenido  col-xs-12">
+			<div class="contenido  col-xs-12">
 	
 				<?php print $content ?>
 				

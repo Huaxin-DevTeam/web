@@ -79,7 +79,9 @@ class SiteController extends Controller
 	
 	public function actionView($id){
 		
-		$data = array();
+		$item = Item::model()->findByPk($id);
+		
+		$data = array('item' => $item);
 		$this->render("item", $data);
 	}
 

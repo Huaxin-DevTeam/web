@@ -115,6 +115,7 @@ a .buy_now{
 .creditos{padding-left: 60px;
           background: url("../img/creditos-big.png") no-repeat 0 -6px; 
 }
+.select-list{ padding: 0; }
 .creditos-lista a .credit_desc{background: #ececec; color: #363636; font-size: 18pt; padding-bottom: 15px;  margin-bottom: 15px;  }
 .creditos-lista:last-child a .credit_desc{background: url("../img/lazo.png") no-repeat 10px 10px #ececec;}
 .creditos-lista a:hover .credit_desc{background-color: #e0eff5; color: #2a80a4;}
@@ -149,8 +150,9 @@ a .buy_now{
 .col-xs-3.creditos.blue-text { line-height: 120px; text-align: center; }
 .movil{font-size: 8.5pt;}
 .precio{font-weight: bold; font-family: "Arial Black", Gadget, sans-serif; font-size: 20pt; color: #54A4CA;}
-.publica{height: inherit;color: white;}
-.publica:hover{text-decoration: none;}
+.publica a{height: inherit;color: white;}
+.publica a:hover{text-decoration: none;}
+.bigbutton{display: block; width: 100%;}
 .resumen-compra{margin-bottom: 15px;}
 
 .btn-login{ 

@@ -80,9 +80,13 @@ class SiteController extends Controller
 	public function actionView($id){
 		
 		$item = Item::model()->findByPk($id);
-		
-		$data = array('item' => $item);
-		$this->render("item", $data);
+		$cat = Category::model()->findByPk($item->category_id);
+		$data = array(
+			'item' => $item,
+			'category' => $cat,
+		);
+				
+		$this->render("item", $data);		
 	}
 
 	public function actionMyads(){

@@ -1,6 +1,4 @@
-<pre>
-<?php print_r($item); ?>
-</PRE>
+
 <div class="anuncio_wrapper col-md-12">
 	<h5><?php print $item->title ?></h5>
 	<div class="detalle_elem">
@@ -14,7 +12,7 @@
 			</div>
 			<div class="det-cat">
 				<span class="big-blue">Categoría</span>
-				<p><?php print $item->description ?></p>
+				<a href= "<?php echo Yii::app()->request->baseUrl;?>/category/<?php print $category->id; ?>"><?php print $category->name; ?></a>
 			</div>
 			<div class="det-telf">
 				<span class="big-blue">Teléfono</span>

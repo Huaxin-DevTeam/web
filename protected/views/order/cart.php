@@ -55,39 +55,9 @@
        
        <div class="content">
 
-
 			<div class="row">
 				<div class="col-sm-6">
 					<img src="<?php echo Yii::app()->request->baseUrl; ?>/img/secure-creditcard-logo.jpg" height="100px" />
-				</div>
-				<div class="form-group col-sm-6 col-xs-12">
-					<?php echo $form->labelEx($cc,'name'); ?>
-					<?php echo $form->textField($cc,'name',array("class" => "form-control")); ?>
-					<?php echo $form->error($cc,'name'); ?>
-				</div>
-				
-			</div>
-			
-			<div class="row">
-				<div class="form-group col-sm-6 col-xs-12">
-					<?php echo $form->labelEx($cc,'number'); ?>
-					<?php echo $form->textField($cc,'number',array("class" => "form-control")); ?>
-					<?php echo $form->error($cc,'number'); ?>
-				</div>
-				<div class="form-group col-xs-2">
-					<?php echo $form->labelEx($cc,'month'); ?>
-					<?php echo $form->dropDownList($cc,'month',CreditCardForm::getMonths(),array('prompt' => 'Month',"class" => "form-control")); ?>
-					<?php echo $form->error($cc,'month'); ?>
-				</div>
-				<div class="form-group col-xs-2">
-					<?php echo $form->labelEx($cc,'year'); ?>
-					<?php echo $form->dropDownList($cc,'year',CreditCardForm::getYears(),array('prompt' => 'Year',"class" => "form-control")); ?>
-					<?php echo $form->error($cc,'year'); ?>
-				</div>
-				<div class="form-group col-xs-2">
-					<?php echo $form->labelEx($cc,'cvv'); ?>
-					<?php echo $form->textField($cc,'cvv',array("class" => "form-control")); ?>
-					<?php echo $form->error($cc,'cvv'); ?>
 				</div>
 			</div>
            

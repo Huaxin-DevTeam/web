@@ -125,7 +125,7 @@ a .buy_now{
 .creditos-lista a:hover .credit_name{background: #54a4ca; color: white;}
 
 
-.creditos-lista a .credit_num{font-size: 40pt; font-family: arial; background: #363636; color: white;}
+.creditos-lista a .credit_num{font-size: 25pt; font-family: arial; background: #363636; color: white;}
 
 .creditos-lista a:hover .credit_num{background: #2a80a4; color: white;}
 

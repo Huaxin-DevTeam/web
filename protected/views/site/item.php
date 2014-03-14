@@ -11,7 +11,7 @@
 				<p><?php print $item->price ?>€ </p>
 			</div>
 			<div class="det-cat">
-				<span class="big-blue">Categoría</span>
+				<span class="big-blue">Categoría</span><br>
 				<a href= "<?php echo Yii::app()->request->baseUrl;?>/category/<?php print $category->id; ?>"><?php print $category->name; ?></a>
 			</div>
 			<div class="det-telf">

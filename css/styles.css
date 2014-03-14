@@ -133,6 +133,7 @@ a .buy_now{
 .credit_wrapper{text-transform: uppercase;}
 .credit_wrapper:hover{ box-shadow: 0px 0px 5px 5px #c4c4ce;}
 .detalle{min-height: 280px}
+.detalle a{color: black; text-decoration: none;}
 .description{min-height: 120px;}
 .editar{ background: url("../img/lapiz.png") no-repeat;}
 .eliminar{ background: url("../img/papelera.png") no-repeat;}

@@ -15,6 +15,7 @@ foreach($items as $i){
 'pages'=>$pages,
 )); ?>
 
+<?php if( isset($filters) && $filters === true): ?>
 <script>
 $(function() {
 	$(document).ready(function(){		
@@ -26,3 +27,4 @@ $(function() {
 	});
 });
 </script>
+<?php endif; ?>

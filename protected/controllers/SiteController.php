@@ -191,6 +191,7 @@ class SiteController extends Controller
 		$data = array(
 			"items" => $items,
 			"pages" => $pages,
+			"filters" => true,
 		);
 		
 		$this->render("list", $data);

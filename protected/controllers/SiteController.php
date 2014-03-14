@@ -91,7 +91,22 @@ class SiteController extends Controller
 
 	public function actionMyads(){
 		
-		$dbitems = Item::model()->findAll("NOW() BETWEEN date_published AND date_end AND user_id = :id", array(":id" => Yii::app()->user->id) );
+		$sql = "NOW() BETWEEN date_published AND date_end AND user_id = :id";
+		$opts = array(":id" => Yii::app()->user->id);
+		
+		$dbitems = Item::model()->findAll($sql,$opts);
+		
+		$page = 3;
+		$total = count($dbitems);
+		
+		$pages =new CPagination($total);
+		$pages->setPageSize($page);
+		
+		$sql .= " LIMIT :offset, :limit";
+		$opts[':offset'] = $pages->offset;
+		$opts[':limit'] = $page;
+		
+		$dbitems = Item::model()->findAll($sql,$opts);
 		
 		$items = array();
 
@@ -101,6 +116,7 @@ class SiteController extends Controller
 		
 		$data = array(
 			"items" => $items,
+			"pages" => $pages,
 		);
 		
 		$this->render("list", $data);

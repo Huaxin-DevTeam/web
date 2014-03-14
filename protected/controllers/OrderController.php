@@ -45,8 +45,6 @@ class OrderController extends Controller{
 		Helper::needLogin($this->createUrl("/order/cart/$id"));
 		
 		$this->option = CreditsManager::model()->findByPk($id);
-
-		$cc = new CreditCardForm;
 		
 		$selected = isset($_POST['payment_method']) ? $_POST['payment_method'] : null;
 		
@@ -61,12 +59,8 @@ class OrderController extends Controller{
 					break;
 				
 				case "credit_card": 
-					$cc->attributes = $_POST['CreditCardForm'];
-					if($cc->validate()){
-						$this->processCreditCard($cc);
-					}
+					$this->startPayPalTransaction(true); 
 					break;
-					
 				case "paypal": 
 					$this->startPayPalTransaction(); 
 					break;
@@ -77,16 +71,11 @@ class OrderController extends Controller{
 			
 		}
 
-		$data = array('cc' => $cc, 'option' => $this->option, 'selected' => $selected);
+		$data = array('option' => $this->option, 'selected' => $selected);
 		$this->render('cart',$data);
 	}
 	
-	private function processCreditCard($cc){
-		//die(print_r($cc));
-		
-	}
-	
-	private function startPayPalTransaction(){
+	private function startPayPalTransaction($isCC = false){
 		$sdkConfig = array(
 			"mode" => "sandbox"
 		);
@@ -147,7 +136,7 @@ class OrderController extends Controller{
 		//Store in our db...
 		$purchase = new Purchase();
 		$purchase->user_id = Yii::app()->user->id;
-		$purchase->method = strtoupper("paypal");
+		$purchase->method = $isCC ? strtoupper("creditcard") : strtoupper("paypal");
 		$purchase->num_credits = $this->option->num_credits;
 		$purchase->date = new CDbExpression('NOW()');
 		$purchase->status = 0;

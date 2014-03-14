@@ -31,7 +31,7 @@ return array(
 	"Category not valid" => "",
 	"Duration not valid" => "",
 
-	"" => "",
+	"credits" => "积分",
 	"" => "",
 	"" => "",
 	"" => "",

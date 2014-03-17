@@ -34,11 +34,11 @@
                 </a>
             </div>
 
-            <div class="col-md-8 col-sm-6 col-xs-12 login">
-			<div class="row">
+            <div class="col-md-8 col-sm-8  col-xs-12 login">
+			<div class="">
 			
             <?php if(Yii::app()->user->getId() !== null): ?>
-					<div class="col-xs-offset-0 col-md-offset-4 col-xs-2"> <?php print Yii::app()->user->name ?></div>
+					<div class="col-xs-offset-0 col-md-offset-0  col-md-6  col-sm-5 col-xs-2 text-right loginmail"> <?php print Yii::app()->user->name ?></div>
                     <div class="col-xs-3 creditos blue-text"><?php print $this->credits; ?></div>
 					<div class="menuitem buycredits col-xs-1"> <?php echo CHtml::link('',array('order/select')); ?> </div>
 					<div class="menuitem misanuncios col-xs-1"> <?php echo CHtml::link('',array('/myads')); ?> </div>
@@ -79,7 +79,7 @@
             </div>
         </header>
         
-        <div class="row wrapper">
+        <div class=" wrapper">
         
         	
         	

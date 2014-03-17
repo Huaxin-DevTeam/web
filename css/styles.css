@@ -34,7 +34,8 @@ th{background: #e0eff5 no-repeat;}
 .big-blue{font-weight: bold; font-family: "Arial Black", Gadget, sans-serif; font-size: 18pt; color: #54A4CA;}
 .bottom {position: relative; bottom: 0;}
 .bottom li{ padding-right: 25px;}
-.anuncio li{margin-right: 20px;}
+.anuncio{position: relative; bottom: -13px;}
+.anuncio li{padding-right: 7px;}
 .detalle_elem{margin-top: 15px;}
 /*1930*/
 .form-control {
@@ -149,6 +150,7 @@ a .buy_now{
 .menuitem.col-xs-1 > a { padding: 35px 30px; }
 .col-xs-3.creditos.blue-text { line-height: 120px; text-align: center; }
 .movil{font-size: 8.5pt;}
+.porque-huaxin{margin-bottom: 15px;}
 .precio{font-weight: bold; font-family: "Arial Black", Gadget, sans-serif; font-size: 20pt; color: #54A4CA;}
 .publica a{height: inherit;color: white;}
 .publica a:hover{text-decoration: none;}
@@ -232,7 +234,9 @@ header{position:relative; margin-top: 20px;}
   .logo{height: 150px;}
   .button-register{position: relative;}
   .login{position: static;}
+  .loginmail{display: none;}
   .porque-huaxin{display: none;}
+
 
 }
 

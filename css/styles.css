@@ -73,7 +73,7 @@ th{background: #e0eff5 no-repeat;}
 .blue{background: #54a4ca;}
 .blue-text{color: #54a4ca;}
 .buscador{background: #54a4ca url("../img/lupa.png") no-repeat 5px 5px;}
-.button input{
+.button, .button input{
   background: #54a4ca; 
   height: 35px;
   border: none;
@@ -83,6 +83,8 @@ th{background: #e0eff5 no-repeat;}
   padding: 0 15px;
 
 }
+
+.button-confirm{width: 165px; height: 32px; padding: 5px 15px;}
 .button input:hover{
  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
           box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(102, 175, 233, 0.6);
@@ -153,8 +155,8 @@ a .buy_now{
 .movil{font-size: 8.5pt;}
 .porque-huaxin{margin-bottom: 15px;}
 .precio{font-weight: bold; font-family: "Arial Black", Gadget, sans-serif; font-size: 20pt; color: #54A4CA;}
-.publica a{height: inherit;color: white;}
-.publica a:hover{text-decoration: none;}
+.publica a, .button-confirm{height: inherit;color: white;}
+.publica a:hover, .button-confirm:hover{text-decoration: none;}
 .bigbutton{display: block; width: 100%;}
 .resumen-compra{margin-bottom: 15px;}
 .thumbnail{position: relative;}

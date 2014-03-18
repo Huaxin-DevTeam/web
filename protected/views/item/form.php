@@ -7,7 +7,7 @@
 ?>
 <?php $form=$this->beginWidget('CActiveForm'); ?>
 <?php echo $form->errorSummary($model,null,null,array('class'=>"bs-callout bs-callout-danger")); ?>
-<div class="row form bigbottom">
+<div class="col-xs-12 form bigbottom">
 		<div class="col-xs-12 blue margenh5">
 			<h5>Nuevo anuncio</h5>
 		</div>

@@ -15,7 +15,7 @@
 			
 		</table>
     </div>
-	<a href="/order/confirm/<?php print $token ?>/<?php print $payerId ?>" class="button  button-confirm pull-right text-center bigbottom">Confirmar compra</a>
+	<a href="/order/confirm/<?php print $token ?>/<?php print $payerId ?>" class="button-blue  button-confirm pull-right text-center bigbottom">Confirmar compra</a>
 	
 </div>
 <a href="/order/cancel/<?php print $token ?>" class="col-xs-5">Cancelar la compra</a>

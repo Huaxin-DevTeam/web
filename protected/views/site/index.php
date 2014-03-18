@@ -10,7 +10,7 @@
         ANUNCIOS DESTACADOS
     </div>
 
-    <div class="col-md-2 col-xs-2">
+    <div class="col-md-2 col-xs-2 carruflecha	">
         <a data-slide="prev" href="#myCarousel" class="carousel-control"><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/left-arrow.png" class=""></a>
     </div>
 
@@ -18,29 +18,49 @@
         <div class="container-fluid">
             <div class="row-fluid">
                 <div class="carousel slide" id="myCarousel">
-                    <div class="carousel-inner">
+                    <div class="carousel-inner text-center">
                         <div class="item active">
-                            <div class="col-xs-4 thumbnail"><img src="http://placehold.it/260x180" alt=""></div>
-
-                            <div class="col-xs-4 thumbnail"><img src="http://placehold.it/260x180" alt=""></div>
-
-                            <div class="col-xs-4 thumbnail"><img src="http://placehold.it/260x180" alt=""></div>
+                            <div class="col-xs-4 thumbnail">
+								<img src="http://placehold.it/260x260" alt="">
+								<div class="texto-anuncio">ola ke aseola ke aseola ke ase</div>
+							</div>
+                            <div class="col-xs-4 thumbnail">
+								<img src="http://placehold.it/260x260" alt="">
+								<div class="texto-anuncio">ola ke ase</div>
+							</div>
+                            <div class="col-xs-4 thumbnail">
+								<img src="http://placehold.it/260x260" alt="">
+								<div class="texto-anuncio">ola ke ase</div>
+							</div>
                         </div>
 
                         <div class="item">
-                            <div class="col-xs-4 thumbnail"><img src="http://placehold.it/260x180" alt=""></div>
-
-                            <div class="col-xs-4 thumbnail"><img src="http://placehold.it/260x180" alt=""></div>
-
-                            <div class="col-xs-4 thumbnail"><img src="http://placehold.it/260x180" alt=""></div>
+							<div class="col-xs-4 thumbnail">
+								<img src="http://placehold.it/260x260" alt="">
+								<div class="texto-anuncio">ola ke ase</div>
+							</div>
+                            <div class="col-xs-4 thumbnail">
+								<img src="http://placehold.it/260x260" alt="">
+								<div class="texto-anuncio">ola ke ase</div>
+							</div>
+                            <div class="col-xs-4 thumbnail">
+								<img src="http://placehold.it/260x260" alt="">
+								<div class="texto-anuncio">ola ke ase</div>
+							</div>
                         </div>
 
                         <div class="item">
-                            <div class="col-xs-4 thumbnail"><img src="http://placehold.it/260x180" alt=""></div>
-
-                            <div class="col-xs-4 thumbnail"><img src="http://placehold.it/260x180" alt=""></div>
-
-                            <div class="col-xs-4 thumbnail"><img src="http://placehold.it/260x180" alt=""></div>
+                            <div class="col-xs-4 thumbnail">
+								<img src="http://placehold.it/260x260" alt="">
+								<div class="texto-anuncio">ola ke ase</div>
+							</div>
+                            <div class="col-xs-4 thumbnail"><img src="http://placehold.it/260x260" alt="">
+								<div class="texto-anuncio">ola ke ase</div>
+							</div>
+                            <div class="col-xs-4 thumbnail">
+								<img src="http://placehold.it/260x260" alt="">
+								<div class="texto-anuncio">ola ke ase</div>
+							</div>
                         </div>
                     </div>
                 </div>
@@ -48,7 +68,7 @@
         </div>
     </div>
 
-    <div class="col-xs-2">
+    <div class="col-xs-2 carruflecha">
         <a data-slide="next" href="#myCarousel" class="carousel-control"><img src="<?php echo Yii::app()->request->baseUrl; ?>/img/right-arrow.png"></a>
     </div>
 </div>

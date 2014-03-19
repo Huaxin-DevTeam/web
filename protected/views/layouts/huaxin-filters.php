@@ -13,7 +13,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="navbar-collapse collapse" id="menu">
                 <div class="form">
-                	<h5 class="h5filtros">Filters</h5>
+                	<div class="filtros">Filters</div>
                 	<?php //print_r($this); die(); ?>
                 	<?php $form=$this->beginWidget('CActiveForm'); ?>
                 	<?php echo $form->errorSummary($this->filters,null,null,array('class'=>"bs-callout bs-callout-danger")); ?>

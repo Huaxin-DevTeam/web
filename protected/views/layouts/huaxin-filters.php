@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="form-group submit">
-                        <?php echo CHtml::submitButton('Filter',array("class"=>"form-control","title"=>"Filter")); ?>
+                        <?php echo CHtml::submitButton('Filter',array("class"=>"form-control button-blue","title"=>"Filter")); ?>
                     </div>
                     <?php $this->endWidget(); ?>
                 </div><!-- form -->

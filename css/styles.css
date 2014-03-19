@@ -10,7 +10,6 @@ h5{
 h5 a{color: white; text-decoration: none;}
 h5 a:hover{color: white; text-decoration: none;}
 
-h5.h5filtros{margin:0;}
 header{height: 90px;}
 hr{height: 5px; background-color: #54a4ca;}
 th{background: #e0eff5 no-repeat;}
@@ -142,6 +141,7 @@ a .buy_now{
 .description{min-height: 120px;}
 .editar{ background: url("../img/lapiz.png") no-repeat;}
 .eliminar{ background: url("../img/papelera.png") no-repeat;}
+.filtros{ border-bottom: 4px solid #54a4ca; font-weight: bold; margin:23px auto; padding: 7px;}
 .initialism li a{color: black;}
 .item{margin-bottom: 15px; padding: 15px 0; }
 .blueline{ padding: 15px 0; border-top: 4px solid #54A4CA; }

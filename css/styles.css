@@ -141,7 +141,7 @@ a .buy_now{
 .description{min-height: 120px;}
 .editar{ background: url("../img/lapiz.png") no-repeat;}
 .eliminar{ background: url("../img/papelera.png") no-repeat;}
-.filtros{ border-bottom: 4px solid #54a4ca; font-weight: bold; margin:23px auto; padding: 7px;}
+.filtros{ border-bottom: 4px solid #54a4ca; font-weight: bold; margin:23px auto; padding: 7px; color: #54a4ca;}
 .initialism li a{color: black;}
 .item{margin-bottom: 15px; padding: 15px 0; }
 .blueline{ padding: 15px 0; border-top: 4px solid #54A4CA; }
@@ -161,6 +161,8 @@ a .buy_now{
 .resumen-compra{margin-bottom: 15px;}
 .thumbnail{position: relative;}
 .texto-anuncio{background: rgba(255,255,255,0.5); position: absolute; bottom: 0; height: 48px; width: 97%; text-transform: uppercase; padding: 3px; overflow: hidden;}
+.veranuncio {padding: 5px;}
+
 .btn-login{ 
   background: url("../img/arrow-login.png") no-repeat;
   border: none;

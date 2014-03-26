@@ -1,4 +1,9 @@
 $(document).ready(function($) {
+	
+	$('#myCarousel').carousel({
+		interval: 3000
+	});
+
 //	$(".confirm").confirm();    
 	$(".delete.confirm").confirm({
 //		title:"Delete confirmation",

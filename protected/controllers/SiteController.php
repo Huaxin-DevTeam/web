@@ -229,7 +229,7 @@ class SiteController extends Controller
 				$item->user_id = $user->id;
 				$item->category_id = $model->category;
 				$item->title = Helper::purify($model->title);
-				$item->description = Helper::purify($model->description);
+				$item->description = $model->description; //Helper::purify($model->description);
 				$item->price = $model->price;
 				$item->phone = $model->phone;
 				$item->image_url = "/img/placeholder.png";//$model->??;

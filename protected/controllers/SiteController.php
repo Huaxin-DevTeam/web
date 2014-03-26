@@ -334,4 +334,26 @@ class SiteController extends Controller
 		Yii::app()->user->setFlash('success',Yii::t("huaxin","Delete successful."));
 		$this->redirect(Yii::app()->getHomeUrl());
 	}	
+	public function actionHelp()
+	{
+		$this->render('help',null);
+	
+	}
+	public function actionContact()
+	{
+		$this->render('contact',null);
+	
+	}
+	public function actionAbout()
+	{
+		$this->render('about',null);
+	}
+	public function actionTos()
+	{
+		$this->render('tos',null);
+	}
+	public function actionPrivacidad()
+	{
+		$this->render('privacidad',null);
+	}
 }

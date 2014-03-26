@@ -7,7 +7,7 @@ h5{
   padding: 5px 0px 5px 15px;
 
 }
-h5 a{color: white; text-decoration: none;}
+h5 a{color: white; text-decoration: none; display: block; width: 100%;}
 h5 a:hover{color: white; text-decoration: none;}
 
 header{height: 90px;}

@@ -137,15 +137,12 @@
 
             <div class="col-sm-8 col-xs-12">
                 <ul class="list-inline footer breadcrumb text-center">
-                    <li><a href="#">AYUDA</a></li>
+                    <li><?php echo CHtml::link(Yii::t("huaxin", "AYUDA"),array('/help')); ?></li>
+                    <li><?php echo CHtml::link(Yii::t("huaxin", "CONTACTA CON NOSOTROS"),array('/contact')); ?></li>
+					<li><?php echo CHtml::link(Yii::t("huaxin", "SOBRE NOSOTROS"),array('/about')); ?></li>
+					<li><?php echo CHtml::link(Yii::t("huaxin", "CONDICIONES DE USO"),array('/tos')); ?></li>
+                    <li><?php echo CHtml::link(Yii::t("huaxin", "POLÍTICA DE PRIVACIDAD"),array('/privacidad')); ?></li>
 
-                    <li><a href="#">CONTACTA CON NOSOTROS</a></li>
-
-                    <li><a href="#">SOBRE NOSOTROS</a></li>
-
-                    <li><a href="#">CONDICIONES DE USO</a></li>
-
-                    <li><a href="#">POLITICA DE PRIVACIDAD</a></li>
                 </ul>
             </div>
 

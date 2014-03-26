@@ -85,6 +85,8 @@ th{background: #e0eff5 no-repeat;}
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
 }
 
+.button-blue:hover{text-decoration: none; color: white;}
+
 .button-confirm{width: 165px; height: 32px; padding: 5px 15px;}
 
 
@@ -138,10 +140,11 @@ a .buy_now{
 .credit_wrapper:hover{ box-shadow: 0px 0px 5px 5px #c4c4ce;}
 .detalle{min-height: 280px}
 .detalle a{color: black; text-decoration: none;}
-.description{min-height: 120px;}
+.description{min-height: 60px;}
 .editar{ background: url("../img/lapiz.png") no-repeat;}
 .eliminar{ background: url("../img/papelera.png") no-repeat;}
 .filtros{ border-bottom: 4px solid #54a4ca; font-weight: bold; margin:23px auto; padding: 7px; color: #54a4ca;}
+.imagen img{width: 100px;}
 .initialism li a{color: black;}
 .item{margin-bottom: 15px; padding: 15px 0; }
 .blueline{ padding: 15px 0; border-top: 4px solid #54A4CA; }

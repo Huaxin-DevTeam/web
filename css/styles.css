@@ -153,14 +153,18 @@ a .buy_now{
 .logout a, .misanuncios a, .editar a, .eliminar a, .contactar a{padding-left: 25px;}
 .misanuncios{background: url("../img/llave-big.png") no-repeat 0 -1px;}
 .misanuncios, .logout, .buycredits, .creditos {width: 55px;height: 60px;padding: 0; margin-left: 10px;}
-.menuitem.col-xs-1 > a { padding: 35px 30px; }
+.menuitem.col-xs-1 > a { padding: 35px 30px;display: block; }
 .col-xs-3.creditos.blue-text { line-height: 120px; text-align: center; }
 .movil{font-size: 8.5pt;}
 .porque-huaxin{margin-bottom: 15px;}
 .precio{font-weight: bold; font-family: "Arial Black", Gadget, sans-serif; font-size: 20pt; color: #54A4CA;}
 .publica a, .button-confirm{height: inherit;color: white;}
 .publica a:hover, .button-confirm:hover{text-decoration: none;}
-.bigbutton{display: block; width: 100%;}
+.bigbutton {
+    display: block;
+    margin: 0 -15px;
+    width: 120%;
+}
 .resumen-compra{margin-bottom: 15px;}
 .thumbnail{position: relative;}
 .texto-anuncio{background: rgba(255,255,255,0.5); position: absolute; bottom: 0; height: 48px; width: 97%; text-transform: uppercase; padding: 3px; overflow: hidden;}

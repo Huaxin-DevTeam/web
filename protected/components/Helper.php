@@ -51,9 +51,9 @@ class Helper extends CComponent{
 	}
 	
 	public static function purify($str){
-		 $attr = CHtml::decode(strip_tags($str));
-		 $p = new CHtmlPurifier();
-		 return $p->purify($attr);
+		$str = str_ireplace("€", "&euro;", $str);
+		$attr = CHtml::decode(strip_tags($str));
+		return $attr;
 	}
 	
 	public static function needLogin($url){

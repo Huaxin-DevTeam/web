@@ -45,7 +45,7 @@
 					<div class="menuitem logout col-xs-1"> <?php echo CHtml::link('',array('/user/logout')); ?> </div>
             <?php else: ?>
             			
-                    <div class="col-md-3 col-xs-5 text-center col-md-offset-7 col-xs-offset-2">
+                    <div class="col-md-3 col-xs-12 text-center col-md-offset-7 ">
                         <?php $this->widget('zii.widgets.CMenu',array(
 						    'items'=> array_merge($this->main_menu,array(
 						        array('label'=>'Register', 'url'=>array('/user/register'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'registrate')),

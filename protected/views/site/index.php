@@ -19,49 +19,26 @@
             <div class="row-fluid">
                 <div class="carousel slide" id="myCarousel">
                     <div class="carousel-inner text-center">
-                        <div class="item active">
+                    	<?php 
+                    		for($i=0;$i<count($premium);): 
+                    	?>
+                    	
+                        <div class="item <?php if($i==0) print "active" ?>">
+                            
+                            <?php for($y=0;$y<3;$y++): ?>
+                            <?php if($i < count($premium)): ?>
                             <div class="col-xs-4 thumbnail">
-								<img src="http://placehold.it/260x260" alt="">
-								<div class="texto-anuncio">ola ke aseola ke aseola ke ase</div>
+	                            <a href="<?php echo Yii::app()->request->baseUrl ?>/view/<?php print $premium[$i]->id ?>">
+									<img src="<?php print $premium[$i]->image_url ?>" alt="">
+									<div class="texto-anuncio"><?php print $premium[$i]->title ?></div>
+	                            </a>
 							</div>
-                            <div class="col-xs-4 thumbnail">
-								<img src="http://placehold.it/260x260" alt="">
-								<div class="texto-anuncio">ola ke ase</div>
-							</div>
-                            <div class="col-xs-4 thumbnail">
-								<img src="http://placehold.it/260x260" alt="">
-								<div class="texto-anuncio">ola ke ase</div>
-							</div>
+							<?php $i++; ?>
+							<?php endif; ?>
+							<?php endfor; ?>
+                           
                         </div>
-
-                        <div class="item">
-							<div class="col-xs-4 thumbnail">
-								<img src="http://placehold.it/260x260" alt="">
-								<div class="texto-anuncio">ola ke ase</div>
-							</div>
-                            <div class="col-xs-4 thumbnail">
-								<img src="http://placehold.it/260x260" alt="">
-								<div class="texto-anuncio">ola ke ase</div>
-							</div>
-                            <div class="col-xs-4 thumbnail">
-								<img src="http://placehold.it/260x260" alt="">
-								<div class="texto-anuncio">ola ke ase</div>
-							</div>
-                        </div>
-
-                        <div class="item">
-                            <div class="col-xs-4 thumbnail">
-								<img src="http://placehold.it/260x260" alt="">
-								<div class="texto-anuncio">ola ke ase</div>
-							</div>
-                            <div class="col-xs-4 thumbnail"><img src="http://placehold.it/260x260" alt="">
-								<div class="texto-anuncio">ola ke ase</div>
-							</div>
-                            <div class="col-xs-4 thumbnail">
-								<img src="http://placehold.it/260x260" alt="">
-								<div class="texto-anuncio">ola ke ase</div>
-							</div>
-                        </div>
+                        <?php endfor; ?>
                     </div>
                 </div>
             </div>

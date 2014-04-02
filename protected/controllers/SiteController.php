@@ -30,8 +30,11 @@ class SiteController extends Controller
 	public function actionIndex()
 	{				
 		// Load premium items
+		$sql = "NOW() BETWEEN date_published AND date_end AND premium=true";
+		$items = Item::model()->findAll($sql);
 		
 		$data = array(
+			'premium' => $items,
 		);
 		
 		$this->render('index', $data);

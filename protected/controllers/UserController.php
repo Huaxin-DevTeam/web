@@ -84,9 +84,6 @@ class UserController extends Controller{
 			   		$user->date_register = new CDbExpression('NOW()');
 			   		$user->token = Helper::getToken();
 			   		
-			   		//Save!
-			   		$user->save();
-			   		
 			   		//Create email to confirm
 			   		$mail = new YiiMailer('confirmation', array(
 				   		'email' => $user->email, 
@@ -95,14 +92,17 @@ class UserController extends Controller{
 
 			   		$mail->setFrom("info@huaxin.com", "HUAXIN");
 			   		$mail->setSubject("Huaxin Account Confirmation");
-			   		//$mail->setTo($user->email);
-			   		$mail->setTo("friko67@gmail.com");
+			   		$mail->setTo($user->email);
+			   		//$mail->setTo("friko67@gmail.com");
 
 					if($mail->send()) {
 						Yii::app()->user->setFlash('success','Thank you for contacting us. We will respond to you as soon as possible.');
 					}else{
 						Yii::app()->user->setFlash('error','Error while sending email: '.$mail->getError());
 					}
+					
+					//Save!
+			   		$user->save();
 			   		
 			   		$this->redirect(Yii::app()->homeUrl);
 	           	}

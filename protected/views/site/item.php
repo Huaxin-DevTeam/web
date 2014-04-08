@@ -26,8 +26,10 @@
 			</div>		
 		</div>
 		<ul class="bottom pull-right list-inline list-unstyled clearfix">
+			<?php if($item->user_id == Yii::app()->user->id): ?>
 			<li class="editar"><a href="<?php echo Yii::app()->request->baseUrl;?>/edit/<?php print $item->id; ?>">Editar</a></li>
 			<li class="eliminar"><a href="<?php echo Yii::app()->request->baseUrl;?>/delete/<?php print $item->id; ?>" class="delete confirm">Eliminar</a></li>
+			<?php endif; ?>
 			<!--<li class="contactar"><a href="#">Contactar</a></li>-->
 		</ul>
 		<span class="gray"><?php print Yii::t("huaxin", "Anuncio visto :views veces", array(":views" => $item->num_views )); ?></span>

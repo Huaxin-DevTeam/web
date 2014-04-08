@@ -10,6 +10,7 @@ h5{
 h5 a{color: white; text-decoration: none; display: block; width: 100%;}
 h5 a:hover{color: white; text-decoration: none;}
 
+label{font-size: 10pt;}
 header{height: 90px;}
 hr{height: 5px; background-color: #54a4ca;}
 th{background: #e0eff5 no-repeat;}
@@ -84,7 +85,7 @@ th{background: #e0eff5 no-repeat;}
   color: #FFFFFF;
   font-weight: bold;
   height: 35px;
-  padding: 0 15px;
+  padding: 5px 15px;
   border-radius: 3px;
   box-shadow: 0 -3px 1px rgba(0, 0, 0, 0.45) inset, 0 2px 2px rgba(0, 0, 0, 0.25);
   text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
@@ -173,7 +174,6 @@ a .buy_now{
 .resumen-compra{margin-bottom: 15px;}
 .thumbnail{position: relative;}
 .texto-anuncio{background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3); position: absolute; bottom: 4px; height: 48px; width: 95%; text-transform: uppercase; padding: 3px; overflow: hidden; color: white;}
-.veranuncio {padding: 5px;}
 
 .btn-login{ 
   background: url("../img/arrow-login.png") no-repeat;

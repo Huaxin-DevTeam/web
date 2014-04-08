@@ -99,7 +99,7 @@
 			<div class="col-xs-6 col-sm-12">
 				<p>
 					<?php echo $form->label($model,'duration'); ?>
-					<?php echo $form->textField($model,'duration',array("style" => "border:0; color:#f6931f; font-weight:bold;", "id" => "amount")) ?>
+					<?php echo $form->textField($model,'duration',array("style" => "border:0; color:#f6931f; font-weight:bold;", "id" => "amount","readonly" => true)) ?>
 				</p>
 				<div id="slider-range-min"></div>
 			</div>

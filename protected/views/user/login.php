@@ -38,7 +38,8 @@
 	</div>
 
 	<div class="row">
-		<div class="form-group col-md-offset-8 col-sm-1 col-sm-offset-8 col-xs-offset-1 bigbottom">			
+		<div class="col-xs-3 col-sm-offset-3 gray"><a href="#">Lost password?</a></div>
+		<div class="form-group col-sm-1 col-sm-offset-2 col-xs-offset-1 bigbottom">			
 			<div class="button button-register col-xs-offset-5">
 			<?php echo CHtml::submitButton('Login'); ?>
 			</div>

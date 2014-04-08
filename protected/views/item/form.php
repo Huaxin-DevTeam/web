@@ -5,7 +5,11 @@
 /* @var $form CActiveForm  */
 	$this->pageTitle=Yii::app()->name . ' - Nuevo Anuncio';
 ?>
-<?php $form=$this->beginWidget('CActiveForm'); ?>
+<?php $form=$this->beginWidget('CActiveForm',array(
+        'id' => 'upload-form',
+        'enableAjaxValidation' => false,
+        'htmlOptions' => array('enctype' => 'multipart/form-data'),
+    )); ?>
 <?php echo $form->errorSummary($model,null,null,array('class'=>"bs-callout bs-callout-danger")); ?>
 <div class="col-xs-12 form bigbottom">
 		<div class="col-xs-12 blue margenh5">
@@ -64,7 +68,7 @@
 			        <?php echo $form->label($model,'image'); ?>
 				</div>
 				<div class="col-sm-8 col-xs-12">					
-			        <?php echo $form->textField($model,'image',array("class" => "form-control")) ?>
+			        <?php echo $form->fileField($model,'image',array("class" => "")) ?>
 				</div>  
 		   </div>
 		    
@@ -88,7 +92,7 @@
 		    
 			
 		 
-		<?php $this->endWidget(); ?>
+		
 		</div><!-- form -->
 		<div class="form-group col-sm-3 col-xs-12 sticky">			
 			
@@ -114,7 +118,7 @@
 				<?php echo CHtml::submitButton('Save'); ?>
 			</div>
 		</div>
-						
+		<?php $this->endWidget(); ?>	
 </div>
 
 <script>
@@ -122,12 +126,20 @@ $(function() {
 	$(document).ready(function(){
 		$( "#slider-range-min" ).slider({
 			range: "min",
-			value: <?php echo $model->duration ? : 1; ?>,
-			min: 1,
-			max: 7,
+			value: <?php echo $model->duration ? : 7; ?>,
+			min: 7,
+			max: 365,
+			step: 89,
 			slide: function( event, ui ) {
-				$( "#amount" ).val( ui.value );
-				var total = ui.value + ($('#promote').attr("checked") == "checked" ? ui.value*2 : 0);
+				console.log(ui.value);
+				if(ui.value<=73) value = 7;
+				else if(ui.value<=146) value = 14;
+				else if(ui.value<=219) value = 30;
+				else if(ui.value<=292) value = 60;
+				else if(ui.value<=365) value = 365;
+//				$( "#slider-range-min" ).slider('option','value',value);
+				$( "#amount" ).val( value );
+				var total = value + ($('#promote').attr("checked") == "checked" ? value*2 : 0);
 				$("#total_credits").html( total );
 			}
 		});
@@ -141,7 +153,9 @@ $(function() {
 			var days = parseInt($( "#amount" ).val());
 			var total = days + ($('#promote').attr("checked") == "checked" ? days*2 : 0);
 			$("#total_credits").html( total );
+			$("#ytpromote").attr('value',1);
 		});
+		
 		var days = parseInt($( "#amount" ).val());
 		var total = days + ($('#promote').attr("checked") == "checked" ? days*2 : 0);
 		$("#total_credits").html( total );

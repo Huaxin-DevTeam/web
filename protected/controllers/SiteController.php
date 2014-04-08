@@ -30,7 +30,7 @@ class SiteController extends Controller
 	public function actionIndex()
 	{				
 		// Load premium items
-		$sql = "NOW() BETWEEN date_published AND date_end AND premium=true";
+		$sql = "NOW() BETWEEN date_published AND date_end AND premium=true ORDER BY date_published DESC";
 		$items = Item::model()->findAll($sql);
 		
 		$data = array(
@@ -84,6 +84,10 @@ class SiteController extends Controller
 		
 		$item = Item::model()->findByPk($id);
 		$cat = Category::model()->findByPk($item->category_id);
+
+		$item->num_views++;
+		$item->save();
+
 		$data = array(
 			'item' => $item,
 			'category' => $cat,
@@ -94,7 +98,7 @@ class SiteController extends Controller
 
 	public function actionMyads(){
 		
-		$sql = "NOW() BETWEEN date_published AND date_end AND user_id = :id";
+		$sql = "NOW() BETWEEN date_published AND date_end AND user_id = :id ORDER BY date_published DESC";
 		$opts = array(":id" => Yii::app()->user->id);
 		
 		$dbitems = Item::model()->findAll($sql,$opts);
@@ -174,6 +178,7 @@ class SiteController extends Controller
 		
 		$dbitems = Item::model()->findAll($sql,$opts);
 		
+		$sql .=" ORDER BY date_published DESC";
 		$page = 3;
 		$total = count($dbitems);
 		
@@ -224,30 +229,54 @@ class SiteController extends Controller
 			if($model->validate()){
 				//Ok, create!
 				
-				$premium = strtolower($model->premium) == "on";
+				$imgpath = "/images/uploads/";
+				$savepath = Yii::app()->basePath.'/..'.$imgpath;
+				
+				$premium = $_POST['ItemForm']['premium'];
 				$duration = $model->duration;
-				$num_credits = $duration + ($premium ? 2*$duration : 0);
+				$num_credits = $duration + ($premium ? 3*$duration : 0);
 				
 				$item = new Item;
 				$item->user_id = $user->id;
 				$item->category_id = $model->category;
 				$item->title = Helper::purify($model->title);
-				$item->description = $model->description; //Helper::purify($model->description);
+				$item->description = Helper::purify($model->description);
 				$item->price = $model->price;
 				$item->phone = $model->phone;
-				$item->image_url = "/img/placeholder.png";//$model->??;
+				
+				
+				$model->image = CUploadedFile::getInstance($model,'image');
+				if($model->image != null){					
+					$item->image_url = $imgpath . $model->image->name;
+				}else{
+					$item->image_url = "/img/placeholder.png";
+				}			
+
 				$item->location = Helper::purify($model->location);
 				$item->date_published = new CDbExpression('NOW()');
 				$item->date_end = new CDbExpression("NOW() + INTERVAL $duration DAY");
-				$item->premium = $premium ? 1 : 0;
+				$item->premium = $premium;
 				
 				if(!$item->validate()){
 					die(print_r($item->getErrors()));
 				}
 				
-				$item->save();
-				$user->credits -= $num_credits;;
-				$user->save();
+				if($user->credits < $num_credits){
+					Yii::app()->user->setFlash('warning', Yii::t('huaxin',"You don't have enough credits for this ad."));
+					//$this->redirect("order/select");
+					$data = array(
+						'model' => $model,
+					);		
+					
+					$this->render('//item/form',$data);
+					return;
+				}
+				
+				if($item->save()){
+					if($model->image instanceof CUploadedFile) $model->image->saveAs($savepath.$user->id."_".$item->id."_".$model->image->name);
+					$user->credits -= $num_credits;
+					$user->save();
+				}
 				
 				Yii::app()->user->setFlash('success',Yii::t("huaxin","Creation successful."));
 				$this->redirect("/view/".$item->id);
@@ -274,6 +303,9 @@ class SiteController extends Controller
 			$this->redirect(Yii::app()->getHomeUrl());
 		}
 		
+		$imgpath = "/images/uploads/";
+		$savepath = Yii::app()->basePath.'/..'.$imgpath;
+		$prev_img = $item->image_url;
 		
 		$model = new ItemForm;
 		
@@ -290,14 +322,23 @@ class SiteController extends Controller
 				$item->description = Helper::purify($model->description);
 				$item->price = $model->price;
 				$item->phone = $model->phone;
-				$item->image_url = "/img/placeholder.png";//$model->??;
+				
+				$model->image = CUploadedFile::getInstance($model,'image');	
+				if($model->image != null){					
+					$item->image_url = $imgpath . $model->image->name;
+				}else{
+					$item->image_url = $prev_img;
+				}
+				
 				$item->location = Helper::purify($model->location);
 				
 				if(!$item->validate()){
 					die(print_r($item->getErrors()));
 				}
 				
-				$item->save();
+				if($item->save()){
+					if($model->image instanceof CUploadedFile) $model->image->saveAs($savepath.$user->id."_".$item->id."_".$model->image->name);
+				}
 				
 				Yii::app()->user->setFlash('success',Yii::t("huaxin","Update successful."));
 				$this->redirect("/view/".$item->id);

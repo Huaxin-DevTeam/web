@@ -5,7 +5,11 @@
 /* @var $form CActiveForm  */
 	$this->pageTitle=Yii::app()->name . ' - Nuevo Anuncio';
 ?>
-<?php $form=$this->beginWidget('CActiveForm'); ?>
+<?php $form=$this->beginWidget('CActiveForm',array(
+        'id' => 'upload-form',
+        'enableAjaxValidation' => false,
+        'htmlOptions' => array('enctype' => 'multipart/form-data'),
+    )); ?>
 <?php echo $form->errorSummary($model,null,null,array('class'=>"bs-callout bs-callout-danger")); ?>
 <div class="col-xs-12 form bigbottom">
 		<div class="col-xs-12 blue margenh5">
@@ -64,7 +68,7 @@
 			        <?php echo $form->label($model,'image'); ?>
 				</div>
 				<div class="col-sm-8 col-xs-12">					
-			        <?php echo $form->textField($model,'image',array("class" => "form-control")) ?>
+			        <?php echo $form->fileField($model,'image',array("class" => "")) ?>
 				</div>  
 		   </div>
 		    

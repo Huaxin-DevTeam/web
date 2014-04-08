@@ -27,7 +27,7 @@ class ItemForm extends CFormModel
 		return array(
 			//required fields
 			array('category, title, description, price, phone, location, duration', 'required'),
-			array('title,description','length','min'=>7),
+			array('title,description','length','min'=>3),
 			array('price','numerical'),
 			array('phone','numerical',
 				'integerOnly'=>true,

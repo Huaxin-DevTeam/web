@@ -18,6 +18,11 @@ th{background: #e0eff5 no-repeat;}
 	border: 0;
 	border-bottom: 1px dotted #DDD;
 }
+
+.thumbnail > img, .thumbnail a > img{
+	width: 100%;
+}
+
 .ads{
 	padding: 0;	
 }
@@ -167,7 +172,7 @@ a .buy_now{
 }
 .resumen-compra{margin-bottom: 15px;}
 .thumbnail{position: relative;}
-.texto-anuncio{background: rgba(255,255,255,0.5); position: absolute; bottom: 0; height: 48px; width: 97%; text-transform: uppercase; padding: 3px; overflow: hidden;}
+.texto-anuncio{background: none repeat scroll 0 0 rgba(0, 0, 0, 0.3); position: absolute; bottom: 4px; height: 48px; width: 95%; text-transform: uppercase; padding: 3px; overflow: hidden; color: white;}
 .veranuncio {padding: 5px;}
 
 .btn-login{ 
@@ -320,4 +325,8 @@ header{position:relative; margin-top: 20px;}
 {
     background-color: #54A4CA;
     cursor: not-allowed;
+}
+
+.gray {
+    color: #808080;
 }

@@ -96,7 +96,7 @@ class UserController extends Controller{
 			   		//$mail->setTo("friko67@gmail.com");
 
 					if($mail->send()) {
-						Yii::app()->user->setFlash('success','Thank you for contacting us. We will respond to you as soon as possible.');
+						Yii::app()->user->setFlash('success','Thank you for registering. Please, check your email and follow the instructions.');
 					}else{
 						Yii::app()->user->setFlash('error','Error while sending email: '.$mail->getError());
 					}
@@ -127,10 +127,103 @@ class UserController extends Controller{
 			
 			Yii::app()->user->setFlash('success', "Usuario registrado correctamente");
 			$this->redirect(Yii::app()->homeUrl);
-			
-			echo "<pre>";
-			print_r($user);
 		}
+	}
+	
+	public function actionPassword(){
+		$form = new LostPasswordForm;
+		
+		if(isset($_POST['LostPasswordForm'])){
+			$form->attributes = $_POST['LostPasswordForm'];
+			
+			$email  = strtolower(trim($_POST['LostPasswordForm']['email']));
+						
+			$form->email = $email;
+			
+			if($form->validate()){
+				
+				$auser = User::model()->find("LOWER(email) = :email",
+					array(":email" => $email)
+				);
+				
+				
+	           	if(!$auser){
+		           	$form->addError("email",Yii::t("huaxin","This email is not on our database!"));
+	           	}else{
+	           		
+			   		$auser->token = Helper::getToken();
+			   		
+			   		//Create email to confirm
+			   		$mail = new YiiMailer('password', array(
+				   		'email' => $auser->email, 
+				   		'link' => Yii::app()->createAbsoluteUrl('user/resetpwd', array('token' => $auser->token))
+			   		));
+
+			   		$mail->setFrom("info@huaxin.com", "HUAXIN");
+			   		$mail->setSubject("Huaxin Account Password Reset");
+			   		$mail->setTo($auser->email);
+			   		//$mail->setTo("friko67@gmail.com");
+
+					if($mail->send()) {
+						Yii::app()->user->setFlash('success','Succes. Please, check your email and follow the instructions.');
+					}else{
+						Yii::app()->user->setFlash('error','Error while sending email: '.$mail->getError());
+					}
+					
+					//Save!
+			   		$auser->save();
+			   		
+			   		$this->redirect(Yii::app()->homeUrl);
+	           	}
+			}
+			
+		}
+		
+		$this->render('lostpassword', array('model'=>$form));
+	}
+	
+	public function actionResetpwd($token)
+	{
+		
+		$form = new ResetPwdForm;
+		
+		$user = User::model()->find("token = :token", 
+							array(":token" => $token)
+				);
+		
+		if(isset($_POST['ResetPwdForm'])){
+			
+			$form->attributes = $_POST['ResetPwdForm'];
+			
+			$passw  = trim($_POST['ResetPwdForm']['password']);
+			$passw2 = trim($_POST['ResetPwdForm']['password2']);
+			
+			$form->password = $passw;
+			$form->password2 = $passw2;
+			
+			if($form->validate()){
+				
+				if(!$user){
+					Yii::app()->user->setFlash('danger', "Wrong token!");
+					$this->redirect(Yii::app()->homeUrl);
+				}
+				
+				$user->password = $user->hashPassword($passw);
+				$user->save();
+				
+				Yii::app()->user->setFlash('success','All done! You can login with your new password now.');
+				$this->redirect(Yii::app()->homeUrl);
+			}			
+			
+		}else{
+		
+			if(!$user){
+				Yii::app()->user->setFlash('danger', "Wrong token!");
+				$this->redirect(Yii::app()->homeUrl);
+			}
+		}
+		
+		$this->render('resetpwd', array("model" => $form, "token" => $token));
 	}
 	
 }

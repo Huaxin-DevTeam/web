@@ -56,15 +56,15 @@
     </div>
 
     <div class="col-sm-4 col-sm-offset-0 col-xs-11 col-xs-offset-1">
-        <img src="<?php echo Yii::app()->request->baseUrl; ?>/img/locker-big.png" class="img-responsive center-block">
+		<a href="<?php echo Yii::app()->request->baseUrl; ?>/seguridad">	
+			<img src="<?php echo Yii::app()->request->baseUrl; ?>/img/locker-big.png" class="img-responsive center-block">
 
-        <h6 class="text-center">信任与安全</h6>
+			<h6 class="text-center">信任与安全</h6>
 
-        <p align="justify" class="small">华信软件是由华信传媒制作并管理的旅西华人华侨网上信息平台。华信传媒拥有专业、敬业、正规的软件开发和管理团队，我们本着服务旅西华人华侨、互利双赢的理念，认真负责的做好研发和管理工作，热忱的为华人社区的创业和生活做最好的服务。
-本平台严禁发布任何虚假信息、垃圾信息、和一切违反中西两国法律法规、以及违反公序良俗的信息，一经发现，立即删除，并发出警告信息，二次违反，永久封帐号。同时欢迎用户朋友监督检举，我们查实后，给予奖励。
-用户信息和资料，包括注册信息和银行支付信息，我们承诺不向任何第三方机构和组织、个人透露。
-    做最专业、最受信任、最安全的华人社区信息平台是我们矢志不渝的目标和责任。
-</p>
+			<p align="justify" class="small">华信软件是由华信传媒制作并管理的旅西华人华侨网上信息平台。华信传媒拥有专业、敬业、正规的软件开发和管理团队，我们本着服务旅西华人华侨、互利双赢的理念，认真负责的做好研发和管理工作，热忱的为华人社区的创业和生活做最好的服务。
+	本平台严禁发布任何虚假信息、垃圾信息、和一切违反中西两国法律法规、以及违反公序良俗的信息，一经发现，立即删除，并发出...
+			</p>
+		</a>
     </div>
 
     <div class="col-sm-4 col-sm-offset-0 col-xs-11 col-xs-offset-1">

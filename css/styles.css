@@ -151,6 +151,7 @@ a .buy_now{
 .editar{ background: url("../img/lapiz.png") no-repeat;}
 .eliminar{ background: url("../img/papelera.png") no-repeat;}
 .filtros{ border-bottom: 4px solid #54a4ca; font-weight: bold; margin:23px auto; padding: 7px; color: #54a4ca;}
+.frase {left: 365px; position: absolute; top: 40px;}
 .imagen img{width: 100px;}
 .initialism li a{color: black;}
 .item{margin-bottom: 15px; padding: 15px 0; }

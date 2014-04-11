@@ -279,7 +279,7 @@ class SiteController extends Controller
 				
 				$premium = $_POST['ItemForm']['premium'];
 				$duration = $model->duration;
-				$num_credits = $duration + ($premium ? 3*$duration : 0);
+				$num_credits = Helper::getCreditCost($duration) + ($premium ? 2*Helper::getCreditCost($duration) : 0);
 				
 				$item = new Item;
 				$item->user_id = $user->id;

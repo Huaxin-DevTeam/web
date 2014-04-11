@@ -123,6 +123,14 @@
 
 <script>
 $(function() {
+
+	function getCosts(duration){
+		if(duration == 7) return 3;
+		if(duration == 14) return 5;
+		if(duration == 30) return 9;
+		if(duration == 60) return 15;
+		if(duration == 365) return 30;
+	}
 	$(document).ready(function(){
 		$( "#slider-range-min" ).slider({
 			range: "min",
@@ -139,7 +147,7 @@ $(function() {
 				else if(ui.value<=365) value = 365;
 //				$( "#slider-range-min" ).slider('option','value',value);
 				$( "#amount" ).val( value );
-				var total = value + ($('#promote').attr("checked") == "checked" ? value*2 : 0);
+				var total = getCosts(value) + ($('#promote').attr("checked") == "checked" ? getCosts(value)*2 : 0);
 				$("#total_credits").html( total );
 			}
 		});
@@ -151,13 +159,13 @@ $(function() {
 		
 		$(".tzCheckBox").click( function(){
 			var days = parseInt($( "#amount" ).val());
-			var total = days + ($('#promote').attr("checked") == "checked" ? days*2 : 0);
+			var total = getCosts(days) + ($('#promote').attr("checked") == "checked" ? getCosts(days)*2 : 0);
 			$("#total_credits").html( total );
 			$("#ytpromote").attr('value',1);
 		});
 		
 		var days = parseInt($( "#amount" ).val());
-		var total = days + ($('#promote').attr("checked") == "checked" ? days*2 : 0);
+		var total = getCosts(days) + ($('#promote').attr("checked") == "checked" ? getCosts(days)*2 : 0);
 		$("#total_credits").html( total );
 	});
 	

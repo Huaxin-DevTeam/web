@@ -79,5 +79,16 @@ class Helper extends CComponent{
 	public static function getCount(){
 		return count(Item::model()->findAll("NOW() BETWEEN date_published AND date_end" ));
 	}
+	
+	public static function getCreditCost($duration){
+		$cost = array(
+			7 => 3,
+			14 => 5,
+			30 => 9,
+			60 => 15,
+			365 => 30,
+		);
+		return $cost[$duration];
+	}
 
 }

@@ -17,12 +17,12 @@
 		</div>
 		
 		<div class="form col-xs-12 col-sm-9">
-			<div class="form-group row">
+			<div class="form-group row hidden">
 				<div class="col-sm-4 col-xs-12">
 					<?php echo $form->label($model,'category'); ?>
 				</div>
 				<div class="col-sm-8 col-xs-12">
-					<?php echo $form->dropDownList($model,'category',Helper::getCategories(),array('prompt' => '--Select--',"class" => "form-control")) ?>
+					<?php echo $form->dropDownList($model,'category',Helper::getCategories(),array('prompt' => '--Select--',"class" => "form-control", "options" => array($model->category => array("selected" => true)))) ?>
 				</div>
 				
 			</div>

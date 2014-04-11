@@ -80,6 +80,7 @@ class OrderController extends Controller{
 		$purchase = new Purchase();
 		$purchase->user_id = Yii::app()->user->id;
 		$purchase->method = strtoupper("bank_transfer");
+		$purchase->price = $this->option->price;
 		$purchase->num_credits = $this->option->num_credits;
 		$purchase->date = new CDbExpression('NOW()');
 		$purchase->status = 0;
@@ -87,8 +88,7 @@ class OrderController extends Controller{
 		$purchase->payment_token = $purchase->token;
 		if($purchase->validate()){
 			if($purchase->save()){
-				Yii::app()->user->setFlash('success', Yii::t('huaxin',"Thank you for your purchase!"));
-				$this->redirect(Yii::app()->homeUrl);
+				$this->render('transfer',array("token" => $purchase->token, "price" => $this->option->price, "credits" => $this->option->num_credits));
 			}
 		}else{
 			echo "ERROR: " . PHP_EOL;
@@ -158,7 +158,8 @@ class OrderController extends Controller{
 		//Store in our db...
 		$purchase = new Purchase();
 		$purchase->user_id = Yii::app()->user->id;
-		$purchase->method = $isCC ? strtoupper("creditcard") : strtoupper("paypal");
+		$purchase->method = $isCC ? strtoupper("credit_card") : strtoupper("paypal");
+		$purchase->price = $this->option->price;
 		$purchase->num_credits = $this->option->num_credits;
 		$purchase->date = new CDbExpression('NOW()');
 		$purchase->status = 0;
@@ -190,10 +191,19 @@ class OrderController extends Controller{
 		
 		$success = isset($_GET['success']) ? $_GET['success'] : false;
 		$token = trim($_GET['token']);
-		
+
 		if($success && $token != null && $token != ""){
+		
+			$purchase = Purchase::model()->find(
+				"user_id = :uid AND status = 0 AND token = :token",
+				array(
+					':uid' => Yii::app()->user->id,
+					':token' => $token,
+				)
+			);
+			
 			$payerId = $_GET['PayerID'];
-			$this->render("buy", array('token' => $token, 'payerId' => $payerId));
+			$this->render("buy", array('token' => $token, 'payerId' => $payerId, "price" => $purchase->price, "credits" => $purchase->num_credits));
 			exit;
 		}
 		

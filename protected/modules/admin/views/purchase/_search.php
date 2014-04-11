@@ -27,6 +27,11 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->label($model,'price'); ?>
+		<?php echo $form->textField($model,'price'); ?>
+	</div>
+	
+	<div class="row">
 		<?php echo $form->label($model,'num_credits'); ?>
 		<?php echo $form->textField($model,'num_credits'); ?>
 	</div>

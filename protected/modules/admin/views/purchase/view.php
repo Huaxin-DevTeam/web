@@ -24,6 +24,7 @@ $this->menu=array(
 		'id',
 		'user_id',
 		'method',
+		'price',
 		'num_credits',
 		'date',
 		'status',

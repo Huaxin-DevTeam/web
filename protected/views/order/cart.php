@@ -59,6 +59,9 @@
 				<div class="col-sm-6">
 					<img src="<?php echo Yii::app()->request->baseUrl; ?>/img/secure-creditcard-logo.jpg" height="100px" />
 				</div>
+				<div class="col-sm-6">
+					<p>Because we want to provide you the maximum security, we delegate the credit card payment to PayPal. You don't need to register to use this service, click here to know how.</p>
+				</div>
 			</div>
            
        </div> 

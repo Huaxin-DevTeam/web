@@ -32,6 +32,13 @@
 	</div>
 
 	<div class="row">
+		<?php echo $form->labelEx($model,'price'); ?>
+		<?php echo $form->textField($model,'price'); ?>
+		<?php echo $form->error($model,'price'); ?>
+	</div>
+
+
+	<div class="row">
 		<?php echo $form->labelEx($model,'num_credits'); ?>
 		<?php echo $form->textField($model,'num_credits'); ?>
 		<?php echo $form->error($model,'num_credits'); ?>

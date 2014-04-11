@@ -9,8 +9,8 @@
 				<th class="col-xs-6">Precio</th>
 			</tr>
 			<tr>
-				<td class="col-xs-6">un puñau de créditos.</td>
-				<td class="col-xs-6">45€</td>
+				<td class="col-xs-6"><?php print $credits . " " . Yii::t("huaxin","credits"); ?></td>
+				<td class="col-xs-6"><?php print $price; ?>€</td>
 			</tr>	
 			
 		</table>

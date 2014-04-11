@@ -7,6 +7,7 @@
  * @property integer $id
  * @property integer $user_id
  * @property string $method
+ * @property string $price
  * @property integer $num_credits
  * @property string $date
  * @property string $token
@@ -33,7 +34,7 @@ class Purchase extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('user_id, method, num_credits, date, token', 'required'),
+			array('user_id, method, price, num_credits, date, token', 'required'),
 			array('user_id, num_credits', 'numerical', 'integerOnly'=>true),
 			array('method', 'length', 'max'=>13),
 			array('token,payment_token', 'length', 'max'=>255),
@@ -64,6 +65,7 @@ class Purchase extends CActiveRecord
 			'id' => 'ID',
 			'user_id' => 'User',
 			'method' => 'Method',
+			'price' => 'Price',
 			'num_credits' => 'Num Credits',
 			'date' => 'Date',
 			'token' => 'Token',
@@ -92,6 +94,7 @@ class Purchase extends CActiveRecord
 		$criteria->compare('id',$this->id);
 		$criteria->compare('user_id',$this->user_id);
 		$criteria->compare('method',$this->method,true);
+		$criteria->compare('price',$this->price);
 		$criteria->compare('num_credits',$this->num_credits);
 		$criteria->compare('date',$this->date,true);
 		$criteria->compare('token',$this->token,true);

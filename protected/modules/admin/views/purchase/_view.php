@@ -17,6 +17,10 @@
 	<?php echo CHtml::encode($data->method); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('price')); ?>:</b>
+	<?php echo CHtml::encode($data->price); ?>
+	<br />
+
 	<b><?php echo CHtml::encode($data->getAttributeLabel('num_credits')); ?>:</b>
 	<?php echo CHtml::encode($data->num_credits); ?>
 	<br />

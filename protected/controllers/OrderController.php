@@ -55,7 +55,7 @@ class OrderController extends Controller{
 			switch($method){
 				
 				case "bank_transfer": 
-					die($method); 
+					$this->completeBankTransfer();
 					break;
 				
 				case "credit_card": 
@@ -73,6 +73,28 @@ class OrderController extends Controller{
 
 		$data = array('option' => $this->option, 'selected' => $selected);
 		$this->render('cart',$data);
+	}
+	
+	private function completeBankTransfer(){
+		//Store in our db...
+		$purchase = new Purchase();
+		$purchase->user_id = Yii::app()->user->id;
+		$purchase->method = strtoupper("bank_transfer");
+		$purchase->num_credits = $this->option->num_credits;
+		$purchase->date = new CDbExpression('NOW()');
+		$purchase->status = 0;
+		$purchase->token = Helper::getEasyToken();
+		$purchase->payment_token = $purchase->token;
+		if($purchase->validate()){
+			if($purchase->save()){
+				Yii::app()->user->setFlash('success', Yii::t('huaxin',"Thank you for your purchase!"));
+				$this->redirect(Yii::app()->homeUrl);
+			}
+		}else{
+			echo "ERROR: " . PHP_EOL;
+			print_r($purchase->getErrors());
+			exit;
+		}
 	}
 	
 	private function startPayPalTransaction($isCC = false){

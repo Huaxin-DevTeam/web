@@ -19,7 +19,16 @@ class Helper extends CComponent{
         } while ($rnd >= $range);
         return $min + $rnd;
 	}
-
+	public static function getEasyToken(){
+		$length = 7;
+		$token = "";
+	    $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	    for($i=0;$i<$length;$i++){
+	        $token .= $codeAlphabet[self::crypto_rand_secure(0,strlen($codeAlphabet))];
+	    }
+	    return Yii::app()->user->id."-".$token;
+	}
+	
 	public static function getToken($length=25){
 	    $token = "";
 	    $codeAlphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

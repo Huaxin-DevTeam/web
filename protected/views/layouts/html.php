@@ -1,5 +1,5 @@
+<?php $lang = isset($_GET['lang']) ? $_GET['lang'] : "en"; Yii::app()->setLanguage($lang); ?>
 <!DOCTYPE html>
-
 <html>
 <head>
     <title><?php echo $this->pageTitle ?></title>
@@ -48,8 +48,8 @@
                     <div class="col-md-3 col-xs-12 text-center col-md-offset-7 ">
                         <?php $this->widget('zii.widgets.CMenu',array(
 						    'items'=> array_merge($this->main_menu,array(
-						        array('label'=>'Register', 'url'=>array('/user/register'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'registrate')),
-						        array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'loginp')),
+						        array('label'=>Yii::t('huaxin','Register'), 'url'=>array('/user/register'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'registrate')),
+						        array('label'=>Yii::t('huaxin','Login'), 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'loginp')),
 						)),
 							'htmlOptions' => array("class" => "list-unstyled list-inline initialism"),
 						)); ?>
@@ -85,7 +85,7 @@
         	
         	<div class="row busqueda">
 			    <div class="col-md-2 col-xs-2 quebuscas">
-			        <p>QUE BUSCAS?</p>
+			        <p><?php print Yii::t('huaxin',"Qué buscas?"); ?></p>
 			    </div>
 			
 			    <div class="col-md-2 col-xs-3">
@@ -102,12 +102,12 @@
 			    </div>
 			
 			    <div class="col-md-2 col-xs-3 numanuncios">
-			        <?php print Helper::getCount() ." ". Yii::t("huaxin", "anuncios"); ?>
+			        <?php print Helper::getCount() ." ". Yii::t("huaxin", "Anuncios"); ?>
 			    </div>
 				
 				<div class="col-md-2 col-md-offset-0 col-xs-10 col-xs-offset-1 blue publica text-center">
 					<a class="bigbutton" href="/new">
-					  Pon tu anuncio
+					  <?php print Yii::t('huaxin',"Pon tu anuncio"); ?>
 	  				</a>
 				</div>
 

@@ -44,7 +44,7 @@ return array(
 	// Web
 	"HUAXIN" => "华信",
 	"Register" => "注册",
-	"Login" => "登录"
+	"Login" => "登录",
 	"Username" => "用户名",
 	"Password" => "密码",
 	"Qué buscas?" => "信息搜索",

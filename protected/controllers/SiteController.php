@@ -446,4 +446,8 @@ class SiteController extends Controller
 	{
 		$this->render('privacidad',null);
 	}
+		public function actionSeguridad()
+	{
+		$this->render('seguridad',null);
+	}
 }

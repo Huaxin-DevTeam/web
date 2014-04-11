@@ -43,5 +43,17 @@ return array(
 
 	// Web
 	"HUAXIN" => "华信",
+	"Register" => "注册",
+	"Login" => "登录"
+	"Username" => "用户名",
+	"Password" => "密码",
+	"Qué buscas?" => "信息搜索",
+	"Anuncios" => "信息",
+	"Pon tu anuncio" => "发布信息",
+	"En tu móvil o tablet" => "手机软件下载",
+	"Por qué Huaxin?" => "为什么选择华信?",
+	"Confianza y seguridad" => "信任与安全",
+	"Garantía 100%" => "100%保障",
+	
 		
 );

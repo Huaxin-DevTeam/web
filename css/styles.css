@@ -22,6 +22,7 @@ th{background: #e0eff5 no-repeat;}
 
 .thumbnail > img, .thumbnail a > img{
 	width: 100%;
+	height: 150px;
 }
 
 .ads{

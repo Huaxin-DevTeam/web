@@ -28,13 +28,16 @@ class Controller extends CController
 	
 	//Custom
 	public $model = null;
-	public $loginModel = null;	
+	public $loginModel = null;
+	public $searchModel = null;
 	public $filters = null;
 
 	public $ads = null;
 	public $categories = null;
 	
 	public $credits;
+	
+	protected $pageSize = 10;
 
 	
 	public function init(){
@@ -61,6 +64,16 @@ class Controller extends CController
 			// validate user input and redirect to the previous page if valid
 			if($this->loginModel->validate() && $this->loginModel->login())
 				$this->redirect(Yii::app()->user->returnUrl);
+		}
+		
+		//Search!
+		$this->searchModel = new SearchForm;
+		if(isset($_POST['SearchForm'])){
+			$this->searchModel->attributes = $_POST['SearchForm'];
+			
+			if($this->searchModel->validate()){
+				$this->redirect($this->createUrl("search/".$this->searchModel->query));
+			}
 		}
 		
 		if(!Yii::app()->user->isGuest)

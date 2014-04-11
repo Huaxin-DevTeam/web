@@ -92,12 +92,13 @@
 			    </div>
 			
 			    <div class="col-md-4 col-xs-10 col-md-offset-0 col-xs-offset-1">
+			       <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->searchModel,''); ?>
 			        <form class="form" role="form">
 			            <div>
-			                <label class="sr-only" for="idSearch">Usuario</label> 
-							<input type="text" class="form-control dondebuscas" id="idSearch" placeholder="Madrid, Barcelona...">
+			                <?php echo CHtml::activeLabel($this->searchModel,'query', array("class" => "sr-only")); ?>
+			                <?php echo CHtml::activeTextField($this->searchModel,'query',array("class" => "form-control", "id" => "idSearch", "placeholder" => "Habitación, Barcelona...")) ?>
 			            </div>
-			        </form>
+			        <?php echo CHtml::endForm(); ?>
 			    </div>
 			
 			    <div class="col-md-2 col-xs-3 numanuncios">

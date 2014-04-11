@@ -129,6 +129,51 @@ class SiteController extends Controller
 		$this->render("list", $data);
 	}
 	
+	public function actionSearch($token){
+		
+		$this->layout = "//layouts/huaxin-filters";
+		
+		//Get filters
+		$this->filters = new FiltersForm;
+		
+		$sql = "NOW() BETWEEN date_published AND date_end";
+		$opts = array();
+		
+		$maxitem = Item::model()->find($sql." ORDER BY price DESC",$opts);
+		$this->maxprice = $maxitem->price;
+		
+		$sql .= " AND (title LIKE :text OR description LIKE :text OR location LIKE :text)";
+		$opts[':text'] = "%$token%";
+				
+		$dbitems = Item::model()->findAll($sql,$opts);
+		
+		$sql .=" ORDER BY date_published DESC";
+		$page = $this->pageSize;
+		$total = count($dbitems);
+		
+		$pages =new CPagination($total);
+		$pages->setPageSize($page);
+		
+		$sql .= " LIMIT :offset, :limit";
+		$opts[':offset'] = $pages->offset;
+		$opts[':limit'] = $page;
+		
+		$dbitems = Item::model()->findAll($sql,$opts);
+		
+		$items = array();
+
+		foreach($dbitems as $item)
+			$items[] = $this->renderPartial('//item/list',array('item' => $item),true);
+		
+		$data = array(
+			"items" => $items,
+			"pages" => $pages,
+			"filters" => true,
+		);
+		
+		$this->render("list", $data);
+	}
+	
 	public function actionCategory($id=0){
 
 		$this->layout = "//layouts/huaxin-filters";
@@ -179,7 +224,7 @@ class SiteController extends Controller
 		$dbitems = Item::model()->findAll($sql,$opts);
 		
 		$sql .=" ORDER BY date_published DESC";
-		$page = 3;
+		$page = $this->pageSize;
 		$total = count($dbitems);
 		
 		$pages =new CPagination($total);
@@ -247,7 +292,7 @@ class SiteController extends Controller
 				
 				$model->image = CUploadedFile::getInstance($model,'image');
 				if($model->image != null){					
-					$item->image_url = $imgpath . $model->image->name;
+					$item->image_url = $imgpath.$user->id."_".$model->image->name;
 				}else{
 					$item->image_url = "/img/placeholder.png";
 				}			
@@ -273,7 +318,7 @@ class SiteController extends Controller
 				}
 				
 				if($item->save()){
-					if($model->image instanceof CUploadedFile) $model->image->saveAs($savepath.$user->id."_".$item->id."_".$model->image->name);
+					if($model->image instanceof CUploadedFile) $model->image->saveAs($savepath.$user->id."_".$model->image->name);
 					$user->credits -= $num_credits;
 					$user->save();
 				}
@@ -325,7 +370,7 @@ class SiteController extends Controller
 				
 				$model->image = CUploadedFile::getInstance($model,'image');	
 				if($model->image != null){					
-					$item->image_url = $imgpath . $model->image->name;
+					$item->image_url = $imgpath.$user->id."_".$model->image->name;
 				}else{
 					$item->image_url = $prev_img;
 				}
@@ -337,7 +382,7 @@ class SiteController extends Controller
 				}
 				
 				if($item->save()){
-					if($model->image instanceof CUploadedFile) $model->image->saveAs($savepath.$user->id."_".$item->id."_".$model->image->name);
+					if($model->image instanceof CUploadedFile) $model->image->saveAs($savepath.$user->id."_".$model->image->name);
 				}
 				
 				Yii::app()->user->setFlash('success',Yii::t("huaxin","Update successful."));

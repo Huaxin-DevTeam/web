@@ -55,6 +55,9 @@ class AdController extends Controller
 	public function actionCreate()
 	{
 		$model=new Ad;
+		
+		$imgpath = "/images/ads/";
+		$savepath = Yii::app()->basePath.'/..'.$imgpath;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -62,8 +65,14 @@ class AdController extends Controller
 		if(isset($_POST['Ad']))
 		{
 			$model->attributes=$_POST['Ad'];
-			if($model->save())
+			
+			$image = CUploadedFile::getInstance($model,'image_url');
+			$model->image_url = $imgpath.$image->name;
+			
+			if($model->save()){
+				if($image instanceof CUploadedFile) $image->saveAs($savepath.$image->name);
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('create',array(
@@ -79,6 +88,9 @@ class AdController extends Controller
 	public function actionUpdate($id)
 	{
 		$model=$this->loadModel($id);
+		
+		$imgpath = "/images/ads/";
+		$savepath = Yii::app()->basePath.'/..'.$imgpath;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
@@ -86,8 +98,14 @@ class AdController extends Controller
 		if(isset($_POST['Ad']))
 		{
 			$model->attributes=$_POST['Ad'];
-			if($model->save())
+			
+			$image = CUploadedFile::getInstance($model,'image_url');
+			$model->image_url = $imgpath.$image->name;
+			
+			if($model->save()){
+				if($image instanceof CUploadedFile) $image->saveAs($savepath.$image->name);
 				$this->redirect(array('view','id'=>$model->id));
+			}
 		}
 
 		$this->render('update',array(

@@ -63,11 +63,13 @@ th{background: #e0eff5 no-repeat;}
 
 #idPass.form-control { background: #54a4ca url("../img/locker.png") no-repeat 5px 5px;}
 #idUser.form-control { background: #54a4ca url("../img/user.png") no-repeat 5px 5px;}
-#idSearch { background: #54a4ca url("../img/lupa.png") no-repeat 95% center;}
-#idSearch {height: 18px;}
+#idSearch { background: #54a4ca;}
+#idSearch {height: 18px; width: 90%; float: left; }
 #idSearch.form-control {
     padding: 0 10px;
 }
+
+.lupa{ background: #54a4ca url("../img/lupa.png") no-repeat center; padding: 0 15px; border: 0; float: left; height: 18px;}
 #menu.navbar-collapse{padding:0;}
 #yw0{clear:both;}
 #yw0_button{display:block;}
@@ -239,6 +241,7 @@ header{position:relative; margin-top: 20px;}
 @media (max-width: 990px) {
   .login .form-group{padding-top: 10px; }
    #idSearch,
+   .lupa,
   .publica {
       height: 40px;
       margin-top: 20px;

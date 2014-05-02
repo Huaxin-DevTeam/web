@@ -36,23 +36,23 @@
 			<div class="frase  hidden-sm hidden-xs">专业权威的信息发布平台</div>
             <div class="col-md-8 col-sm-8  col-xs-12 login">
 				<div class="">
-					<?php if(Yii::app()->user->getId() !== null): ?>
-							<div class="col-xs-offset-0 col-md-offset-0  col-md-6  col-sm-5 col-xs-2 text-right loginmail"> <?php print Yii::app()->user->name ?></div>
-							<div class="col-xs-3 creditos blue-text"><?php print $this->credits; ?></div>
-							<div class="menuitem buycredits col-xs-1"> <?php echo CHtml::link('',array('order/select')); ?> </div>
-							<div class="menuitem misanuncios col-xs-1"> <?php echo CHtml::link('',array('/myads')); ?> </div>
-							<div class="menuitem logout col-xs-1"> <?php echo CHtml::link('',array('/user/logout')); ?> </div>
-					<?php else: ?>
-								
-						<div class="col-md-3 col-xs-12 text-center col-md-offset-7 ">
-							<?php $this->widget('zii.widgets.CMenu',array(
-								'items'=> array_merge($this->main_menu,array(
-									array('label'=>'Register', 'url'=>array('/user/register'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'registrate')),
-									array('label'=>'Login', 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'loginp')),
-							)),
-								'htmlOptions' => array("class" => "list-unstyled list-inline initialism"),
-							)); ?>
-						</div>
+            <?php if(Yii::app()->user->getId() !== null): ?>
+					<div class="col-xs-offset-0 col-md-offset-0  col-md-6  col-sm-5 col-xs-2 text-right loginmail"> <?php print Yii::app()->user->name ?></div>
+                    <div class="col-xs-3 creditos blue-text"><?php print $this->credits; ?></div>
+					<div class="menuitem buycredits col-xs-1"> <?php echo CHtml::link('',array('order/select')); ?> </div>
+					<div class="menuitem misanuncios col-xs-1"> <?php echo CHtml::link('',array('/myads')); ?> </div>
+					<div class="menuitem logout col-xs-1"> <?php echo CHtml::link('',array('/user/logout')); ?> </div>
+            <?php else: ?>
+            			
+                    <div class="col-md-3 col-xs-12 text-center col-md-offset-7 ">
+                        <?php $this->widget('zii.widgets.CMenu',array(
+						    'items'=> array_merge($this->main_menu,array(
+						        array('label'=>Yii::t('huaxin','Register'), 'url'=>array('/user/register'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'registrate')),
+						        array('label'=>Yii::t('huaxin','Login'), 'url'=>array('/user/login'), 'visible'=>Yii::app()->user->isGuest, 'itemOptions' => array('class'=>'loginp')),
+						)),
+							'htmlOptions' => array("class" => "list-unstyled list-inline initialism"),
+						)); ?>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="form col-xs-offset-2 col-sm-offset-0">
@@ -96,6 +96,7 @@
 			            <div>
 			                <?php echo CHtml::activeLabel($this->searchModel,'query', array("class" => "sr-only")); ?>
 			                <?php echo CHtml::activeTextField($this->searchModel,'query',array("class" => "form-control", "id" => "idSearch", "placeholder" => "Habitación, Barcelona...")) ?>
+			                <?php echo CHtml::submitButton('',array("class" => "lupa")); ?>
 			            </div>
 			        <?php echo CHtml::endForm(); ?>
 			    </div>

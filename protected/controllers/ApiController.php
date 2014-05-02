@@ -38,8 +38,10 @@ class ApiController extends Controller
 	}
 	
 	private function checkToken(){
-		if(!isset($_POST['token'])) die($this->_error(400, "huaxin","Missing 'token' parameter"));
-		$token = $_POST['token'];
+		$params = json_decode($_POST['params'],true);
+		
+		if(!isset($params['token'])) die($this->_error(400, "huaxin","Missing 'token' parameter"));
+		$token = $params['token'];
 		
 		$user = User::model()->findByAttributes(array("token" => $token));
 		if(!$user) die($this->_error(401, "Invalid token"));
@@ -87,8 +89,18 @@ class ApiController extends Controller
 	/**
 	* Load Splash Screen: ads and categories
 	*/
+	public function actionInit(){
+		$data = array(
+			"ad" => $this->actionAd(true),
+			"categories" => $this->actionCategories(true),
+			"num_anuncios" => Helper::getCount(),
+		);
+		
+		return $this->_render($data);
+	}
+	
 	/* Returns all ads, active and for mobile */
-	public function actionAd()
+	public function actionAd($output=false)
 	{
 		// Only active ads and shown in mobile
 		$res = Ad::model()->findAll("NOW() BETWEEN date_published AND date_end AND is_mobile");		
@@ -97,17 +109,25 @@ class ApiController extends Controller
 			$ads[] = $ad->toArray();
 		}
 		
-		return $this->_render($ads);
+		$rand = array_rand($ads);
+		
+		if($output) 
+			return $ads[$rand];
+		
+		return $this->_render($ads[$rand]);
 	}
 	
 	/* Returns all categories */
-	public function actionCategories()
+	public function actionCategories($output=false)
 	{
 		$categories = Category::model()->findAll(array('order'=>'id'));
 		
 		$cats = array();
 		foreach($categories as $c)
 			$cats[] = $c->toArray();
+			
+		if($output)
+			return $cats;
 		
 		return $this->_render($cats);
 	}
@@ -163,12 +183,14 @@ class ApiController extends Controller
 	{
 		$this->checkPost();
 		
-		if(!isset($_POST['username'])) return $this->_error(400, "Missing 'username' parameter");
-		if(!isset($_POST['password'])) return $this->_error(400, "Missing 'password' parameter");
+		$params = json_decode($_POST['params'],true);
+		
+		if(!isset($params['username'])) return $this->_error(400, "Missing 'username' parameter");
+		if(!isset($params['password'])) return $this->_error(400, "Missing 'password' parameter");
 		
 		// Gather data sent by user
-		$username = $_POST['username'];
-		$password = $_POST['password'];
+		$username = $params['username'];
+		$password = $params['password'];
 		
 		// Check credentials
 		$user = User::model()->find(
@@ -179,13 +201,17 @@ class ApiController extends Controller
 		if($user===null) return $this->_error(401, "Wrong username");
 		if(!$user->validatePassword($password)) return $this->_error(401, "Wrong password");
 		
-		$user->token = $user->token ? : Helper::getToken();
+		$user->device_id = $user->device_id ? : Helper::getToken();
 		$user->save();
 		
 		$data = array(
 			"success" => true,
 			"message" => Yii::t("huaxin","Welcome, {email}!", array("{email}" => $user->email)),
 			"token" => $user->token,
+			"num_credits" => $user->credits,
+			"email" => $user->email,
+			"phone" => $user->phone,
+			"id" => $user->id,
 		);
 		
 		return $this->_render($data);
@@ -201,6 +227,10 @@ class ApiController extends Controller
 			"success" => true,
 			"message" => Yii::t("huaxin","Welcome back, {email}!", array("{email}" => $user->email)),
 			"token" => $user->token,
+			"num_credits" => $user->credits,
+			"email" => $user->email,
+			"phone" => $user->phone,
+			"id" => $user->id,
 		);
 		
 		return $this->_render($data);
@@ -368,7 +398,29 @@ class ApiController extends Controller
 
 	public function actionSearch()
 	{
-		$data = array("message" => "search");
+		$params = json_decode($_POST['params'], true);
+		
+		$query = $params['query'];
+		$category_id = $params['category'];
+		
+		$sql = "NOW() BETWEEN date_published AND date_end";
+		$opts = array();
+				
+		$sql .= " AND (title LIKE :text OR description LIKE :text OR location LIKE :text)";
+		$opts[':text'] = "%$query%";
+		
+		$sql .= " AND (category_id = :cat)";
+		$opts[':cat'] = $category_id;
+				
+		$dbitems = Item::model()->findAll($sql,$opts);
+		
+		$sql .=" ORDER BY date_published DESC";
+		
+		$items = array();
+		foreach($dbitems as $item)
+			$items[] = $item->toArray();
+			
+		$data = array("items" => $items);
 		return $this->_render($data);
 	}
 

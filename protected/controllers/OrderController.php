@@ -99,11 +99,11 @@ class OrderController extends Controller{
 	
 	private function startPayPalTransaction($isCC = false){
 		$sdkConfig = array(
-			"mode" => "sandbox"
+			"mode" => "live" //sandbox
 		);
 		
-		$clientId = "AUxj2xDEyYYSXi8-ylvmYMdHdpzc9nXziw5USXrWVxRFmqnu0GvS-5y9Q1eA";
-		$clientSecret = "EEyfGRCLZ-cadLxwCHnhw-XmYG6G2bpU4_d7ohT0hcmN_Ao2EsWtwWwf29dW";
+		$clientId = "AeEPyBAynQ-6dPzxiIuIKy3WHeSu-dvwgaHE5oDEJHuKqfUJa4WEDB5NkROE";
+		$clientSecret = "EP0KTxCw2qEKeJyIA02s7vvsSnrjd2WsstoiCI0hpKhyCc1HzcscHkpZg43L";
 		
 		$cred = new OAuthTokenCredential($clientId,$clientSecret,$sdkConfig);
 		
@@ -224,12 +224,12 @@ class OrderController extends Controller{
 		
 		if($purchase){
 			
-			$sdkConfig = array(
-				"mode" => "sandbox"
-			);
-			
-			$clientId = "AUxj2xDEyYYSXi8-ylvmYMdHdpzc9nXziw5USXrWVxRFmqnu0GvS-5y9Q1eA";
-			$clientSecret = "EEyfGRCLZ-cadLxwCHnhw-XmYG6G2bpU4_d7ohT0hcmN_Ao2EsWtwWwf29dW";
+		$sdkConfig = array(
+			"mode" => "live" //sandbox
+		);
+		
+		$clientId = "AeEPyBAynQ-6dPzxiIuIKy3WHeSu-dvwgaHE5oDEJHuKqfUJa4WEDB5NkROE";
+		$clientSecret = "EP0KTxCw2qEKeJyIA02s7vvsSnrjd2WsstoiCI0hpKhyCc1HzcscHkpZg43L";
 			
 			$cred = new OAuthTokenCredential($clientId,$clientSecret,$sdkConfig);
 			

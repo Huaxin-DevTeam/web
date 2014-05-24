@@ -1,11 +1,11 @@
 <div class="pagar">
-<span class="col-xs-12 margenh5">Ya casi hemos terminado, revisa y paga tu compra</span>
+<span class="col-xs-12 margenh5"><?php print Yii::t("huaxin","Ya casi hemos terminado, revisa y paga tu compra"); ?></span>
 
 	<div class="resumen-compra col-xs-12">
 		<table class="table col-xs-12">
 			<tr>
-				<th class="col-xs-6">Resumen de compra:</th>
-				<th class="col-xs-6">Precio</th>
+				<th class="col-xs-6"><?php print Yii::t("huaxin","Resumen de compra:"); ?></th>
+				<th class="col-xs-6"><?php print Yii::t("huaxin","Precio"); ?></th>
 			</tr>
 			<tr>
 				<td class="col-xs-6"><?php print $credits . " " . Yii::t("huaxin","credits"); ?></td>
@@ -15,10 +15,10 @@
 		</table>
     </div>
 	<p>
-		Deberás hacer una transferencia bancaria a la cuenta: 000-000-000-0-0-0-0-000-0-0 a nombre de Linxiu Shao.<br/>
-		<b>IMPORTANTE</b> Deberás incluir la siguiente información en el <u>concepto</u>: 
+		<?php print Yii::t("huaxin","Deberás hacer una transferencia bancaria a la cuenta: 000-000-000-0-0-0-0-000-0-0 a nombre de Linxiu Shao."); ?><br/>
+		<b><?php print Yii::t("huaxin","IMPORTANTE"); ?></b> <?php print Yii::t("Deberás incluir la siguiente información en el"); ?> <u><?php print Yii::t("concepto"); ?></u>: 
 		<span class="supertoken"><b><?php print $token; ?></b></span><br/><br/>
-		Una vez comprobemos el pago, se procederá a añadir los créditos a tu cuenta.
+		<?php print Yii::t("huaxin","Una vez comprobemos el pago, se procederá a añadir los créditos a tu cuenta."); ?>
 	</p>	
-	<a href="/" class="button-blue  button-confirm pull-right text-center bigbottom">Volver a la página principal</a>
+	<a href="/" class="button-blue  button-confirm pull-right text-center bigbottom"><?php print Yii::t("huaxin","Volver a la página principal"); ?></a>
 </div>

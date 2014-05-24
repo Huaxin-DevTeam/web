@@ -8,7 +8,7 @@
 				<div class="credit_desc">	
 					<div class="credit_euros"><?php print $item->price ?>€</div>
 					<div class="credit_phrase"><?php print $item->text ?></div>
-					<div class="buy_now center-block">buy now</div>
+					<div class="buy_now center-block"><?php print Yii::t("huaxin","buy now") ?></div>
 				</div>
 			</div>
 		</div>

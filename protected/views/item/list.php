@@ -18,10 +18,10 @@
 				<div class="actions pull-right">
 					<ul class="anuncio list-inline list-unstyled clearfix">
 						<?php if($item->user_id == Yii::app()->user->id): ?>
-						<li class="editar"><a href="/edit/<?php print $item->id?>">Editar</a></li>
-						<li class="eliminar"><a href="/delete/<?php print $item->id?>" class="delete confirm">Eliminar</a></li>
+						<li class="editar"><a href="/edit/<?php print $item->id?>"><?php print Yii::t("huaxin", "Editar")?></a></li>
+						<li class="eliminar"><a href="/delete/<?php print $item->id?>" class="delete confirm"><?php print Yii::t("huaxin", "Eliminar")?></a></li>
 						<?php endif; ?>
-						<li class=""><a href="<?php echo Yii::app()->createUrl('view/'.$item->id) ?>" class="button-blue veranuncio">Ver anuncio</a></li>
+						<li class=""><a href="<?php echo Yii::app()->createUrl('view/'.$item->id) ?>" class="button-blue veranuncio"><?php print Yii::t("huaxin", "Ver anuncio")?></a></li>
 					</ul>
 				</div>
 			</div>				

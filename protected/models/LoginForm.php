@@ -35,6 +35,8 @@ class LoginForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
+			"username" => Yii::t("huaxin","Username"),
+			"password" => Yii::t("huaxin","Password"),
 			
 		);
 	}
@@ -51,13 +53,13 @@ class LoginForm extends CFormModel
 			$this->_identity->authenticate();
 			switch($this->_identity->errorCode){
 				case UserIdentity::ERROR_USERNAME_INVALID:
-					$this->addError('username','Username is invalid');
+					$this->addError('username',Yii::t("huaxin","Username is invalid"));
 					break;
 				case UserIdentity::ERROR_PASSWORD_INVALID:
-					$this->addError('password','Password is invalid');
+					$this->addError('password',Yii::t("huaxin","Password is invalid"));
 					break;
 				case UserIdentity::ERROR_USER_NOT_ACTIVE:
-					$this->addError('username','Username is not activated');
+					$this->addError('username',Yii::t("huaxin","Username is not activated"));
 					break;	
 					
 				default: break; //OK

@@ -11,7 +11,7 @@
 
 <div class="form">
 	<div class="col-xs-12 blue margenh5">
-		<h5>Login</h5>
+		<h5><?php print Yii::t("huaxin","Login")?></h5>
 	</div>
 	
 	<?php $form=$this->beginWidget('CActiveForm', array(
@@ -38,10 +38,10 @@
 	</div>
 
 	<div class="row">
-		<div class="col-xs-3 col-sm-offset-3 gray"><a href="<?php print $this->createUrl("user/password"); ?>">Lost password?</a></div>
+		<div class="col-xs-3 col-sm-offset-3 gray"><a href="<?php print $this->createUrl("user/password"); ?>"><?php print Yii::t("huaxin","Lost password?");?></a></div>
 		<div class="form-group col-sm-1 col-sm-offset-2 col-xs-offset-1 bigbottom">			
 			<div class="button button-register col-xs-offset-5">
-			<?php echo CHtml::submitButton('Login'); ?>
+			<?php echo CHtml::submitButton(Yii::t("huaxin","Login")); ?>
 			</div>
 		</div>
 	</div>

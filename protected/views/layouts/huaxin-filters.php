@@ -13,7 +13,7 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="navbar-collapse collapse" id="menu">
                 <div class="form">
-                	<div class="filtros">Filters</div>
+                	<div class="filtros"><?php print Yii::t("huaxin", "Filters")?></div>
                 	<?php //print_r($this); die(); ?>
                 	<?php $form=$this->beginWidget('CActiveForm'); ?>
                 	<?php echo $form->errorSummary($this->filters,null,null,array('class'=>"bs-callout bs-callout-danger")); ?>
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="form-group submit">
-                        <?php echo CHtml::submitButton('Filter',array("class"=>"form-control button-blue","title"=>"Filter")); ?>
+                        <?php echo CHtml::submitButton(Yii::t("huaxin", "Filter"),array("class"=>"form-control button-blue","title"=>"Filter")); ?>
                     </div>
                     <?php $this->endWidget(); ?>
                 </div><!-- form -->

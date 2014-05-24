@@ -9,26 +9,26 @@
 		</div>
 		<div class="detalle col-sm-6">
 			<div class="det-precio">
-				<span class="big-blue">Precio</span>
+				<span class="big-blue"><?php print Yii::t("huaxin", "Price") ?></span>
 				<p><?php print $item->price ?>€ </p>
 			</div>
 			<div class="det-cat">
-				<span class="big-blue">Categoría</span><br>
+				<span class="big-blue"><?php print Yii::t("huaxin", "Category")?></span><br>
 				<a href= "<?php echo Yii::app()->request->baseUrl;?>/category/<?php print $category->id; ?>"><?php print $category->name; ?></a>
 			</div>
 			<div class="det-telf">
-				<span class="big-blue">Teléfono</span>
+				<span class="big-blue"><?php print Yii::t("huaxin", "Telephone")?></span>
 				<p><?php print $item->phone ?> </p>
 			</div>
 			<div class="det-descripcion">
-				<span class="big-blue">Descripción</span>
+				<span class="big-blue"><?php print Yii::t("huaxin", "Description")?></span>
 				<p><?php print $item->description ?></p>
 			</div>		
 		</div>
 		<ul class="bottom pull-right list-inline list-unstyled clearfix">
 			<?php if($item->user_id == Yii::app()->user->id): ?>
-			<li class="editar"><a href="<?php echo Yii::app()->request->baseUrl;?>/edit/<?php print $item->id; ?>">Editar</a></li>
-			<li class="eliminar"><a href="<?php echo Yii::app()->request->baseUrl;?>/delete/<?php print $item->id; ?>" class="delete confirm">Eliminar</a></li>
+			<li class="editar"><a href="<?php echo Yii::app()->request->baseUrl;?>/edit/<?php print $item->id; ?>"><?php print Yii::t("huaxin", "Editar")?></a></li>
+			<li class="eliminar"><a href="<?php echo Yii::app()->request->baseUrl;?>/delete/<?php print $item->id; ?>" class="delete confirm"><?php print Yii::t("huaxin", "Eliminar")?></a></li>
 			<?php endif; ?>
 			<!--<li class="contactar"><a href="#">Contactar</a></li>-->
 		</ul>

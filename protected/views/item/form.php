@@ -13,7 +13,7 @@
 <?php echo $form->errorSummary($model,null,null,array('class'=>"bs-callout bs-callout-danger")); ?>
 <div class="col-xs-12 form bigbottom">
 		<div class="col-xs-12 blue margenh5">
-			<h5>Nuevo anuncio</h5>
+			<h5><?php print Yii::t("huaxin", "Nuevo anuncio")?></h5>
 		</div>
 		
 		<div class="form col-xs-12 col-sm-9">
@@ -98,24 +98,24 @@
 			
 			<div class="col-xs-6 col-sm-12">
 				<p>
-					<?php echo $form->label($model,'duration'); ?>
+					<?php print Yii::t("huaxin", "Duration")?>
 					<?php echo $form->textField($model,'duration',array("style" => "border:0; color:#f6931f; font-weight:bold;", "id" => "amount","readonly" => true)) ?>
 				</p>
 				<div id="slider-range-min"></div>
 			</div>
 			
 			<div class="col-xs-6 col-sm-12">
-				<?php echo $form->label($model,'premium'); ?>
+				<?php print Yii::t("huaxin", "Premium")?>
 				<?php echo $form->checkBox($model,'premium',array("checked" => $model->premium == 1 ? "checked" : "", "id" => "promote")) ?>
 			</div>
 			
 			<div class="col-xs-6 col-sm-12">
-				<label for="ch_emails">Total credits: </label>
+				<label for="ch_emails"><?php print Yii::t("huaxin", "Total credits:")?> </label>
 				<span id="total_credits">1</span>
 			</div>
 			
 			<div class="newsave button col-xs-offset-5 col-sm-offset-3">
-				<?php echo CHtml::submitButton('Save'); ?>
+				<?php echo CHtml::submitButton(Yii::t("huaxin", "Save")); ?>
 			</div>
 		</div>
 		<?php $this->endWidget(); ?>	

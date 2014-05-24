@@ -34,6 +34,11 @@ class FiltersForm extends CFormModel
 	public function attributeLabels()
 	{
 		return array(
+			"category" => Yii::t("huaxin","Category"),
+			"text" => Yii::t("huaxin","Text"),
+			"location" => Yii::t("huaxin","Location"),
+			"price" => Yii::t("huaxin","Price"),
+			
 			
 		);
 	}

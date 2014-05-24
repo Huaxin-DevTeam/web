@@ -1,4 +1,4 @@
-<?php $lang = isset($_GET['lang']) ? $_GET['lang'] : "en"; Yii::app()->setLanguage($lang); ?>
+<?php //$lang = isset($_GET['lang']) ? $_GET['lang'] : "en"; Yii::app()->setLanguage($lang); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -59,11 +59,11 @@
                         <?php echo CHtml::beginForm(); ?><?php echo CHtml::errorSummary($this->loginModel,''); ?>
 
                         <div class="form-group form-user col-sm-5 col-md-offset-4 col-md-3 pull-left">
-                            <?php echo CHtml::activeLabel($this->loginModel,'username', array("class" => "sr-only")); ?><?php echo CHtml::activeTextField($this->loginModel,'username',array("class" => "form-control", "id" => "idUser", "placeholder" => "Username")) ?>
+                            <?php echo CHtml::activeLabel($this->loginModel,'username', array("class" => "sr-only")); ?><?php echo CHtml::activeTextField($this->loginModel,'username',array("class" => "form-control", "id" => "idUser", "placeholder" => Yii::t("huaxin", "Username"))) ?>
                         </div>
 
                         <div class="form-group form-pass  col-sm-5 col-md-3 pull-left">
-                            <?php echo CHtml::activeLabel($this->loginModel,'password', array("class" => "sr-only")); ?><?php echo CHtml::activePasswordField($this->loginModel,'password',array("class" => "form-control", "id" => "idPass", "placeholder" => "Password")) ?>
+                            <?php echo CHtml::activeLabel($this->loginModel,'password', array("class" => "sr-only")); ?><?php echo CHtml::activePasswordField($this->loginModel,'password',array("class" => "form-control", "id" => "idPass", "placeholder" => Yii::t("huaxin", "Password"))) ?>
                         </div>
 
                         <div class="form-group submit col-sm-2 pull-left">
@@ -129,7 +129,7 @@
             <div class="col-sm-2 col-xs-12">
                 <div class="row">
                     <div class="movil">
-                        <span class="col-sm-12 col-xs-3 col-xs-offset-3 col-sm-offset-0">EN TU MÓVIL O EN TABLET</span>                    
+                        <span class="col-sm-12 col-xs-3 col-xs-offset-3 col-sm-offset-0"><?php print Yii::t("huaxin", "En tu móvil o tablet")?></span>                    
 						<div class="col-lg-5 col-md-6 col-sm-8 col-xs-2"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/apple.png" class="pull-right"></div>
 						<div class="col-lg-5 col-sm-6 col-xs-2"><img alt="Inicio" src="<?php echo Yii::app()->request->baseUrl; ?>/img/android.png" class="pull-left"></div>
 					</div>
@@ -138,11 +138,11 @@
 
             <div class="col-sm-8 col-xs-12">
                 <ul class="list-inline footer breadcrumb text-center">
-                    <li><?php echo CHtml::link(Yii::t("huaxin", "AYUDA"),array('/help')); ?></li>
-                    <li><?php echo CHtml::link(Yii::t("huaxin", "CONTACTA CON NOSOTROS"),array('/contact')); ?></li>
-					<li><?php echo CHtml::link(Yii::t("huaxin", "SOBRE NOSOTROS"),array('/about')); ?></li>
-					<li><?php echo CHtml::link(Yii::t("huaxin", "CONDICIONES DE USO"),array('/tos')); ?></li>
-                    <li><?php echo CHtml::link(Yii::t("huaxin", "POLÍTICA DE PRIVACIDAD"),array('/privacidad')); ?></li>
+                    <li><?php echo CHtml::link(Yii::t("huaxin", "Ayuda"),array('/help')); ?></li>
+                    <li><?php echo CHtml::link(Yii::t("huaxin", "Contacta con nosotros"),array('/contact')); ?></li>
+					<li><?php echo CHtml::link(Yii::t("huaxin", "Sobre nosotros"),array('/about')); ?></li>
+					<li><?php echo CHtml::link(Yii::t("huaxin", "Condiciones de uso"),array('/tos')); ?></li>
+                    <li><?php echo CHtml::link(Yii::t("huaxin", "Política de privacidad"),array('/privacidad')); ?></li>
 
                 </ul>
             </div>

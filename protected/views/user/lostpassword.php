@@ -26,7 +26,7 @@
 	
 	<div class="row">
 		<div class="form-group col-xs-6 col-sm-offset-3">
-			<p>Give us your email and we will send it the reset instructions</p>
+			<p><?php print Yii::t("huaxin","Give us your email and we will send it the reset instructions"); ?></p>
 		</div>
 	</div>
 	<div class="row">
@@ -43,12 +43,12 @@
 			  <?php $this->widget('CCaptcha', array('captchaAction'=>'site/captcha')); ?>
 			  <?php echo $form->textField($model,'captcha', array("class" => "form-control","class"=>"captcha")); ?>
 			</div>
-			<div class="hint">Introduzca las letras que aparecen arriba.
-			<br/>No hay distinción entre mayúsculas y minúsculas.</div>
+			<div class="hint"><?php print Yii::t("huaxin","Introduzca las letras que aparecen arriba."); ?>
+			<br/><?php print Yii::t("huaxin","No hay distinción entre mayúsculas y minúsculas."); ?></div>
 			<?php echo $form->error($model,'captcha'); ?>
 			
 			<div class="button button-register col-xs-offset-5">
-				<?php echo CHtml::submitButton('Submit'); ?>
+				<?php echo CHtml::submitButton(Yii::t("huaxin", "Submit")); ?>
 			</div>
 		</div>
 	</div>

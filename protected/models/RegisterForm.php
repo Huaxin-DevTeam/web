@@ -28,6 +28,9 @@ class RegisterForm extends CFormModel{
 		return array(
 			"password2" => Yii::t("huaxin","Password confirmation"),
 			"captcha" => Yii::t("huaxin","Verification code"),
+			"password" => Yii::t("huaxin","Password"),
+			"email" => Yii::t("huaxin","email"),
+			
 		);
 	}
 	

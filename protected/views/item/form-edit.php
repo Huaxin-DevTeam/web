@@ -13,7 +13,7 @@
 <?php echo $form->errorSummary($model,null,null,array('class'=>"bs-callout bs-callout-danger")); ?>
 <div class="col-xs-12 form bigbottom">
 		<div class="col-xs-12 blue margenh5">
-			<h5>Nuevo anuncio</h5>
+			<h5><?php echo Yii::t("huaxin","Nuevo anuncio")?></h5>
 		</div>
 		
 		<div class="form col-xs-12 col-sm-9">
@@ -96,7 +96,7 @@
 		</div><!-- form -->
 		<div class="form-group col-sm-3 col-xs-12 sticky">						
 			<div class="button col-xs-offset-5 col-sm-offset-3">
-				<?php echo CHtml::submitButton('Save'); ?>
+				<?php echo CHtml::submitButton(Yii::t("huaxin","Save")); ?>	
 			</div>
 		</div>
 						

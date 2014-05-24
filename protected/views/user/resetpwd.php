@@ -26,7 +26,7 @@
 	
 	<div class="row">
 		<div class="form-group col-xs-6 col-sm-offset-3">
-			<p>Enter your new password below:</p>
+			<p><?php print Yii::t("huaxin","Enter your new password below:"); ?></p>
 		</div>
 	</div>
 	<div class="row">
@@ -45,7 +45,7 @@
 	</div>
 	<div class="row">
 		<div class="form-group col-xs-6 col-sm-offset-3 button col-xs-offset-5">
-			<?php echo CHtml::submitButton('Submit'); ?>
+				<?php echo CHtml::submitButton(Yii::t("huaxin", "Submit")); ?>
 		</div>
 	</div>
 

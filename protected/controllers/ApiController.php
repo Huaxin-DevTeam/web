@@ -342,18 +342,24 @@ class ApiController extends Controller
 		
 		return $this->_render($item->toArray());
 	}
-
-	public function actionList($id)
+	
+	public function actionList()
 	{
 		// TODO filters?
 		$this->checkPost();
 		
-		$category_id = $id;		
-		$filters = isset($_POST['filters']) ? json_decode($_POST['filters'],true) : null;
+		$params = json_decode($_POST['params'],true);
+		
+		$ids = "(";
+		foreach($params as $id => $fav){
+			if($fav)
+				$ids .= $id.",";
+		}
+		$ids .= "0)";
 		
 		$query = array(
-			"condition" => "category_id = :category AND date_end >= :date",
-			"params" => array(":category" => $category_id, ":date" => date("Y-m-d h:i:s")),
+			"condition" => "id in $ids AND NOW() BETWEEN date_published AND date_end",
+			"params" => array(),
 		);
 				
 		$items = Item::model()->findAll($query);
@@ -362,7 +368,8 @@ class ApiController extends Controller
 		foreach($items as $i)
 			$list[] = $i->toArray();
 		
-		return $this->_render($list);
+		$data = array("items" => $list);
+		return $this->_render($data);	
 	}
 
 	public function actionMyads()
@@ -373,26 +380,17 @@ class ApiController extends Controller
 		// 2. Valid token
 		$user = $this->checkToken();
 		
-		//Get ads
-		$active_items = Item::model()->findAll(array(
-			"condition" => "user_id = :userid AND date_end >= :date",
-			"params" => array(":userid" => $user->id, ":date" => date("Y-m-d h:i:s") ),
+		//Get ads		
+		$items = Item::model()->findAll(array(
+			"condition" => "user_id = :userid AND NOW() BETWEEN date_published AND date_end",
+			"params" => array(":userid" => $user->id),
 		));
+					
+		$list = array();
+		foreach($items as $item)
+			$list[] = $item->toArray();	
 		
-		$past_items = Item::model()->findAll(array(
-			"condition" => "user_id = :userid AND date_end < :date",
-			"params" => array(":userid" => $user->id, ":date" => date("Y-m-d h:i:s") ),
-		));
-		
-		$active = array();
-		foreach($active_items as $item)
-			$active[] = $item->toArray();
-			
-		$past = array();
-		foreach($past_items as $item)
-			$past[] = $item->toArray();	
-		
-		$data = array("ads" => array( "active" => $active, "inactive" => $past ));
+		$data = array("items" => $list);
 		return $this->_render($data);
 	}
 

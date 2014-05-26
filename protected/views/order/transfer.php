@@ -15,7 +15,7 @@
 		</table>
     </div>
 	<p>
-		<?php print Yii::t("huaxin","Deberás hacer una transferencia bancaria a la cuenta: 000-000-000-0-0-0-0-000-0-0 a nombre de Linxiu Shao."); ?><br/>
+		<?php print Yii::t("huaxin","Deberás hacer una transferencia bancaria a la cuenta: es61 2100 0465 7501 0108 4190 a nombre de Linxiu Shao."); ?><br/>
 		<b><?php print Yii::t("huaxin","IMPORTANTE"); ?></b> <?php print Yii::t("Deberás incluir la siguiente información en el"); ?> <u><?php print Yii::t("concepto"); ?></u>: 
 		<span class="supertoken"><b><?php print $token; ?></b></span><br/><br/>
 		<?php print Yii::t("huaxin","Una vez comprobemos el pago, se procederá a añadir los créditos a tu cuenta."); ?>

@@ -337,3 +337,17 @@ header{position:relative; margin-top: 20px;}
 .gray {
     color: #808080;
 }
+
+
+
+.errorSummary li{
+	list-style-type: none;
+	color: red;
+	font-weight: bold; 
+
+}
+
+.errorMessage{
+	color: red;
+	font-weight: bold; 
+}
